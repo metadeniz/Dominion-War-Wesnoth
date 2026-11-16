@@ -232,9 +232,9 @@ The balance check can't score a one-shot attack, so the attack ship's score belo
 
 | Ship | Lvl | Cost | HP | MP | XP | Align | Hull | Shields | Ranged | Melee | Abilities |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Bajoran freighter | 0 | 11 | 40 | 4 | 20 | neutral | cruiser | Bajoran | none | phaser 4-2 | Repairs +4, Dark matter adept |
+| Bajoran freighter | 0 | 14 | 40 | 4 | 20 | neutral | cruiser | Bajoran | none | phaser 4-2 | Repairs +4, Dark matter adept |
 | Maquis fighter (Peregrine) | 1 | 11 | 26 | 8 | 28 | neutral | light | Maquis | micro-torpedo 7-1 | phaser 5-3<br>plasma charge 6-2 | Evasive, Badlands pilots, Dark matter adept |
-| Maquis raider | 1 | 13 | 30 | 7 | 32 | neutral | light | Maquis | torpedo 8-1 | phaser 5-3<br>plasma charge 7-2 | Evasive, Nebula cloak, Badlands pilots, Dark matter adept |
+| Maquis raider | 1 | 15 | 30 | 7 | 32 | neutral | light | Maquis | torpedo 8-1 | phaser 5-3<br>plasma charge 7-2 | Evasive, Nebula cloak, Badlands pilots, Dark matter adept |
 | Mercenary raider (Baran's) | 1 | 16 | 38 | 7 | 36 | neutral | light | Mercenary | none | disruptor 7-3, *fleet tactics* | Plunder, Dark matter adept |
 | Bajoran assault vessel | 1 | 17 | 40 | 7 | 36 | neutral | light | Bajoran | torpedo 8-2 | phaser 6-3 | Evasive, Dark matter adept |
 | Dreadnought (ATR-4107) | 1 | 20 | 48 | 5 | none | neutral | cruiser | Dreadnought | none | plasma cannon 7-3<br>warhead 32-1 (torpedo), *detonate* | Machine, Dark matter adept |
@@ -247,7 +247,7 @@ The balance check can't score a one-shot attack, so the attack ship's score belo
 - **Dreadnought (ATR-4107)** (20 gold): a reprogrammed Cardassian missile. It fights with a plasma cannon until the moment it detonates: the warhead always hits for 32 torpedo damage, gets no retaliation, and destroys the Dreadnought. 32 finishes a damaged ship, kills most scouts outright and takes most of a cruiser, but leaves a Galaxy standing. It is Cardassian-built, so its shields shrug off phasers and plasma, and it gains no XP.
 - **Ferengi Marauder** (leader, 30 gold): a plasma-whip flagship (the Ferengi energy whip from TNG) with Plunder and Command. It is the only Maquis ship with Command.
 
-**Changes from the roster:** the **Bajoran freighter** gets phaser 4-2 (was 3-2). The **Maquis fighter** gets 26 HP and phaser 5-3 (was 24 and 4-3). The **fighter and raider** get plasma-charge melee and Badlands pilots. The **mercenary raider** gets 38 HP and disruptor 7-3 (was 36 and 6-3), because it has no torpedoes. The **Bajoran assault vessel's** torpedo is 8-2 (was 10-2). The **captured Constellation** gets Repairs +4, so the three Maquis leaders play differently (healer, cloaked striker, commander). The **stolen Defiant** gets Cloak, as on screen.
+**Changes from the roster:** the **Bajoran freighter** gets phaser 4-2 (was 3-2) and costs 14 (was 11), and the **Maquis raider** costs 15 (was 13), both moved to the cost formula in `cost-formula.md` (D, 16 Nov). The **Maquis fighter** gets 26 HP and phaser 5-3 (was 24 and 4-3). The **fighter and raider** get plasma-charge melee and Badlands pilots. The **mercenary raider** gets 38 HP and disruptor 7-3 (was 36 and 6-3), because it has no torpedoes. The **Bajoran assault vessel's** torpedo is 8-2 (was 10-2). The **captured Constellation** gets Repairs +4, so the three Maquis leaders play differently (healer, cloaked striker, commander). The **stolen Defiant** gets Cloak, as on screen.
 
 ---
 

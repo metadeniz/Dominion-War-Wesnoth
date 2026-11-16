@@ -149,9 +149,9 @@ Rebel cells flying whatever they can get: their own raiders and fighters, Bajora
 
 | Ship | Lvl | Group | Role | Cost | HP | MP | Attacks | Abilities | On screen |
 |---|---|---|---|---|---|---|---|---|---|
-| Bajoran freighter | 0 | Bajoran | Supply, transport | 11 | 40 | 4 | phaser 3-2 | Repairs +4 | DS9 season 4 to 7 opening credits, "Past Prologue", "The Circle", "The Siege" |
+| Bajoran freighter | 0 | Bajoran | Supply, transport | 14 | 40 | 4 | phaser 3-2 | Repairs +4 | DS9 season 4 to 7 opening credits, "Past Prologue", "The Circle", "The Siege" |
 | Maquis fighter (Peregrine-class) | 1 | Maquis | Fast fighter | 11 | 24 | 8 | phaser 4-3, micro-torpedo 7-1 | Evasive | TNG "Preemptive Strike", DS9 "The Maquis"; Starfleet flies the same design as an attack fighter in "Sacrifice of Angels" |
-| Maquis raider | 1 | Maquis | Ambusher | 13 | 30 | 7 | phaser 5-3, torpedo 9-1 | Evasive, cloak in nebulae | DS9 and Voyager, the most common Maquis ship |
+| Maquis raider | 1 | Maquis | Ambusher | 15 | 30 | 7 | phaser 5-3, torpedo 9-1 | Evasive, cloak in nebulae | DS9 and Voyager, the most common Maquis ship |
 | Mercenary raider (Baran's) | 1 | Mercenary | Raider | 16 | 36 | 7 | disruptor 6-3 | Plunder, fleet tactics | TNG "Gambit" (2368, not DS9) |
 | Bajoran assault vessel | 1 | Bajoran | Heavy fighter | 17 | 40 | 7 | phaser 6-3, torpedo 10-2 | Evasive | TNG "Preemptive Strike"; DS9 "Shadows and Symbols", "Image in the Sand". The most heavily armed Bajoran ship |
 | Dreadnought (ATR-4107) | 1 | Maquis | Self-guided missile | 20 | ? | ? | stats still to be written | — | VOY "Dreadnought": a Cardassian missile that B'Elanna Torres reprogrammed for the Maquis |

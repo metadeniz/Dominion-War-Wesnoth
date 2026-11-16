@@ -26,19 +26,17 @@ Worked example, the Excelsior: 52 ÷ 4 + 15 ÷ 5 + 16 × 0.3 + 0 − 1 = 13 + 3 
 
 ## How well the current prices fit
 
-Across the 31 ships it applies to, the formula is on average 1.1 gold off the hand-set prices. The Dreadnought is left out, because its one-shot warhead needs pricing by hand.
+Across the 31 ships it applies to, the formula is on average 1.0 gold off the hand-set prices. The Dreadnought is left out, because its one-shot warhead needs pricing by hand.
 
 These ships are 2 gold or more away from the formula:
 
 | Ship | Price | Formula | Note |
 |---|---|---|---|
 | Breen warship | 22 | 18.9 | Above the formula. The energy dampener's slow is probably worth more than the ×1.4 here, so 22 is likely fine. |
-| Bajoran freighter | 11 | 13.6 | Below the formula. Its only attack is weak (phaser 4-2), and 40 HP on a 4 MP ship is worth less than the formula says. |
 | Negh'Var (leader) | 34 | 36.0 | Leader-only, so the price only matters in campaigns. |
 | Defiant and Stolen Defiant (leaders) | 25 | 23.0 | Leader-only. |
-| Maquis raider | 13 | 14.9 | Just under 2. Cheap on purpose, as the Maquis swarm ship. |
 
-Everything else is within 2 gold.
+Everything else is within 2 gold. The Bajoran freighter (was 11) and the Maquis raider (was 13) were moved to the formula, 14 and 15 gold (D, 16 Nov).
 
 ## Running the check
 
