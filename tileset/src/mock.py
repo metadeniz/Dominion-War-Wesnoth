@@ -5,6 +5,7 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFilter
 from scipy.ndimage import map_coordinates, gaussian_filter
 
+sys.path.insert(0, '.'); import lonecastle as LC
 MAP = sys.argv[1]; OUT = sys.argv[2]; WATER = sys.argv[3] if len(sys.argv) > 3 else 'badlands'; CASTLE = sys.argv[4] if len(sys.argv) > 4 else 'ring'; BAD = sys.argv[5] if len(sys.argv) > 5 else ''; ROCKS = sys.argv[6] if len(sys.argv) > 6 else 'new'; DISK = sys.argv[7] if len(sys.argv) > 7 else 'none'
 rng = np.random.default_rng(7)
 
@@ -380,6 +381,92 @@ def cage(seed=0, ruined=False):
         if not ruined: d.point((x0 + (x1 - x0) * k / 4, y0), fill=(255, 200, 100, 255)); d.point((x0 + (x1 - x0) * k / 4, y1), fill=(255, 200, 100, 255))
     return Image.alpha_composite(glow.filter(ImageFilter.GaussianBlur(3)), im)
 
+def bastion(seed=0, ruined=False):
+    # defensive outpost for castle hexes with no keep: an armoured plate with point-defence turrets, no berth (D)
+    S = 72; ss = 3; im = Image.new('RGBA', (S * ss, S * ss)); d = ImageDraw.Draw(im); r = random.Random(seed)
+    P = lambda pts: [(x * ss, y * ss) for x, y in pts]
+    c = 36; hexp = lambda k, rot=0: [(c + k * math.cos(math.radians(60 * i + rot)), c + k * math.sin(math.radians(60 * i + rot))) for i in range(6)]
+    outer = hexp(17, 30); inner = hexp(12, 30)
+    d.polygon(P(outer), fill=_lit((120, 122, 130), 0.75))
+    for i in range(6):  # bevel: lit from the upper right
+        a, b = outer[i], outer[(i + 1) % 6]; mx, my = (a[0] + b[0]) / 2 - c, (a[1] + b[1]) / 2 - c
+        f = 0.6 + 0.55 * max(0, (mx * 0.8 - my * 0.6) / 17)
+        d.polygon(P([a, b, inner[(i + 1) % 6], inner[i]]), fill=_lit((150, 152, 160), f))
+    d.polygon(P(inner), fill=_lit((95, 97, 105), 1.0))
+    for i in range(3):  # armour seams
+        a = inner[i]; b = inner[i + 3]; d.line(P([a, b]), fill=_lit((70, 72, 80), 1.0), width=ss)
+    lost = r.randrange(3) if ruined else -1
+    glow = Image.new('RGBA', im.size); dg = ImageDraw.Draw(glow)
+    for k in range(3):  # turrets at alternate corners, barrels pointing out
+        ang = math.radians(-90 + 120 * k + 30 + (seed % 2) * 60)
+        tx, ty = c + 22 * math.cos(ang), c + 22 * math.sin(ang)
+        if k == lost:
+            d.ellipse(P([(tx - 2.5, ty - 2.5), (tx + 2.5, ty + 2.5)]), fill=(55, 50, 48, 255)); continue
+        d.line(P([(c + 15 * math.cos(ang), c + 15 * math.sin(ang)), (tx, ty)]), fill=_lit(FRAME, 0.7), width=2 * ss)
+        d.ellipse(P([(tx - 4.5, ty - 4.5), (tx + 4.5, ty + 4.5)]), fill=_lit(FRAME, 0.55))
+        d.ellipse(P([(tx - 3.2, ty - 3.8), (tx + 3.2, ty + 2.6)]), fill=_lit(FRAME, 0.95))
+        bx, by = tx + 8 * math.cos(ang), ty + 8 * math.sin(ang)
+        for o in (-1.2, 1.2):
+            ox, oy = -math.sin(ang) * o, math.cos(ang) * o
+            d.line(P([(tx + ox, ty + oy), (bx + ox, by + oy)]), fill=_lit(FRAME, 0.8), width=ss)
+        if not ruined:
+            dg.ellipse(P([(bx - 2.5, by - 2.5), (bx + 2.5, by + 2.5)]), fill=(255, 120, 60, 170))
+            d.ellipse(P([(tx - 0.8, ty - 0.8), (tx + 0.8, ty + 0.8)]), fill=(255, 90, 70, 255))
+    # centre: shield emitter dome
+    d.ellipse(P([(c - 5.5, c - 5.5), (c + 5.5, c + 5.5)]), fill=_lit((110, 115, 128), 1.0))
+    d.ellipse(P([(c - 3.5, c - 4.5), (c + 3, c + 1.5)]), fill=_lit((170, 180, 195), 1.0) if not ruined else (60, 58, 56, 255))
+    if not ruined:
+        dg.ellipse(P([(c - 7, c - 7), (c + 7, c + 7)]), fill=(90, 190, 255, 120))
+        d.ellipse(P([(c - 1.2, c - 2.2), (c + 1.2, c + 0.2)]), fill=(220, 250, 255, 255))
+    else:  # scorch and a breach
+        dg.ellipse(P([(c + 3, c + 2), (c + 13, c + 10)]), fill=(255, 110, 30, 60))
+        d.polygon(P([(c + 6, c + 3), (c + 12, c + 6), (c + 8, c + 10), (c + 4, c + 7)]), fill=(25, 22, 22, 255))
+    im = Image.alpha_composite(glow.filter(ImageFilter.GaussianBlur(3 * ss)), im)
+    return im.resize((S, S), Image.LANCZOS)
+
+def ancient(seed=0):
+    # ancient base (Iconian / Tkon style ruin) for lone ruined castle hexes: weathered concentric walls, faint glyph light (D)
+    S = 72; ss = 3; im = Image.new('RGBA', (S * ss, S * ss)); d = ImageDraw.Draw(im); r = random.Random(seed * 31 + 7)
+    P = lambda pts: [(x * ss, y * ss) for x, y in pts]; c = 36
+    STONE = (170, 150, 118)
+    glow = Image.new('RGBA', im.size); dg = ImageDraw.Draw(glow)
+    # foundation disc, pitted
+    d.ellipse(P([(c - 20, c - 18), (c + 20, c + 18)]), fill=_lit(STONE, 0.38))
+    for _ in range(14):
+        x, y, k = r.uniform(c - 16, c + 16), r.uniform(c - 14, c + 14), r.uniform(0.8, 2.2)
+        d.ellipse(P([(x - k, y - k), (x + k, y + k)]), fill=_lit(STONE, 0.28))
+    t = math.radians(r.uniform(0, 360)); d.ellipse(P([(c + 21 * math.cos(t) - 8, c + 19 * math.sin(t) - 7), (c + 21 * math.cos(t) + 8, c + 19 * math.sin(t) + 7)]), fill=(0, 0, 0, 0))
+    # two broken ring walls, lit from the upper right
+    for R, w, gaps in [(18, 2.6, 3), (10.5, 2.2, 2)]:
+        a = r.uniform(0, 360)
+        for g in range(gaps):
+            span = 360 / gaps; a0 = a + g * span; a1 = a0 + span * r.uniform(0.45, 0.75)
+            steps = 18
+            for k in range(steps):
+                t0 = math.radians(a0 + (a1 - a0) * k / steps); t1 = math.radians(a0 + (a1 - a0) * (k + 1) / steps)
+                lit = 0.6 + 0.5 * max(0, math.cos(t0 + math.radians(40)))
+                pa = (c + R * math.cos(t0), c + R * 0.9 * math.sin(t0)); pb = (c + R * math.cos(t1), c + R * 0.9 * math.sin(t1))
+                d.line(P([pa, pb]), fill=_lit(STONE, lit), width=int(w * ss))
+            # fallen block beside each broken end
+            t = math.radians(a1 + 8); bx, by = c + (R + r.uniform(-2, 3)) * math.cos(t), c + R * 0.9 * math.sin(t)
+            d.rectangle(P([(bx - 1.5, by - 1.2), (bx + 1.5, by + 1.2)]), fill=_lit(STONE, 0.8))
+    # radial causeways
+    for k in range(4):
+        if r.random() < 0.3: continue
+        t = math.radians(45 + 90 * k + r.uniform(-8, 8))
+        d.line(P([(c + 11 * math.cos(t), c + 10 * math.sin(t)), (c + 17 * math.cos(t), c + 16 * math.sin(t))]), fill=_lit(STONE, 0.7), width=2 * ss)
+    # central hexagonal dais with a dim glyph circle
+    hx = [(c + 5.5 * math.cos(math.radians(60 * i)), c + 5 * math.sin(math.radians(60 * i))) for i in range(6)]
+    d.polygon(P(hx), fill=_lit(STONE, 0.85))
+    d.polygon(P([(x - 0.8, y - 0.8) for x, y in hx[3:] + hx[:1]]), fill=_lit(STONE, 1.1))
+    dg.ellipse(P([(c - 8, c - 7), (c + 8, c + 7)]), fill=(70, 230, 200, 150))
+    for i in range(6):
+        if r.random() < 0.35: continue
+        t = math.radians(60 * i + 30); x, y = c + 3.2 * math.cos(t), c + 3 * math.sin(t)
+        d.ellipse(P([(x - 0.7, y - 0.7), (x + 0.7, y + 0.7)]), fill=(160, 255, 230, 255))
+    im = Image.alpha_composite(glow.filter(ImageFilter.GaussianBlur(3 * ss)), im)
+    return im.resize((S, S), Image.LANCZOS)
+
 def bees(seed=0):
     # work bees and tugs: tiny pods with running lights
     S = 72; im = Image.new('RGBA', (S, S)); d = ImageDraw.Draw(im); r = random.Random(seed)
@@ -475,17 +562,19 @@ def classify(c):
     elif base.startswith('Wwr'): L.append(('cloud', 'plasma')); L.append(('debris',))
     elif base.startswith('W'): L.append(('cloud', 'plasma'))
     elif b0 == 'S': L.append(('cloud', 'swamp'))
-    elif b0 == 'X': L.append(('rocks', 'wall'))
+    elif b0 == 'X': L.append(('imp',))
     elif base.startswith('Ql') or base == 'Mv': L.append(('cloud', 'corona'))
     elif b0 == 'Q': L.append(('cloud', 'rift'))
     elif b0 == 'H': L.append(('rocks', 'hills'))
-    elif b0 == 'M': L.append(('rocks', 'wall' if ov == 'Xm' else 'mount'))
+    elif b0 == 'M' and ov == 'Xm': L.append(('imp',))
+    elif b0 == 'M': L.append(('rocks', 'mount'))
     elif b0 == 'T': L.append(('cloud', 'anom'))
     elif b0 == 'D': L.append(('cloud', 'dust'))
     elif b0 == 'A': L.append(('ice',))
     elif base.startswith('Rr'): L.append(('beacon',))
     elif b0 in 'CK':
-        if base[1:2] == 'h' and base.endswith('w') and WATER != 'open': L.append(('cloud', 'plasma'))
+        if ((base[1:2] == 'h' and base.endswith('w')) or base[1:2] == 'm') and WATER != 'open': L.append(('cloud', 'plasma'))
+        elif base[1:2] == 'h' and base.endswith('s'): L.append(('cloud', 'swamp'))
         L.append(('station', 'keep' if b0 == 'K' else 'castle', 'r' in base[1:]))
     if ov.startswith('B'):
         L.append(('bridge', ov[-2] if ov.endswith('r') else ov[-1]))
@@ -505,7 +594,19 @@ SC = '/mnt/user-data/uploads/Star_Control_TC/images/terrain/sc/'
 TRIO_IMAGES = ['rocky-supergiant-small', 'protostar-small', 'rocky-supergiant-small2', ('black-hole-small', True),
                'rocky-supergiant-small3', 'protostar-small2', 'rocky-supergiant-small4', ('dark-star-small', True),
                'rocky-supergiant-small5', 'protostar-small3', 'rocky-supergiant-small6', ('black-hole-small2', True)]
-imp = {(x, y) for y in range(H) for x in range(W) if code(x, y).endswith('^Xm')}
+sys.path.insert(0, '.'); import impassable as IMPM
+CK = {(x, y) for y in range(H) for x in range(W) if code(x, y)[:1] in 'CK'}
+KEEPED = set()
+for p in CK:
+    if p in KEEPED or code(*p)[:1] != 'K': continue
+    st = [p]; KEEPED.add(p)
+    while st:
+        q = st.pop()
+        for n in neighbours(*q):
+            if n in CK and n not in KEEPED: KEEPED.add(n); st.append(n)
+IMPX = {(x, y) for y in range(H) for x in range(W) if ('imp',) in classify(code(x, y))}
+CLUSTERS = IMPM.classify_clusters(IMPX, neighbours, W, H)
+imp = {q for kind, comp in CLUSTERS if kind in ('plasma', 'briar', 'radiation') and len(comp) >= 7 for q in comp}   # 3-hex objects only inside big area zones
 tris = set()
 for p in imp:
     nb = neighbours(*p)
@@ -516,14 +617,30 @@ tris = sorted(tris, key=lambda t: sorted(t))
 random.Random(5).shuffle(tris)
 # prefer triangles deep inside a cluster (more impassable neighbours), so objects sit in the middle
 tris.sort(key=lambda t: -sum(n in imp for q in t for n in neighbours(*q)))
-used = set(); TRIOS = []
+KIND_OF = {q: kind for kind, comp in CLUSTERS for q in comp}
+CENTRE = {   # each zone gets centrepieces that fit it
+    'radiation': ['globular-cluster-small', 'globular-cluster-small2', 'globular-cluster-small3'],                  # packed ancient stars, deadly radiation
+    'briar': [],   # D: the debris disk doesn't go with the Briar Patch; the cloud itself is the feature
+    'plasma': ['supergiant-small1', 'supergiant-small3', 'supergiant-small6', 'supergiant-small2'],
+    'plasma_rocky': ['rocky-supergiant-small2', 'rocky-supergiant-small', 'rocky-supergiant-small5'],               # impassable mountains: debris disk (D)
+}
+used = set(); TRIOS = []; cnt = {}
 for t in tris:
     if any(q in used or any(n in used for n in neighbours(*q)) for q in t): continue
+    if not CENTRE[KIND_OF[next(iter(t))]]: continue
     used |= set(t); k = len(TRIOS)
     cx = sum(_ctr(q)[0] for q in t) / 3; cy = sum(_ctr(q)[1] for q in t) / 3
-    img = TRIO_IMAGES[k % len(TRIO_IMAGES)]
-    name, front = (img if isinstance(img, tuple) else (img, False))
-    TRIOS.append((name, cx, cy, front, k))
+    kind = KIND_OF[next(iter(t))]
+    if kind == 'plasma' and any(code(*q).endswith('^Xm') for q in t): kind = 'plasma_rocky'
+    lst = CENTRE[kind]; i = cnt.get(kind, 0); cnt[kind] = i + 1
+    TRIOS.append((lst[i % len(lst)], cx, cy, False, k))
+# lone impassable hexes: Star Control's 1-hex black holes and pulsars, with an eddy now and then (D)
+SINGLE = ['black-hole', 'pulsar', 'black-hole2', None, 'black-hole3', 'pulsar', 'black-hole4', None]
+SINGLES = []
+for i, (kind, comp) in enumerate([c for c in CLUSTERS if c[0] == 'lone']):
+    nm = SINGLE[i % len(SINGLE)]
+    if nm: SINGLES.append((nm, comp[0])); used.add(comp[0])
+SINGLE_HEX = {q for _, q in SINGLES}
 centre_of = {q: True for q in used}
 # Spiral debris disks on impassable hexes not under a 3-hex object (D: versions with all / some / few)
 rest = sorted(q for q in imp if q not in used)
@@ -596,7 +713,10 @@ for y in range(H):
                 ruined = item[2]
                 for dI, (nx, ny) in enumerate(neighbours(x, y)):
                     if code(nx, ny)[:1] not in 'CK':
-                        if ruined: WALL_EDGES.append((px, py, dI))
+                        if ruined and (x, y) in KEEPED: WALL_EDGES.append((px, py, dI))
+                        elif ruined:   # lone ruin: same hexagonal shield perimeter, mostly broken up, at most one wall down (D)
+                            rr_ = random.Random(x * 97 + y * 13); gone = rr_.randrange(6)
+                            if dI != gone: SH_EDGES.append((px, py, dI, random.Random(x * 97 + y * 13 + dI).random() < 0.7))
                         else: SH_EDGES.append((px, py, dI, False))
                 if CASTLE == 'deck':
                     layers['floor'].append((get(('deck', ruined, x % 3), lambda: deck(x % 3 + y, ruined)), px, py))
@@ -606,7 +726,11 @@ for y in range(H):
                     for dI, (nx, ny) in enumerate(neighbours(x, y)):
                         if code(nx, ny)[:1] in 'CK': layers['floor'].append((get(('cd', dI), lambda: conduit(dI)), px, py))
                     if item[1] == 'castle': layers['fx'].append((get(('bee', x % 4), lambda: bees(x * 7 + y)), px, py))
-                if item[1] == 'castle':
+                if item[1] == 'castle' and (x, y) not in KEEPED:   # lone castle (D): B battlements; A corner turrets when the hex has something inside; ruins A or D
+                    v_ = (x * 5 + y * 3) % 6
+                    fn_ = (LC.corner_turrets if v_ % 2 else LC.bunkers) if ruined else (LC.corner_turrets if any(it[0] != 'station' for it in L) else LC.battlements)   # A when something shows inside (badlands, swamp, nebula...)
+                    layers['station'].append((get(('lone', fn_.__name__, ruined, v_), lambda: fn_(v_, ruined)), px, py))
+                elif item[1] == 'castle':
                     if CASTLE != 'deck':
                         layers['station'].append((get(('cs', CASTLE, ruined, x % 3), lambda: INTERIOR[CASTLE](x % 3, ruined)), px, py))
                 else:
@@ -631,6 +755,9 @@ sys.path.insert(0, '.'); import asteroids
 for i, q in enumerate(sorted(DISKS)):
     dpx, dpy = pix(*q); dim = asteroids.debris_disk(300 + i % 8 * 13)
     layers['planet'].append((dim, dpx + 36 - dim.width // 2, dpy + 36 - dim.height // 2))
+for (nm, q) in SINGLES:
+    im = Image.open(SC + nm + '.png').convert('RGBA'); a_, b_ = _ctr(q)
+    layers['planet'].append((im, int(a_ - im.width / 2), int(b_ - im.height / 2)))
 for (name, cx, cy, front, k) in TRIOS:
     im = Image.open(SC + name + '.png').convert('RGBA')
     layers['planet'].append((im, int(cx - im.width / 2), int(cy - im.height / 2)))
@@ -650,7 +777,17 @@ if ROCK_HEXES:
     blocked = lambda a, b: code(a, b)[:1] in 'CK_' or (a, b) in centre_of
     u, o = asteroids.place(ROCK_HEXES, isrock, neighbours, blocked)
     layers['rocks'] = u + layers['rocks']; layers['rocksover'] += o
+def _ctr(q): a, b = pix(*q); return a + 36, b + 36
 for k in ['cloud', 'rocks', 'neb', 'rocksover', 'floor', 'station', 'planet', 'fx']:
+    if k == 'rocks':   # impassable zones by cluster shape, then eddies bend everything drawn so far
+        for kind, comp in CLUSTERS:
+            pts = [pix(*q) for q in comp]
+            if kind == 'void': canvas.alpha_composite(IMPM.void(canvas.size, pts))
+            elif kind == 'plasma': canvas.alpha_composite(IMPM.plasma_storm(canvas.size, pts, 7 + len(comp)))
+            elif kind == 'briar': canvas.alpha_composite(IMPM.briar(canvas.size, pts, 61 + len(comp)))
+            elif kind == 'radiation': canvas.alpha_composite(IMPM.radiation(canvas.size, pts, 5 + len(comp)))
+        ed = [_ctr(q) for kind, comp in CLUSTERS if kind in ('line', 'lone') for q in sorted(comp) if q not in SINGLE_HEX]
+        if ed: canvas = IMPM.eddies(canvas, ed)
     if k == 'rocks' and ROCK_HEXES:
         hz = []   # no haze on passable fields: open black space reads as passable
         if hz: canvas.alpha_composite(badlands.render_gas(canvas.size, hz, asteroids.DUSTPAL, 31, 0.4))
