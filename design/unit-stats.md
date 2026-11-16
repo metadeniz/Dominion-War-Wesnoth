@@ -32,9 +32,9 @@ Each attack has one damage type. Damage types map to Wesnoth types so the engine
 | Type | Wesnoth type | Used by |
 |---|---|---|
 | Phaser | blade | Federation, Bajoran and Maquis phasers, Cardassian spiral-wave disruptors |
-| Disruptor | pierce | Klingon, Breen and mercenary disruptors |
+| Disruptor | pierce | Klingon, Breen and mercenary disruptors, the Ferengi EM pulse |
 | Torpedo | impact | Photon, quantum and Jem'Hadar torpedoes, the Dreadnought warhead |
-| Plasma | fire | Maquis plasma charges, the Dreadnought's plasma cannon, the Ferengi plasma whip |
+| Plasma | fire | Maquis plasma charges, the Dreadnought's plasma cannon |
 | Polaron | arcane | Jem'Hadar polaron beams |
 | Kinetic | cold | Ramming, boarding, the Jem'Hadar kamikaze and the Breen energy dampener |
 
@@ -140,6 +140,7 @@ Keep the Wesnoth day/night cycle, renamed as a star cycle (open question 3 in th
 | *fleet tactics* | weapon special | ×1.5 damage when an ally is on the far side of the target | backstab, softened |
 | *targeting lock* | weapon special | At least 60% chance to hit when attacking | marksman |
 | *energy dampener* | weapon special | The target is slowed: half damage and half movement until the end of its next turn | slows |
+| *shield breaker* | weapon special (Ferengi EM pulse) | If it hits at least once, all the target's resistances drop by 20 points until the end of the turn (Breen phaser +30% becomes +10%, Federation polaron −20% becomes −40%). It doesn't stack. Allies who attack the same ship afterwards gain the most from it. | `attacker_hits` event giving the target an `[object]` with a resistance effect and `duration=turn` |
 | *transporter* | weapon special (Jem'Hadar boarding parties) | The boarding party beams through shields: the target's resistances count as 0% against it, good or bad. It can't be used on the Dreadnought, which has no crew. | `[resistance]` weapon special with `apply_to=opponent` (Wesnoth 1.16 or later) |
 | *kamikaze* | weapon special (Jem'Hadar attack ship) | Always hits, one strike, for damage equal to the attack ship's current HP. The target can't retaliate, and the attack ship is destroyed. Nobody gains XP, Glory or Plunder from it. | custom: chance_to_hit 100, damage set in an `attack` event, `[disable]` on the opponent, attacker killed in `attack end` |
 | *detonate* | weapon special | Always hits, one strike, and the Dreadnought is destroyed after the attack. No retaliation. | custom: chance_to_hit 100 plus an `attack end` event |
@@ -240,12 +241,12 @@ The balance check can't score a one-shot attack, so the attack ship's score belo
 | Dreadnought (ATR-4107) | 1 | 20 | 48 | 5 | none | neutral | cruiser | Dreadnought | none | plasma cannon 7-3<br>warhead 32-1 (torpedo), *detonate* | Machine, Dark matter adept |
 | Captured Constellation (leader) | 1 | 22 | 56 | 5 | 44 | neutral | cruiser | Federation | torpedo 8-2 | phaser 5-3 | Repairs +4, Dark matter adept |
 | Stolen Defiant (leader) | 1 | 25 | 44 | 6 | 44 | neutral | light | Federation | quantum torpedo 12-1 | pulse phaser 9-3 | Evasive, Cloak, Dark matter adept |
-| Ferengi Marauder (leader) | 1 | 30 | 66 | 5 | 52 | neutral | capital | Ferengi | torpedo 10-2 | plasma whip 10-3 | Plunder, Command, Dark matter adept |
+| Ferengi Marauder (leader) | 1 | 30 | 66 | 5 | 52 | neutral | capital | Ferengi | torpedo 10-2 | EM pulse 7-3 (disruptor), *shield breaker* | Plunder, Command, Dark matter adept |
 
 **New ships:**
 
 - **Dreadnought (ATR-4107)** (20 gold): a reprogrammed Cardassian missile. It fights with a plasma cannon until the moment it detonates: the warhead always hits for 32 torpedo damage, gets no retaliation, and destroys the Dreadnought. 32 finishes a damaged ship, kills most scouts outright and takes most of a cruiser, but leaves a Galaxy standing. It is Cardassian-built, so its shields shrug off phasers and plasma, and it gains no XP.
-- **Ferengi Marauder** (leader, 30 gold): a plasma-whip flagship (the Ferengi energy whip from TNG) with Plunder and Command. It is the only Maquis ship with Command.
+- **Ferengi Marauder** (leader, 30 gold): a mercenary flagship with a photon torpedo, an electromagnetic pulse weapon that weakens the target's shields (*shield breaker*) for the rest of the turn, Plunder and Command. It is the only Maquis ship with Command. Its job is to open a target up for the Maquis swarm, so the EM pulse itself is modest (7-3).
 
 **Changes from the roster:** the **Bajoran freighter** gets phaser 4-2 (was 3-2) and costs 14 (was 11), and the **Maquis raider** costs 15 (was 13), both moved to the cost formula in `cost-formula.md` (D, 16 Nov). The **Maquis fighter** gets 26 HP and phaser 5-3 (was 24 and 4-3). The **fighter and raider** get plasma-charge melee and Badlands pilots. The **mercenary raider** gets 38 HP and disruptor 7-3 (was 36 and 6-3), because it has no torpedoes. The **Bajoran assault vessel's** torpedo is 8-2 (was 10-2). The **captured Constellation** gets Repairs +4, so the three Maquis leaders play differently (healer, cloaked striker, commander). The **stolen Defiant** gets Cloak, as on screen.
 
@@ -259,12 +260,12 @@ Faction against faction (1.00 = even, above 1 favours the row):
 
 | Row vs column | Federation | Klingon | Dominion | Maquis |
 |---|---|---|---|---|
-| Federation | 1.00 | 1.01 | 0.97 | 1.07 |
-| Klingon | 0.99 | 1.00 | 1.06 | 1.01 |
-| Dominion | 1.04 | 0.94 | 1.00 | 1.05 |
-| Maquis | 0.93 | 0.99 | 0.95 | 1.00 |
+| Federation | 1.00 | 1.01 | 0.97 | 1.25 |
+| Klingon | 0.99 | 1.00 | 1.06 | 1.17 |
+| Dominion | 1.04 | 0.94 | 1.00 | 1.22 |
+| Maquis | 0.80 | 0.85 | 0.82 | 1.00 |
 
-Every matchup is within about 7% of even. The widest gaps are the **Federation against the Maquis** (1.07) and the **Klingons against the Dominion** (1.06). The Maquis score a little under even, which is expected: the model leaves out terrain, and Maquis light ships get 60 to 70% defence in nebulae and asteroids. If playtesting shows the Federation struggling against the Dominion's polaron beams, the first lever is Federation polaron resistance (−20% to −10%).
+The Federation, Klingons and Dominion are within about 6% of each other. **The Maquis now score 0.80 to 0.85 against everyone.** That comes from the 16 Nov price rises (Bajoran freighter 11 to 14, Maquis raider 13 to 15), not from the Marauder change. Before them the Maquis were at 0.93 to 0.99, which the model's missing terrain (Maquis light ships get 60 to 70% defence in nebulae and asteroids) roughly explains. At the new prices, the Bajoran freighter (0.52) and Maquis raider (0.78) are the weakest recruits in the game. Either the prices go back, or those two ships need more for their gold. If playtesting shows the Federation struggling against the Dominion's polaron beams, the first lever is Federation polaron resistance (−20% to −10%).
 
 The only-torpedoes-are-ranged rule had the biggest effect: in a first pass with the old numbers, the Federation came out about 30 to 45% stronger than everyone, because every Federation ship had torpedoes and full-strength beams. Lower Federation beams, about 15% lower torpedoes for everyone and tougher beam-only ships brought it back to even.
 
@@ -305,7 +306,7 @@ Which sound each attack uses, from `sounds/trek/` (for private play) with the fr
 | Cardassian spiral disruptor | `disruptors/cardassian_disruptor.ogg` | `phasers/phaser-energy-beam.ogg` |
 | Jem'Hadar polaron beam | `phasers/borg_phaser.ogg` (closest match, no polaron sound exists) | `phasers/phaser-retro-beam.ogg` |
 | Breen disruptor and dampener | `disruptors/tng_weapons2.ogg` | `torpedoes/torpedo-antimatter.ogg` |
-| Maquis plasma, Ferengi plasma whip, Dreadnought | `disruptors/tng_disruptor.ogg` | `torpedoes/torpedo-heavy-plasma-1/2.ogg`, `impacts/impact-plasma.ogg` |
+| Maquis plasma, Dreadnought, Ferengi EM pulse | `disruptors/tng_disruptor.ogg` | `torpedoes/torpedo-heavy-plasma-1/2.ogg`, `impacts/impact-plasma.ogg` |
 | Ram, boarding, warhead | `explosions/largeexplosion*.ogg` | `impacts/impact-low-boom.ogg`, `impacts/explosion-ship.ogg` |
 | Klingon cloak / decloak | `cloaking/cloak_klingon.ogg` / `decloak_birdofprey.ogg` | none yet |
 | Defiant cloak (Romulan device) | `cloaking/cloak_romulan.ogg` / `decloak_romulan.ogg` | none yet |

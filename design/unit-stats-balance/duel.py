@@ -9,6 +9,7 @@ def dmg(att,res,hit):
     if sp=="transporter": res={k:0 for k in res}
     if sp=="targeting lock": hit=max(hit,0.6)
     mult=1.25 if sp=="fleet tactics" else 1.0
+    if sp=="shield breaker": mult=1.25   # rough: allies then hit the weakened target harder
     if sp=="energy dampener": mult=1.4   # slow halves retaliation & next turn damage
     v=round(d*(100-res[t])/100*mult)*s*hit
     if sp=="ramming speed": v*=1.6  # fights to the end

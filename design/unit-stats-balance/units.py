@@ -82,5 +82,5 @@ U = [
 ('Maquis','Stolen Defiant (leader)',1,25,44,6,44,'light','neutral','fed',0,
   [A('pulse phaser',9,3,'ph','m'),A('quantum torpedo',12,1,'to','r')],['Evasive', 'Cloak', 'Dark matter adept'],True),
 ('Maquis','Ferengi Marauder (leader)',1,30,66,5,52,'capital','neutral','fer',0,
-  [A('plasma whip',10,3,'pl','m'),A('torpedo',10,2,'to','r')],['Plunder', 'Command', 'Dark matter adept'],True),
+  [A('EM pulse',7,3,'di','m','shield breaker'),A('torpedo',10,2,'to','r')],['Plunder', 'Command', 'Dark matter adept'],True),
 ]
