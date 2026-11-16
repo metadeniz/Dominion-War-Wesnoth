@@ -9,7 +9,7 @@ W=PAD*2+PER*CW; H=PAD+132+len(R)*50+rows*CH+20
 im=Image.new('RGBA',(W,H),(11,14,24,255)); d=ImageDraw.Draw(im); random.seed(3)
 for _ in range(W*H//900):
     v=random.randint(70,200); d.point((random.randrange(W),random.randrange(H)),(v,v,v+20,255))
-d.text((PAD,PAD),"Star Trek Wesnoth: canon roster sprites (draft 42)",font=F(28,True),fill=(235,238,245))
+d.text((PAD,PAD),"Star Trek Wesnoth: canon roster sprites (draft 43)",font=F(28,True),fill=(235,238,245))
 d.text((PAD,PAD+40),"Recruits are level 1 and level up through crew experience; gold cards are leader-only ships. 72x72 game size shown at 2x, 45° camera, facing south-east.",font=F(14),fill=(160,170,190))
 d.text((PAD,PAD+84),"Coin, top left = price in gold (drafts for the Raptor, D5, Dreadnought and Marauder). ASK = the model's author asks for permission first.",font=F(14),fill=(160,170,190))
 d.text((PAD,PAD+62),"Tag = model licence: CC BY/CC0 free; NC = non-commercial; NC-ND = no changes; STD = Sketchfab Standard; ? = none stated; OURS* = built here.",font=F(14),fill=(160,170,190))

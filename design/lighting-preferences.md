@@ -66,7 +66,7 @@ Brightness = mean luminance of the hull pixels (0-255). p10/p90 = the darkest/br
 - D: keep option 1 (sheet v40, rig 14soft): it "seems to look better on some ships": Noggra's freighter, B'rel, K't'inga, Negh'Var, Hideki, Galor, Keldon, Breen, Jem'Hadar battle cruiser, Defiant.
 - D: option 3 (candidate A, with overhead light) "looks good on K'Vort", keep it for the future.
 - Every ship's option 1 and option 3 lights are stored under `light_alt` in `src/roster2.json`, so any ship can be switched to them.
-- Decided 15 Nov (sheet v42): the ten ships above use option 1 and the K'Vort uses option 3; every other ship uses C. The Stolen Defiant (Maquis) stays on C.
+- Decided 15 Nov (sheet v42): the ten ships above use option 1 and the K'Vort uses option 3; every other ship uses C. D, 16 Nov: "both defiants should look the same", so the Stolen Defiant also uses option 1 (sheet v43).
 
 ## Standing rule (D, 15 Nov): when redoing a sprite, sample options 1 and 3
 - D: "you dont need to keep the old sprites around, just recall option 1 and option 3. So in the future if I say I want to re-do a sprite, you should remember to have option 1 and option 3 ready as possiblities you can show me in a sample."
@@ -80,3 +80,6 @@ Brightness = mean luminance of the hull pixels (0-255). p10/p90 = the darkest/br
 
 ## Retired sprites are not kept (D, 15 Nov)
 - D had the whole `sprites/roster/old/` folder deleted. Don't keep copies of replaced sprites from now on; keep the light setups and model settings in `src/roster2.json`, so earlier versions can be re-rendered.
+
+## Working images (D, 16 Nov)
+- Comparison and contact sheets in the project files are not part of the mod, so keep them and do not ask D about deleting them.
