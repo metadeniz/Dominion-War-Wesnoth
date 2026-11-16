@@ -205,11 +205,32 @@ This section is a proposal only. The tables in section 3 don't include it yet.
 - In practice, no single volley in the game can kill a fresh 48 HP Dreadnought. The biggest are the Jem'Hadar battleship (40) and the Negh'Var (36). A damaged one is at real risk, though. That gives the defender counterplay without wasting a healthy Dreadnought: hit it before it arrives. Torpedoes are ideal, because the Dreadnought has no ranged attack and can't shoot back.
 - **Price:** stays at 20. It loses a little reliability but keeps its threat.
 
-**Mercenary raider: Stealth (D, 16 Nov).** Baran's raider masks its sensor profile.
+**Mercenary raider: Stealth.** Superseded by the nebula rules below (proposal 5). As a light Maquis ship, the mercenary raider hides in nebulae and the Badlands under those rules, so it needs no ability of its own.
 
-- **Recommended:** hidden on every terrain except dark matter nebulae, until an enemy ship comes **within 2 hexes**. That is a cloak that's easier to find (a normal Cloak hides until an enemy is next to it), so the raider can slip close but rarely all the way. An enemy that comes within 2 hexes spots it and stops, as with ambush. Attacking reveals it until its next turn, as with Cloak. In WML it is `[hides]` with a filter that switches it off while an enemy is within 2 hexes.
-- **Alternative:** hidden only in asteroid fields and the Badlands, but there only next to an enemy. That makes it a terrain ambusher, like the raider's Nebula cloak.
-- **Balance:** priced at about 2 gold (between Nebula cloak and Cloak), the raider would be worth about 18 by the cost formula. I'd keep it at **16** anyway, because the Maquis are already the weakest faction. With Stealth at 16, the Maquis go from 0.80–0.88 to 0.83–0.92 against the others, and the mercenary raider scores 1.16, the strongest Maquis recruit. That is still short of fixing the Maquis gap, which mostly comes from the freighter's price.
+### Hiding in nebulae (proposal 5, waiting for D's approval)
+
+D's rule (16 Nov): almost every ship is stealthed in nebulae, the smaller ones can hide there completely, and the Maquis get the same in the Badlands. Put together with the existing cloaks, that makes three levels of hiding:
+
+| Level | Who | Where | Found when an enemy is |
+|---|---|---|---|
+| **Cloak** | every Klingon ship except the freighter, both Defiants | everywhere except dark matter nebulae | next to it |
+| **Hidden** | every light-hull ship | in nebulae, and for Maquis ships also in the Badlands | next to it |
+| **Stealthed** | every other ship (cruisers and capital ships) | in nebulae, and for Maquis ships also in the Badlands | within 2 hexes |
+
+- **"Smaller or stealthier" means the light hull class:** Danube, Defiant, Raptor, B'rel, Hideki, Jem'Hadar attack ship, Maquis fighter, Maquis raider, mercenary raider, Bajoran assault vessel and the stolen Defiant. Using the hull class means no new list to remember, and it matches the terrain table, where light ships already get the best defence in nebulae.
+- **Why 2 hexes for the rest:** a stealthed cruiser can't be seen from across the map, but an enemy ship moving through a nebula still runs into it before it is right on top of it. At 1 hex, every ship would effectively hide and the light ships would have nothing special. At 3 hexes, a typical 5 to 7 MP move would find a stealthed ship almost every time.
+- **What finding a ship does:** as with Wesnoth's ambush, an enemy ship that comes into range of a hidden or stealthed ship reveals it and stops moving. Attacking reveals a ship until its next turn.
+- **Dark matter nebulae** still hide nothing: no cloak, no stealth and no hiding.
+- **What this replaces:** the Maquis raider's *Nebula cloak* is folded into it, since the raider is a light Maquis ship and now hides in nebulae and the Badlands like every light Maquis ship. The mercenary raider's separate Stealth (proposal 4) is dropped.
+- **WML:** two built-in `[hides]` abilities given to every ship through its movetype or a shared macro: *Hidden* (ambush filtered to nebula terrain, plus the Badlands for Maquis) on light hulls, and *Stealthed* on the rest, with a filter that switches it off while an enemy is within 2 hexes.
+
+**Balance.** The balance check doesn't model terrain, so it can't score this, but the effect is clear:
+
+- **Maquis gain the most:** four of their six recruits are light ships, and they also hide in the Badlands. That should go a long way to closing their gap (currently 0.80–0.88 against the others).
+- **Klingons gain the least:** their warships already cloak everywhere, so only the freighter gets anything new.
+- **Federation and Dominion** gain a little: the Danube, Hideki and Jem'Hadar attack ship can hide, and their cruisers and capital ships can lurk in nebulae.
+
+No price changes proposed. If the Maquis come out too strong in playtesting, the freighter's price rise already gives room to bring them back down.
 
 **Changed from the roster:** *fleet tactics* is ×1.5 instead of the ×2 of Wesnoth's backstab, because it sits on durable line cruisers (Galor, Keldon) rather than a fragile thief. At ×2, three flanking Galors would delete a Galaxy in one turn.
 
@@ -394,4 +415,5 @@ Which sound each attack uses, from `sounds/trek/` (for private play) with the fr
 4. **Defiant cloak:** both Defiants now cloak. Keep that, or leave the Federation one without it, as the roster had?
 5. **Jem'Hadar kamikaze:** damage equal to the ship's current HP (as proposed), or a fixed amount? Should the big Jem'Hadar ships get it too?
 6. **Maquis disguise and ambush:** approve the proposal above (raider and fighter only, posing as any recruitable Maquis ship at least their own size)? Also, should the fighter go to 12 gold, and should the freighter come back down from 14?
-7. **Dreadnought point defence and mercenary stealth:** approve proposal 4? For Stealth: the 2-hex version everywhere (recommended), or terrain-only?
+7. **Dreadnought point defence and mercenary stealth:** approve proposal 4? (The mercenary raider's Stealth part is replaced by proposal 5.)
+8. **Hiding in nebulae:** approve proposal 5 (light ships hide in nebulae, all others are stealthed within 2 hexes, Maquis also in the Badlands)?
