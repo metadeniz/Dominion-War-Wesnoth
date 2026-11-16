@@ -134,8 +134,7 @@ Keep the Wesnoth day/night cycle, renamed as a star cycle (open question 3 in th
 | **Evasive** | ability | Ignores enemy zones of control | skirmisher |
 | **Glory** | ability (all Klingon ships) | Regains 8 HP after destroying an enemy | `die` event |
 | **Plunder** | ability | +3 gold when this ship destroys an enemy | `die` event |
-| **Ketracel supply** | ability | Adjacent Jem'Hadar ships recover 8 HP each turn | heals +8, filtered to Jem'Hadar |
-| **Ketracel-dependent** | ability (all Jem'Hadar ships) | No rest repair. Jem'Hadar ships repair only from Ketracel supply, planets and stations. | `[effect] apply_to=` rest healing off |
+| **Ketracel-dependent** | ability (all Jem'Hadar ships) | Jem'Hadar don't help each other: no rest repair, and no ship can repair them, Dominion or otherwise. They repair only at planets and stations, where the white stockpiles are. | rest healing switched off; healer abilities filtered to skip Jem'Hadar |
 | **Machine** | ability (Dreadnought) | No crew: gains no XP, has no traits, can't be helped by Command | custom |
 | *charge* | weapon special (Defiant pulse phasers) | When attacking, both sides deal double damage, as with Wesnoth's charge. Not used on defence. | charge |
 | *fleet tactics* | weapon special | ×1.5 damage when an ally is on the far side of the target | backstab, softened |
@@ -271,10 +270,12 @@ Rams are few, hard strikes, and boarding parties are more, lighter strikes. Both
 | Jem'Hadar attack ship | 1 | 17 | 42 | 6 | 40 | chaotic | light | Jem'Hadar | torpedo 7-1 | polaron beam 8-3<br>boarding party 6-3 (kinetic), *transporter*<br>kamikaze current HP ×1 (kinetic), *kamikaze* | Ketracel-dependent |
 | Keldon-class | 1 | 21 | 50 | 5 | 44 | lawful | cruiser | Cardassian | torpedo 8-2 | spiral disruptor 7-3 (phaser), *fleet tactics* | — |
 | Breen warship | 1 | 22 | 58 | 6 | 44 | neutral | cruiser | Breen | none | disruptor 9-3<br>energy dampener 8-2 (kinetic), *energy dampener* | Dark matter adept |
-| Jem'Hadar battle cruiser | 1 | 28 | 60 | 5 | 52 | chaotic | capital (upkeep 2) | Jem'Hadar | torpedo 10-2 | polaron beam 7-4<br>boarding party 7-3 (kinetic), *transporter* | Command, Ketracel supply, Ketracel-dependent |
-| Jem'Hadar battleship (leader) | 1 | 40 | 88 | 4 | 64 | chaotic | capital | Jem'Hadar | torpedo 14-2 | polaron beam 10-4<br>boarding party 8-3 (kinetic), *transporter* | Command, Ketracel supply, Ketracel-dependent |
+| Jem'Hadar battle cruiser | 1 | 28 | 60 | 5 | 52 | chaotic | capital (upkeep 2) | Jem'Hadar | torpedo 10-2 | polaron beam 7-4<br>boarding party 7-3 (kinetic), *transporter* | Command, Ketracel-dependent |
+| Jem'Hadar battleship (leader) | 1 | 40 | 88 | 4 | 64 | chaotic | capital | Jem'Hadar | torpedo 14-2 | polaron beam 10-4<br>boarding party 8-3 (kinetic), *transporter* | Command, Ketracel-dependent |
 
-**Changes from the roster:** the beam-only ships got stronger to make up for having no ranged attack. The **Hideki** gets 30 HP and 5-3 (was 26 and 4-3). The **Galor** gets 44 HP and 7-3 (was 42 and 6-3). The **Jem'Hadar attack ship** gets 42 HP, polaron beam 8-3 (was 38 and 6-3) and a white torpedo 7-1, the same size as the B'rel's. The **Breen warship** gets 58 HP, disruptor 9-3 and dampener 8-2 (was 50, 7-3, 6-2). The ships with torpedoes came down instead: the **Keldon** gets 50 HP, spiral disruptor 7-3 and torpedo 8-2 (was 54, 8-3, 10-2), and the **Jem'Hadar battle cruiser** gets 60 HP, polaron beam 7-4 and torpedo 10-2 (was 64, 8-4, 13-2). The **Jem'Hadar battleship** gets 88 HP and torpedo 14-2 (was 92, 16-2). All Jem'Hadar ships lose rest repair (Ketracel-dependent), which is what makes the Vorta battle cruiser matter.
+**Changes from the roster:** the beam-only ships got stronger to make up for having no ranged attack. The **Hideki** gets 30 HP and 5-3 (was 26 and 4-3). The **Galor** gets 44 HP and 7-3 (was 42 and 6-3). The **Jem'Hadar attack ship** gets 42 HP, polaron beam 8-3 (was 38 and 6-3) and a white torpedo 7-1, the same size as the B'rel's. The **Breen warship** gets 58 HP, disruptor 9-3 and dampener 8-2 (was 50, 7-3, 6-2). The ships with torpedoes came down instead: the **Keldon** gets 50 HP, spiral disruptor 7-3 and torpedo 8-2 (was 54, 8-3, 10-2), and the **Jem'Hadar battle cruiser** gets 60 HP, polaron beam 7-4 and torpedo 10-2 (was 64, 8-4, 13-2). The **Jem'Hadar battleship** gets 88 HP and torpedo 14-2 (was 92, 16-2). All Jem'Hadar ships are Ketracel-dependent: no rest repair, and no repair from other ships, only at planets and stations (D, 16 Nov: Jem'Hadar don't heal each other). The roster's **Ketracel supply** aura on the battle cruiser and battleship is gone. The Vorta ships keep Command, so they still lead the fleet without nursing it. Their prices stay at 28 and 40, because the cost formula still gives 27.6 and 39.4 without the aura.
+
+This makes Jem'Hadar ships hard-hitting but disposable: a damaged one has to fly back to a planet or keep fighting, and the kamikaze is the natural end for a wrecked attack ship. If they turn out too fragile in play, the gentlest fix that keeps the flavour is a bigger repair at planets and stations (12 instead of 8), as a self-repair that only works on those hexes. They still wouldn't heal each other.
 
 **Kamikaze and boarding (D's idea, on trial):** the roster's ramming speed is gone. In its place:
 
@@ -316,10 +317,10 @@ Faction against faction (1.00 = even, above 1 favours the row):
 
 | Row vs column | Federation | Klingon | Dominion | Maquis |
 |---|---|---|---|---|
-| Federation | 1.00 | 1.05 | 0.97 | 1.25 |
-| Klingon | 0.96 | 1.00 | 1.03 | 1.14 |
-| Dominion | 1.03 | 0.97 | 1.00 | 1.22 |
-| Maquis | 0.80 | 0.88 | 0.82 | 1.00 |
+| Federation | 1.00 | 1.05 | 0.99 | 1.25 |
+| Klingon | 0.96 | 1.00 | 1.05 | 1.14 |
+| Dominion | 1.01 | 0.95 | 1.00 | 1.20 |
+| Maquis | 0.80 | 0.88 | 0.83 | 1.00 |
 
 The Federation, Klingons and Dominion are within about 6% of each other. **The Maquis now score 0.80 to 0.88 against everyone.** That comes from the 16 Nov price rises (Bajoran freighter 11 to 14, Maquis raider 13 to 15), not from the Marauder change. Before them the Maquis were at 0.93 to 0.99, which the model's missing terrain (Maquis light ships get 60 to 70% defence in nebulae and asteroids) roughly explains. At the new prices, the Bajoran freighter (0.52) and Maquis raider (0.78) are the weakest recruits in the game. Either the prices go back, or those two ships need more for their gold. If playtesting shows the Federation struggling against the Dominion's polaron beams, the first lever is Federation polaron resistance (−20% to −10%).
 
