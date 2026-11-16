@@ -214,10 +214,11 @@ D's rule (16 Nov): almost every ship is stealthed in nebulae, the smaller ones c
 | Level | Who | Where | Found when an enemy is |
 |---|---|---|---|
 | **Cloak** | every Klingon ship except the freighter, both Defiants | everywhere except dark matter nebulae | next to it |
-| **Hidden** | every light-hull ship | in nebulae, and for Maquis ships also in the Badlands | next to it |
-| **Stealthed** | every other ship (cruisers and capital ships) | in nebulae, and for Maquis ships also in the Badlands | within 2 hexes |
+| **Hidden** | every light-hull ship, and every Maquis ship except the Ferengi Marauder | in nebulae, and for Maquis ships also in the Badlands | next to it |
+| **Stealthed** | every other ship (cruisers and capital ships), including the Marauder | in nebulae, and for the Marauder also in the Badlands | within 2 hexes |
 
 - **"Smaller or stealthier" means the light hull class:** Danube, Defiant, Raptor, B'rel, Hideki, Jem'Hadar attack ship, Maquis fighter, Maquis raider, mercenary raider, Bajoran assault vessel and the stolen Defiant. Using the hull class means no new list to remember, and it matches the terrain table, where light ships already get the best defence in nebulae.
+- **Maquis (D, 16 Nov):** all their small ships hide fully in nebulae and the Badlands. To keep it a simple faction rule, that goes for every Maquis ship except the 366 m Ferengi Marauder: the four light ships, plus the Bajoran freighter, the Dreadnought and the captured Constellation, which are cruiser hulls. A hidden Dreadnought is the strongest case. It is acceptable with proposal 4, because its target still fires first.
 - **Why 2 hexes for the rest:** a stealthed cruiser can't be seen from across the map, but an enemy ship moving through a nebula still runs into it before it is right on top of it. At 1 hex, every ship would effectively hide and the light ships would have nothing special. At 3 hexes, a typical 5 to 7 MP move would find a stealthed ship almost every time.
 - **What finding a ship does:** as with Wesnoth's ambush, an enemy ship that comes into range of a hidden or stealthed ship reveals it and stops moving. Attacking reveals a ship until its next turn.
 - **Dark matter nebulae** still hide nothing: no cloak, no stealth and no hiding.
@@ -416,4 +417,4 @@ Which sound each attack uses, from `sounds/trek/` (for private play) with the fr
 5. **Jem'Hadar kamikaze:** damage equal to the ship's current HP (as proposed), or a fixed amount? Should the big Jem'Hadar ships get it too?
 6. **Maquis disguise and ambush:** approve the proposal above (raider and fighter only, posing as any recruitable Maquis ship at least their own size)? Also, should the fighter go to 12 gold, and should the freighter come back down from 14?
 7. **Dreadnought point defence and mercenary stealth:** approve proposal 4? (The mercenary raider's Stealth part is replaced by proposal 5.)
-8. **Hiding in nebulae:** approve proposal 5 (light ships hide in nebulae, all others are stealthed within 2 hexes, Maquis also in the Badlands)?
+8. **Hiding in nebulae:** approve proposal 5 (light ships and all Maquis ships except the Marauder hide in nebulae, Maquis also in the Badlands; all others are stealthed within 2 hexes)?
