@@ -1,0 +1,166 @@
+[
+ {
+  "id": "rig14",
+  "label": "14 (new default): right + overhead + rim back left, no fill",
+  "cfg": {
+   "hemi": 0,
+   "lights": [
+    {
+     "dir": 3.0,
+     "pos": [
+      7,
+      2.5,
+      -0.5
+     ]
+    },
+    {
+     "dir": 1.0,
+     "pos": [
+      0,
+      8,
+      0.3
+     ],
+     "shadow": false
+    },
+    {
+     "dir": 1.0,
+     "pos": [
+      -6,
+      2,
+      -4
+     ],
+     "shadow": false
+    }
+   ],
+   "shadowPos": [
+    0,
+    10,
+    0.001
+   ]
+  }
+ },
+ {
+  "id": "rig14soft",
+  "label": "14 with a softer overhead (0.5) and a stronger key (3.4)",
+  "cfg": {
+   "hemi": 0,
+   "lights": [
+    {
+     "dir": 3.4,
+     "pos": [
+      7,
+      2.5,
+      -0.5
+     ]
+    },
+    {
+     "dir": 0.5,
+     "pos": [
+      0,
+      8,
+      0.3
+     ],
+     "shadow": false
+    },
+    {
+     "dir": 1.0,
+     "pos": [
+      -6,
+      2,
+      -4
+     ],
+     "shadow": false
+    }
+   ],
+   "shadowPos": [
+    0,
+    10,
+    0.001
+   ]
+  }
+ },
+ {
+  "id": "rig08",
+  "label": "8: right + rim back left, no fill (14 without the overhead)",
+  "cfg": {
+   "hemi": 0,
+   "lights": [
+    {
+     "dir": 3.4,
+     "pos": [
+      7,
+      2.5,
+      -0.5
+     ]
+    },
+    {
+     "dir": 1.2,
+     "pos": [
+      -6,
+      2,
+      -4
+     ],
+     "shadow": false
+    }
+   ],
+   "shadowPos": [
+    0,
+    10,
+    0.001
+   ]
+  }
+ },
+ {
+  "id": "rig08b",
+  "label": "8 brighter: key 4.2, rim 1.5",
+  "cfg": {
+   "hemi": 0,
+   "lights": [
+    {
+     "dir": 4.2,
+     "pos": [
+      7,
+      2.5,
+      -0.5
+     ]
+    },
+    {
+     "dir": 1.5,
+     "pos": [
+      -6,
+      2,
+      -4
+     ],
+     "shadow": false
+    }
+   ],
+   "shadowPos": [
+    0,
+    10,
+    0.001
+   ]
+  }
+ },
+ {
+  "id": "rig01",
+  "label": "1: right, sky fill 0.5",
+  "cfg": {
+   "hemi": 0.5,
+   "lights": [
+    {
+     "dir": 3.2,
+     "pos": [
+      7,
+      2.5,
+      -0.5
+     ]
+    }
+   ],
+   "shadowPos": [
+    0,
+    10,
+    0.001
+   ]
+  }
+ }
+]

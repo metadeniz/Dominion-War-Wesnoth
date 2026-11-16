@@ -1,0 +1,216 @@
+<!doctype html><html><body style="margin:0;background:transparent">
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}</script>
+<script type="module">
+import * as T from 'three';
+import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
+import { STLLoader } from 'three/addons/loaders/STLLoader.js';
+import { FBXLoader } from 'three/addons/loaders/FBXLoaderPatched.js';
+import { MTLLoader } from 'three/addons/loaders/MTLLoader.js';
+import { ColladaLoader } from 'three/addons/loaders/ColladaLoader.js';
+import { P } from '/procs.js';
+const PX=288;
+const r=new T.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});
+r.setSize(PX,PX); r.setClearColor(0,0); r.shadowMap.enabled=true; r.shadowMap.type=T.PCFSoftShadowMap; r.outputColorSpace=T.SRGBColorSpace;
+document.body.appendChild(r.domElement);
+const cache={};
+
+// Procedural paint for untextured STL hulls: object-space plating, panel lines and lit windows (no UVs needed).
+const PAINTS={
+ dread:{ base0:[168,100,50], base1:[186,116,60], line:0.72, light:[255,200,96], grid:[12,7], win:0.45 },
+ // Hideki (Thingiverse 3060821 model coords: x beam, y up, z length, claws at -z). Colours read off DS9 stills.
+ hideki:{ base0:[178,150,106], base1:[196,168,120], line:0.74, light:[255,190,90], grid:[1,1], win:0.5, glsl:`
+const vec3 MAR=vec3(0.19,0.045,0.03), GRL=vec3(0.035,0.02,0.018), BLU=vec3(0.30,0.25,1.0), RED=vec3(1.0,0.08,0.03);
+float vn(vec3 p){ vec3 i=floor(p), f=fract(p); f=f*f*(3.0-2.0*f);
+  float a=hsh(i.xy+i.z*7.0), b=hsh(i.xy+vec2(1,0)+i.z*7.0), c=hsh(i.xy+vec2(0,1)+i.z*7.0), d=hsh(i.xy+vec2(1,1)+i.z*7.0);
+  float e=hsh(i.xy+(i.z+1.0)*7.0), f2=hsh(i.xy+vec2(1,0)+(i.z+1.0)*7.0), g=hsh(i.xy+vec2(0,1)+(i.z+1.0)*7.0), h=hsh(i.xy+vec2(1,1)+(i.z+1.0)*7.0);
+  return mix(mix(mix(a,b,f.x),mix(c,d,f.x),f.y), mix(mix(e,f2,f.x),mix(g,h,f.x),f.y), f.z); }
+vec3 paintCol(){ vec3 p=vOP, n=normalize(vON); float ax=abs(p.x-0.018);
+  vec2 d=vec2(p.x-0.018, (p.z+0.65)*0.83); float r=length(d), th=atan(d.y,d.x);
+  vec3 c;
+  // plates: concentric bands and radial cuts around the dome on the hull, a z/x grid on the neck and claws
+  vec2 g = p.z>-1.3 ? vec2(r/0.16, th/0.21) : vec2(p.x/0.14, p.z/0.2);
+  vec2 f=fract(g), id=floor(g); c=mix(cA,cB,hsh(id)); if(hsh(id+7.1)>0.86) c*=0.86;
+  float ln=max(step(f.x,0.05),step(f.y,0.05)); c*=mix(1.0,lineK,ln);
+  // weathering: soft grimy patches, as on the DS9 model
+  c*=mix(0.80,1.06,vn(p*5.0)) * mix(0.92,1.03,vn(p*17.0+3.0));
+  // dome: fine concentric rings with dark grooves
+  if(r<0.42 && p.y>0.66){ c=mix(cA,cB,0.6)*(fract(r/0.055)<0.22?0.55:1.0)*(r<0.08?0.7:1.0); }
+  // claws (aft prongs): maroon-brown with tan edges
+  if(p.z<-2.05){ float e=smoothstep(0.0,0.05,abs(ax-0.42)); c=mix(c, MAR*mix(0.85,1.15,vn(p*9.0)), 0.85*smoothstep(-2.0,-2.25,p.z)); }
+  // maroon panels with dark grilles either side of the spine, on top of the neck and across the hull to the dome
+  if(n.y>0.45 && ax>0.11 && ax<0.30 && p.z>-2.05 && p.z<-1.05){ c=MAR*1.25; if(fract(p.z/0.045)<0.45) c=GRL*1.4; }
+  // maroon stripe low on the hull sides and the wing edges
+  if(abs(n.y)<0.45 && p.z>-1.35 && p.y<0.28) c=MAR*1.15;
+  return c; }
+vec3 paintEm(){ vec3 p=vOP, n=normalize(vON); float ax=abs(p.x-0.018);
+  // red lights on the wingtips
+  if(length(vec3(ax-1.45, p.y-0.15, p.z+0.62))<0.07) return RED*1.1;
+  // blue-violet glow from under the neck
+  if(p.z>-1.95 && p.z<-1.25 && p.y<0.47 && abs(n.y)<0.6) return BLU*0.55*(0.6+0.4*sin(p.z*60.0));
+  // amber windows in rows along the hull sides
+  if(abs(n.y)<0.5 && p.z>-1.3 && p.y>0.3 && p.y<0.62){ vec2 g=vec2(p.y/0.07, (p.z+p.x*0.3)/0.06); vec2 f=fract(g), id=floor(g);
+    if(hsh(id+3.3)<winK && f.x>0.3 && f.x<0.7 && f.y>0.25 && f.y<0.65) return cL*1.1; }
+  return vec3(0.0); }
+`}
+};
+function paintMaterial(name, bb){
+  const P=PAINTS[name]; const m=new T.MeshStandardMaterial({roughness:0.5, metalness:0.35, side:T.DoubleSide});
+  const lin=c=>new T.Vector3(...c.map(v=>Math.pow(v/255,2.2)));
+  m.onBeforeCompile=sh=>{
+    Object.assign(sh.uniforms,{bmin:{value:bb.min}, bmax:{value:bb.max}, cA:{value:lin(P.base0)}, cB:{value:lin(P.base1)}, cL:{value:lin(P.light)}, gridS:{value:new T.Vector2(...P.grid)}, lineK:{value:P.line}, winK:{value:P.win}});
+    sh.vertexShader='varying vec3 vOP; varying vec3 vON;\n'+sh.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\n vOP=position; vON=objectNormal;');
+    const head=`varying vec3 vOP; varying vec3 vON; uniform vec3 bmin, bmax, cA, cB, cL; uniform vec2 gridS; uniform float lineK, winK;
+float hsh(vec2 v){ return fract(sin(dot(v,vec2(12.9898,78.233)))*43758.5453); }
+`;
+    const fn=P.glsl? head+P.glsl : head+`
+vec2 planeUV(){ vec3 n=abs(normalize(vON)); return n.z>=max(n.x,n.y) ? vOP.xy : (n.x>=n.y ? vOP.yz : vOP.xz); }
+vec3 paintCol(){ vec2 g=planeUV()/gridS; vec2 f=fract(g), id=floor(g); float h=hsh(id);
+  vec3 c=mix(cA,cB,h); float ln=max(step(f.x,0.06),step(f.y,0.09)); c*=mix(1.0,lineK,ln);
+  float t=hsh(id+7.1); if(t>0.88) c*=0.85;                                  // a few darker plates
+  return c; }
+vec3 paintEm(){ vec3 n=abs(normalize(vON)); float L=bmax.y-bmin.y;
+  // aft face of the rear block: big amber engine glow
+  if(normalize(vON).y>0.7 && vOP.y>bmax.y-0.03*L){ vec2 w=fract(vec2(vOP.x/14.0, vOP.z/9.0)); return cL*1.6*step(0.18,w.x)*step(w.x,0.82)*step(0.2,w.y)*step(w.y,0.7); }
+  // rows of small lit windows on the sides
+  if(n.x>0.7){ vec2 g=vec2(vOP.y/9.0, vOP.z/6.0); vec2 f=fract(g), id=floor(g);
+    if(hsh(id+3.3)<winK && f.x>0.25 && f.x<0.62 && f.y>0.38 && f.y<0.66) return cL*1.2; }
+  return vec3(0.0); }
+`;
+    sh.fragmentShader=fn+sh.fragmentShader.replace('vec4 diffuseColor = vec4( diffuse, opacity );','vec4 diffuseColor = vec4( paintCol(), opacity );').replace('vec3 totalEmissiveRadiance = emissive;','vec3 totalEmissiveRadiance = paintEm();');
+  };
+  return m;
+}
+async function loadFile(path, color){
+  const key=path+color; if(cache[key]) return cache[key];
+  if(path.includes('|')){ const g=new T.Group(); for(const p of path.split('|')) g.add((await loadFile(p,color)).clone()); return cache[key]=g; }
+  if(path.toLowerCase().split('?')[0].endsWith('.dae')){   // SketchUp / Collada: loader turns Z-up into Y-up; edges (lines) dropped
+    const qs=new URLSearchParams(path.split('?')[1]||''); const clean=path.split('?')[0]; const br=+(qs.get('br')||1);
+    const obj=(await new ColladaLoader().loadAsync(clean)).scene; const drop=[];
+    const conv=new Map(); const cv=m=>{ if(!conv.has(m)){ if(m.map) m.map.colorSpace=T.SRGBColorSpace;
+      const nm=new T.MeshStandardMaterial({map:m.map||null,color:m.map?0xffffff:(m.color?m.color.clone():new T.Color(0xc9cdd4)),roughness:0.6,metalness:0.2,side:T.DoubleSide});
+      if(br!==1) nm.color.multiplyScalar(br);
+      for(const kv of (qs.get('mat')||'').split(',').filter(Boolean)){ const [n,hx]=kv.split(':'); if(m.name===n){ nm.map=null; nm.color=new T.Color('#'+hx); if(br!==1) nm.color.multiplyScalar(br); } }
+      for(const n of (qs.get('glow')||'').split(',').filter(Boolean)) if(m.name===n){ nm.emissive=nm.color.clone(); nm.emissiveMap=nm.map; nm.emissiveIntensity=1; }
+      conv.set(m,nm); } return conv.get(m); };
+    obj.traverse(o=>{ if(o.isLine||o.isLineSegments||o.isPoints||o.isCamera) drop.push(o);
+      else if(o.isMesh){ o.material=Array.isArray(o.material)?o.material.map(cv):cv(o.material); o.castShadow=true; o.receiveShadow=true; if(!o.geometry.attributes.normal) o.geometry.computeVertexNormals(); } });
+    drop.forEach(o=>o.parent&&o.parent.remove(o));
+    await new Promise(res=>{ let n=0; const chk=()=>{ let pending=0; conv.forEach(m=>{ if(m.map&&!(m.map.image&&m.map.image.width)) pending++; }); (pending&&n++<150)?setTimeout(chk,100):res(); }; chk(); });
+    console.log('dae materials', conv.size, 'dropped', drop.length);
+    return cache[key]=obj; }
+  if(path.toLowerCase().split('?')[0].endsWith('.fbx')){
+    const qs=new URLSearchParams(path.split('?')[1]||''); path=path.split('?')[0];
+    const texDir=path.replace(/source\/[^/]*$/,'textures/');
+    const mgr=new T.LoadingManager(); mgr.setURLModifier(u=>/\.(png|jpe?g|tga|dds|tif)$/i.test(u)? texDir+encodeURIComponent(decodeURIComponent(u).split(/[\\/]/).pop().replace(/\.(tga|dds|tif|jpe?g)$/i,'.png')) : u);
+    const obj=await new FBXLoader(mgr).loadAsync(path); const names=[];
+    if(!qs.has('keeplights')){ const rm=[]; obj.traverse(o=>{ if(o.isLight||o.isCamera) rm.push(o); }); rm.forEach(o=>o.parent.remove(o)); }   // the artist's own lights would light the ship in every render
+    const tl=new T.TextureLoader(); const tryTex=async u=>{ try{ const t=await tl.loadAsync(u); t.colorSpace=T.SRGBColorSpace; t.anisotropy=8; return t; }catch(e){ return null; } };
+    const meshes=[]; obj.traverse(o=>{ if(o.isMesh) meshes.push(o); });
+    let mi=0;
+    for(const o of meshes){ const ms=Array.isArray(o.material)?o.material:[o.material]; const nm=[];
+      for(const m of ms){ const base=m.name.replace(/_\d+$/,''); mi++; const tq=qs.get('tex'+mi)||qs.get('tex'), eq=qs.get('em'+mi)||qs.get('em');
+        let map=tq? await tryTex(texDir+tq) : /_Diffuse$/.test(base)? await tryTex(texDir+encodeURIComponent(base+'.png')) : null; if(!map) map=m.map||null;
+        let em=eq? await tryTex(texDir+eq) : /_Diffuse$/.test(base)? await tryTex(texDir+encodeURIComponent(base.replace(/_Diffuse$/,'_Emissive')+'.png')) : null;
+        if(qs.get('flip')==='0'){ if(map){map.flipY=false;map.needsUpdate=true;} if(em){em.flipY=false;em.needsUpdate=true;} }
+        names.push(o.name+':'+m.name+':'+(map?'map':'-')+':'+(em?'em':'-'));
+        nm.push(new T.MeshStandardMaterial({map, emissiveMap:em, emissive:em?0xffffff:0x000000, emissiveIntensity:+(qs.get("emi")||1), color:map?0xffffff:(color||0xc9cdd4), roughness:0.6, metalness:0.2, side:T.DoubleSide})); if(qs.get('br')) nm[nm.length-1].color.multiplyScalar(+qs.get('br')); }
+      o.material=Array.isArray(o.material)?nm:nm[0]; o.castShadow=true; o.receiveShadow=true; }
+    console.log('fbx meshes', JSON.stringify(names));
+    return cache[key]=obj; }
+  const mat=new T.MeshStandardMaterial({color:color||0xc9cdd4, roughness:0.55, metalness:0.25, side:T.DoubleSide});
+  let obj;
+  if(/\.stl\?paint=/i.test(path)){ const nm=path.split('?paint=')[1]; const g=await new STLLoader().loadAsync(path.split('?')[0]); g.computeVertexNormals(); g.computeBoundingBox();
+    obj=new T.Group(); const me=new T.Mesh(g,paintMaterial(nm,g.boundingBox)); me.castShadow=true; me.receiveShadow=true; obj.add(me); return cache[key]=obj; }
+  if(/\.obj\?paint=/i.test(path)){ const nm=path.split('?paint=')[1]; const txt=await (await fetch(path.split('?')[0])).text();
+    obj=new OBJLoader().parse(txt.split('\n').filter(l=>!l.startsWith('l ')&&!l.startsWith('p ')&&!l.startsWith('mtllib')&&!l.startsWith('usemtl')).join('\n'));
+    const bb=new T.Box3(); obj.traverse(o=>{ if(o.isMesh){ o.geometry.computeBoundingBox(); bb.union(o.geometry.boundingBox); }});
+    const pm=paintMaterial(nm,bb); obj.traverse(o=>{ if(o.isMesh){ if(!o.geometry.attributes.normal) o.geometry.computeVertexNormals(); o.material=pm; o.castShadow=true; o.receiveShadow=true; }});
+    return cache[key]=obj; }
+  if(path.toLowerCase().endsWith('.stl')){ const g=await new STLLoader().loadAsync(path); g.computeVertexNormals(); obj=new T.Group(); obj.add(new T.Mesh(g,mat)); }
+  else if(path.includes('?tex=')){ const qs=new URLSearchParams(path.split('?')[1]); const clean=path.split('?')[0];
+    const tl=new T.TextureLoader(); const ld=async u=>{ if(!u) return null; const t=await tl.loadAsync(u); t.colorSpace=T.SRGBColorSpace; t.anisotropy=8; return t; };
+    const map=await ld(qs.get('tex')), em=await ld(qs.get('em'));
+    const txt=await (await fetch(clean)).text(); obj=new OBJLoader().parse(txt.split('\n').filter(l=>!l.startsWith('l ')&&!l.startsWith('p ')&&!l.startsWith('mtllib')&&!l.startsWith('usemtl')).join('\n'));
+    const tm=new T.MeshStandardMaterial({map, emissiveMap:em, emissive:em?0xffffff:0x000000, roughness:0.55, metalness:0.25, side:T.DoubleSide});
+    obj.traverse(o=>{ if(o.isMesh){ o.material=tm; o.castShadow=true; o.receiveShadow=true; if(!o.geometry.attributes.normal) o.geometry.computeVertexNormals(); }});
+    return cache[key]=obj; }
+  else if(path.includes('?mtl')){ const clean=path.split('?')[0], dir=clean.replace(/[^/]*$/,'');
+    const mc=new MTLLoader().setResourcePath(dir).parse(await (await fetch(clean.replace(/\.obj$/i,'.mtl'))).text(), dir); mc.preload();
+    const txt=await (await fetch(clean)).text(); obj=new OBJLoader().setMaterials(mc).parse(txt.split('\n').filter(l=>!l.startsWith('l ')&&!l.startsWith('p ')).join('\n'));
+    const conv=new Map(); const aniso=+(new URLSearchParams(path.split('?')[1]).get('aniso')||0); const cv=m=>{ if(!conv.has(m)){ if(m.map) m.map.colorSpace=T.SRGBColorSpace; if(aniso){ for(const t of [m.map,m.bumpMap]) if(t) t.anisotropy=aniso; } const useEm=path.includes('&em=1'); if(useEm&&m.emissiveMap) m.emissiveMap.colorSpace=T.SRGBColorSpace; conv.set(m,new T.MeshStandardMaterial({map:m.map||null,color:m.map?0xffffff:m.color,emissive:useEm&&m.emissive?m.emissive:0x000000,emissiveMap:useEm?(m.emissiveMap||null):null,emissiveIntensity:useEm?+(new URLSearchParams(path.split('?')[1]).get('emi')||1):1,bumpMap:m.bumpMap||null,bumpScale:+(new URLSearchParams(path.split('?')[1]).get('bump')||1),roughness:0.55,metalness:0.25,side:T.DoubleSide})); const br=+(new URLSearchParams(path.split('?')[1]).get('br')||1); if(br!==1) conv.get(m).color.multiplyScalar(br); } return conv.get(m); };
+    obj.traverse(o=>{ if(o.isMesh){ o.material=Array.isArray(o.material)?o.material.map(cv):cv(o.material); o.castShadow=true; o.receiveShadow=true; if(!o.geometry.attributes.normal) o.geometry.computeVertexNormals(); }});
+    await new Promise(res=>{ const chk=()=>{ let pending=0; conv.forEach(m=>{ if(m.map&&!(m.map.image&&m.map.image.width)) pending++; if(m.emissiveMap&&!(m.emissiveMap.image&&m.emissiveMap.image.width)) pending++; }); pending?setTimeout(chk,100):res(); }; chk(); });
+    return cache[key]=obj; }
+  else { const txt=await (await fetch(path)).text(); obj=new OBJLoader().parse(txt.split('\n').filter(l=>!l.startsWith('l ')&&!l.startsWith('p ')).join('\n')); }
+  const vc=new T.MeshStandardMaterial({vertexColors:true, roughness:0.6, metalness:0.2, side:T.DoubleSide});
+  obj.traverse(o=>{ if(o.isMesh){ o.material=o.geometry.attributes.color?vc:mat; o.castShadow=true; o.receiveShadow=true; if(!o.geometry.attributes.normal) o.geometry.computeVertexNormals(); }});
+  return cache[key]=obj; }
+window.loadFile=loadFile;
+async function load(name, hasTex){
+  if(cache[name]) return cache[name];
+  const obj=await new OBJLoader().loadAsync(`/models/${name}.obj`);
+  let mat;
+  if(hasTex){ const tex=await new T.TextureLoader().loadAsync(`/models/${name}.png`); tex.colorSpace=T.SRGBColorSpace; tex.anisotropy=8;
+    mat=new T.MeshStandardMaterial({map:tex, roughness:0.6, metalness:0.2, side:T.DoubleSide}); }
+  else mat=new T.MeshStandardMaterial({color:0xc9cdd4, roughness:0.55, metalness:0.25});
+  const pod=new T.MeshStandardMaterial({color:0xff0000,roughness:0.5,metalness:0.35});
+  obj.traverse(o=>{ if(o.isMesh){ o.material=mat; o.castShadow=true; o.geometry.computeVertexNormals&&!o.geometry.attributes.normal&&o.geometry.computeVertexNormals(); }});
+  return cache[name]=obj;
+}
+// rot: [x,y,z] euler (deg) applied to the model so that forward=+X, up=+Y
+let SF=1.6; window.setFrame=(px,sf)=>{ r.setSize(px,px); SF=sf; };
+window.shot=async(name,hasTex,rot,heading,size,el,proc,tint)=>{
+  const sc=new T.Scene();
+  const LC=Object.assign({hemi:1.2,dir:2.4,pos:[-2,5,2.5]},window.LIGHTCFG||{});   // default lighting unless a unit asks for its own
+  sc.add(new T.HemisphereLight(0xdde6ff,0x303040,LC.hemi));
+  const L=new T.DirectionalLight(0xffffff,LC.dir); L.position.set(...LC.pos); L.castShadow=true; L.shadow.bias=-0.0015; L.shadow.normalBias=0.03;
+  L.shadow.mapSize.set(1024,1024); Object.assign(L.shadow.camera,{left:-3,right:3,top:3,bottom:-3,near:0.1,far:20}); sc.add(L);
+  for(const x of LC.extra||[]){ const X=new T.DirectionalLight(0xffffff,x.dir); X.position.set(...x.pos); sc.add(X); }   // extra lights cast no shadow
+  let obj; if(name.startsWith('/dl/')||name.startsWith('/models/')&&!hasTex){ obj=(await loadFile(name, tint)).clone(); } else if(proc){ obj=new T.Group(); P[proc](obj); } else { obj=(await load(name,hasTex)).clone(); if(tint){ obj.traverse(o=>{ if(o.isMesh){ o.material=o.material.clone(); o.material.color=new T.Color(tint);} }); } }
+  const fix=new T.Group(); fix.add(obj); fix.rotation.set(...rot.map(d=>d*Math.PI/180),'YXZ');
+  const norm=new T.Group(); norm.add(fix); norm.updateMatrixWorld(true);
+  const bb=new T.Box3().setFromObject(norm), c=bb.getCenter(new T.Vector3());
+  fix.position.sub(c);
+  let rad=0; const v=new T.Vector3(); norm.updateMatrixWorld(true);
+  norm.traverse(o=>{ if(o.isMesh){ const p=o.geometry.attributes.position, step=Math.max(1,Math.floor(p.count/20000)); for(let i=0;i<p.count;i+=step){ v.fromBufferAttribute(p,i).applyMatrix4(o.matrixWorld); rad=Math.max(rad,Math.hypot(v.x,v.z)); } }});
+  const piv=new T.Group(); piv.add(norm); norm.scale.setScalar(1.35*size/rad); piv.rotation.y=heading*Math.PI/180; sc.add(piv);
+  const pl=new T.Mesh(new T.PlaneGeometry(10,10), new T.ShadowMaterial({opacity:0.35})); pl.rotation.x=-Math.PI/2; pl.position.y=-0.55; pl.receiveShadow=true; sc.add(pl);
+  const S=SF, cam=new T.OrthographicCamera(-S,S,S,-S,0.1,50), e=el*Math.PI/180;
+  cam.position.set(0,10*Math.sin(e)-0.18,10*Math.cos(e)+0.001); cam.lookAt(0,-0.18,0);
+  if(!LC.lights){ r.render(sc,cam); return r.domElement.toDataURL('image/png'); }
+  // custom light rig (LC.lights=[{dir,pos,shadow}], LC.hemi): the ground shadow is drawn in its own pass from the default
+  // light's direction, with the ship invisible, so it looks as usual; then the ship is lit only by the rig, with no ground.
+  if(LC.shadowPos) L.position.set(...LC.shadowPos);   // the ground shadow can be cast from another direction than the lighting
+  if(LC.noShadow) pl.visible=false;   // no ground shadow at all (space: nothing below the ship to cast onto)
+  const saved=[]; piv.traverse(o=>{ if(o.isMesh){ saved.push([o,o.material]); o.material=new T.MeshBasicMaterial({colorWrite:false,depthWrite:false}); } });
+  sc.children.filter(o=>o.isHemisphereLight).forEach(o=>o.visible=false);
+  r.render(sc,cam); const shadowUrl=r.domElement.toDataURL('image/png');
+  saved.forEach(([o,m])=>o.material=m);
+  [...sc.children].filter(o=>o.isLight||o===pl).forEach(o=>sc.remove(o));
+  if(LC.hemi>0) sc.add(new T.HemisphereLight(0xdde6ff,0x303040,LC.hemi));
+  if(LC.recvAll) piv.traverse(o=>{ if(o.isMesh) o.receiveShadow=true; });   // self-shadows also on models from load(), which skip them
+  if(LC.ambient) sc.add(new T.AmbientLight(0xffffff,LC.ambient));   // uniform light from everywhere: shows the paint (albedo) without shading
+  if(LC.normals) piv.traverse(o=>{ if(o.isMesh) o.material=new T.MeshNormalMaterial({side:T.DoubleSide}); });   // view-space surface directions, for shape statistics
+  for(const x of LC.lights){ const X=new T.DirectionalLight(x.color||0xffffff,x.dir); X.position.set(...x.pos);
+    if(x.shadow!==false){ X.castShadow=true; X.shadow.bias=x.bias??-0.0015; X.shadow.normalBias=x.nb??0.03; X.shadow.mapSize.set(x.map||1024,x.map||1024); Object.assign(X.shadow.camera,{left:-3,right:3,top:3,bottom:-3,near:0.1,far:20}); }
+    sc.add(X); }
+  if(LC.normals) r.outputColorSpace=T.LinearSRGBColorSpace;
+  r.render(sc,cam); const shipUrl=r.domElement.toDataURL('image/png');
+  r.outputColorSpace=T.SRGBColorSpace;
+  if(LC.shipOnly) return shipUrl;   // light passes for compositing: the ship alone on a transparent background
+  if(LC.shadowOnly) return shadowUrl;
+  const ld=u=>new Promise(res=>{ const im=new Image(); im.onload=()=>res(im); im.src=u; });
+  const [ia,ib]=await Promise.all([ld(shadowUrl),ld(shipUrl)]); const cv=document.createElement('canvas'); cv.width=ia.width; cv.height=ia.height;
+  const g=cv.getContext('2d'); g.drawImage(ia,0,0); g.drawImage(ib,0,0); return cv.toDataURL('image/png');
+};
+window.measure=async(name,hasTex,rot,tint)=>{
+  let obj; if(name.startsWith('/dl/')||name.startsWith('/models/')&&!hasTex){ obj=(await loadFile(name, tint)).clone(); } else { obj=(await load(name,hasTex)).clone(); }
+  const fix=new T.Group(); fix.add(obj); fix.rotation.set(...rot.map(d=>d*Math.PI/180),'YXZ');
+  const norm=new T.Group(); norm.add(fix); norm.updateMatrixWorld(true);
+  const bb=new T.Box3().setFromObject(norm), c=bb.getCenter(new T.Vector3()); fix.position.sub(c); norm.updateMatrixWorld(true);
+  let rad=0; const v=new T.Vector3();
+  norm.traverse(o=>{ if(o.isMesh){ const p=o.geometry.attributes.position, step=Math.max(1,Math.floor(p.count/20000)); for(let i=0;i<p.count;i+=step){ v.fromBufferAttribute(p,i).applyMatrix4(o.matrixWorld); rad=Math.max(rad,Math.hypot(v.x,v.z)); } }});
+  const s=bb.getSize(new T.Vector3()); return {lx:s.x, ly:s.y, lz:s.z, rad};
+};
+window.ready=true;
+</script></body></html>

@@ -1,0 +1,439 @@
+[
+ {
+  "faction": "Options",
+  "units": [
+   {
+    "id": "mq-fighter",
+    "name": "Maquis fighter (Peregrine-class courier)",
+    "f": "/dl/418721/x/Federation_fighter/maquis.stl",
+    "rot": [
+     -90,
+     90,
+     0
+    ],
+    "size": 0.6,
+    "c": "#a99d8d",
+    "src": "Thingiverse 418721, Mike Paquette (Mike1701)",
+    "lic": "CC BY-SA 3.0",
+    "note": "DS9 \"The Maquis\"; called a Peregrine courier in \"Heart of Stone\""
+   },
+   {
+    "id": "bj-raider",
+    "name": "Bajoran raider",
+    "f": "/dl/4390840/x/files/Bajoran_Raider.stl",
+    "rot": [
+     -90,
+     -90,
+     0
+    ],
+    "size": 0.62,
+    "c": "#b09a74",
+    "src": "Thingiverse 4390840, Pawel Malysz (m_collectable)",
+    "lic": "CC BY-NC 4.0",
+    "note": "DS9 \"The Siege\", \"Shadows and Symbols\"; sublight in \"The Siege\""
+   },
+   {
+    "id": "gn-tuatara",
+    "name": "Gorn ship (Tuatara)",
+    "f": "/dl/3047585/x/files/Gorn_Tuatara_Class.obj",
+    "rot": [
+     0,
+     -90,
+     0
+    ],
+    "size": 0.9,
+    "c": "#7d7a4a",
+    "src": "Thingiverse 3047585, Colin Bridger (Burning_Bridges)",
+    "lic": "CC BY 4.0",
+    "note": "Star Trek Online design, not on screen"
+   },
+   {
+    "id": "or-lightning",
+    "name": "Orion ship (Lightning)",
+    "f": "/dl/4661468/x/files/ship-lightning.stl",
+    "rot": [
+     -90,
+     -90,
+     0
+    ],
+    "size": 0.8,
+    "c": "#4f8a63",
+    "src": "Thingiverse 4661468, Captain Mojo (CaptainMojo)",
+    "lic": "CC BY-SA 3.0",
+    "note": "FASA role-playing game design, not on screen"
+   },
+   {
+    "id": "cap-defiant",
+    "name": "Captured Defiant (Thomas Riker)",
+    "model": "defiant",
+    "size": 0.75,
+    "tint": "#d9b79a",
+    "src": "Star Trek: Into the Unknown TTS mod",
+    "lic": "no licence stated",
+    "note": "DS9 \"Defiant\": stolen by Thomas Riker for the Maquis"
+   },
+   {
+    "id": "cap-miranda",
+    "name": "Captured Miranda",
+    "model": "miranda",
+    "rot": [
+     0,
+     -90,
+     0
+    ],
+    "size": 0.85,
+    "tint": "#c9a98a",
+    "src": "Star Trek: Into the Unknown TTS mod",
+    "lic": "no licence stated",
+    "note": "Generic; no Maquis Miranda on screen"
+   },
+   {
+    "id": "cap-constellation",
+    "name": "Captured Constellation-class",
+    "model": "constellation",
+    "size": 0.88,
+    "tint": "#c9a98a",
+    "src": "Star Trek: Into the Unknown TTS mod",
+    "lic": "no licence stated",
+    "note": "Constellation class seen in TNG and DS9 \"Emissary\"; captured by raiders, repainted"
+   },
+   {
+    "id": "bj-assault",
+    "name": "Bajoran assault vessel",
+    "f": "/dl/bjav/bj-assault.obj",
+    "rot": [
+     0,
+     0,
+     0
+    ],
+    "size": 0.85,
+    "src": "Built for this project from the reference views D supplied (shape traced from the views; paint sampled from the same picture)",
+    "lic": "geometry: ours; paint: from the reference picture, source unknown",
+    "note": "TNG \"Preemptive Strike\"; DS9 \"Shadows and Symbols\", \"Image in the Sand\""
+   },
+   {
+    "id": "fighter-peregrine",
+    "name": "Peregrine-class attack fighter",
+    "f": "/dl/peregrine/x/f/fighter.obj?tex=/dl/peregrine/x/textures/pfightertextures.png&em=/dl/peregrine/x/textures/pfight_lights.png",
+    "rot": [
+     0,
+     90,
+     0
+    ],
+    "size": 0.6,
+    "src": "Model D supplied (object name: STO - Federation - Peregrine Attack Fighter)",
+    "lic": "unknown"
+   },
+   {
+    "id": "gal-3060816",
+    "name": "Galor (Thingiverse 3060816)",
+    "f": "/dl/3060816/x/files/Galor_Class.obj",
+    "rot": [
+     0,
+     90,
+     0
+    ],
+    "size": 0.88,
+    "c": "#c8a070",
+    "src": "Thingiverse 3060816, Colin Bridger (Burning_Bridges)",
+    "lic": "CC BY 4.0"
+   },
+   {
+    "id": "gal-1427061",
+    "name": "Galor (Thingiverse 1427061)",
+    "f": "/dl/1427061/x/files/ds9_cardassian_cruiser_galor_class.STL",
+    "rot": [
+     -90,
+     90,
+     0
+    ],
+    "size": 0.88,
+    "c": "#c8a070",
+    "src": "Thingiverse 1427061, James (nd4spd1919)",
+    "lic": "CC BY 4.0"
+   },
+   {
+    "id": "mq-fighter2",
+    "name": "Maquis fighter (Peregrine), second version",
+    "f": "/dl/peregrine2/x/source/peregrine.fbx?tex=peregrine_base.png&em=peregrine_illum.png",
+    "rot": [
+     0,
+     90,
+     0
+    ],
+    "size": 0.6,
+    "src": "Model D supplied (FBX with 2013 game-mod textures)",
+    "lic": "no licence stated"
+   },
+   {
+    "id": "mq-fighter2-b13",
+    "name": "Maquis fighter (Peregrine), brightened",
+    "f": "/dl/peregrine2/x/source/peregrine.fbx?tex=peregrine_base_b13.png&em=peregrine_illum.png",
+    "rot": [
+     0,
+     90,
+     0
+    ],
+    "size": 0.6,
+    "src": "Model D supplied (FBX with 2013 game-mod textures), paint brightened",
+    "lic": "no licence stated"
+   },
+   {
+    "id": "mq-fighter2-b16",
+    "name": "Maquis fighter (Peregrine), brightened",
+    "f": "/dl/peregrine2/x/source/peregrine.fbx?tex=peregrine_base_b16.png&em=peregrine_illum.png",
+    "rot": [
+     0,
+     90,
+     0
+    ],
+    "size": 0.6,
+    "src": "Model D supplied (FBX with 2013 game-mod textures), paint brightened",
+    "lic": "no licence stated"
+   },
+   {
+    "id": "mq-fighter2-wing",
+    "name": "Maquis fighter (Peregrine), brightened",
+    "f": "/dl/peregrine2/x/source/peregrine.fbx?tex=peregrine_base_wing.png&em=peregrine_illum_boost.png",
+    "rot": [
+     0,
+     90,
+     0
+    ],
+    "size": 0.6,
+    "src": "Model D supplied (FBX with 2013 game-mod textures), paint brightened",
+    "lic": "no licence stated"
+   },
+   {
+    "id": "mq-fighter2-wing-e2",
+    "name": "Maquis fighter (Peregrine), brightened",
+    "f": "/dl/peregrine2/x/source/peregrine.fbx?tex=peregrine_base_wing.png&em=peregrine_illum_boost.png&emi=2",
+    "rot": [
+     0,
+     90,
+     0
+    ],
+    "size": 0.6,
+    "src": "Model D supplied (FBX with 2013 game-mod textures), paint brightened",
+    "lic": "no licence stated"
+   },
+   {
+    "id": "mq-fighter2-wing-e3",
+    "name": "Maquis fighter (Peregrine), brightened",
+    "f": "/dl/peregrine2/x/source/peregrine.fbx?tex=peregrine_base_wing.png&em=peregrine_illum_boost.png&emi=3",
+    "rot": [
+     0,
+     90,
+     0
+    ],
+    "size": 0.6,
+    "src": "Model D supplied (FBX with 2013 game-mod textures), paint brightened",
+    "lic": "no licence stated"
+   },
+   {
+    "id": "mq-fighter2-wing2",
+    "name": "Maquis fighter (Peregrine), brightened",
+    "f": "/dl/peregrine2/x/source/peregrine.fbx?tex=peregrine_base_wing2.png&em=peregrine_illum_boost2.png",
+    "rot": [
+     0,
+     90,
+     0
+    ],
+    "size": 0.6,
+    "src": "Model D supplied (FBX with 2013 game-mod textures), paint brightened",
+    "lic": "no licence stated"
+   },
+   {
+    "id": "mq-fighter2-wing2-e15",
+    "name": "Maquis fighter (Peregrine), brightened",
+    "f": "/dl/peregrine2/x/source/peregrine.fbx?tex=peregrine_base_wing2.png&em=peregrine_illum_boost2.png&emi=1.5",
+    "rot": [
+     0,
+     90,
+     0
+    ],
+    "size": 0.6,
+    "src": "Model D supplied (FBX with 2013 game-mod textures), paint brightened",
+    "lic": "no licence stated"
+   },
+   {
+    "id": "mq-fighter2-wing2-e06",
+    "name": "Maquis fighter (Peregrine), brightened",
+    "f": "/dl/peregrine2/x/source/peregrine.fbx?tex=peregrine_base_wing2.png&em=peregrine_illum_boost2.png&emi=0.6",
+    "rot": [
+     0,
+     90,
+     0
+    ],
+    "size": 0.6,
+    "src": "Model D supplied (FBX with 2013 game-mod textures), paint brightened",
+    "lic": "no licence stated"
+   },
+   {
+    "id": "mq-fighter2-wing3",
+    "name": "Maquis fighter (Peregrine), brightened",
+    "f": "/dl/peregrine2/x/source/peregrine.fbx?tex=peregrine_base_wing3.png&em=peregrine_illum_boost3.png&emi=1.5",
+    "rot": [
+     0,
+     90,
+     0
+    ],
+    "size": 0.6,
+    "src": "Model D supplied (FBX with 2013 game-mod textures), paint brightened",
+    "lic": "no licence stated"
+   },
+   {
+    "id": "mq-fighter2-LA",
+    "name": "Maquis fighter (Peregrine), brightened",
+    "f": "/dl/peregrine2/x/source/peregrine.fbx?tex=peregrine_base_LA.png&em=peregrine_illum_LA.png&emi=1.5",
+    "rot": [
+     0,
+     90,
+     0
+    ],
+    "size": 0.6,
+    "src": "Model D supplied (FBX with 2013 game-mod textures), paint brightened",
+    "lic": "no licence stated"
+   },
+   {
+    "id": "mq-fighter2-LB",
+    "name": "Maquis fighter (Peregrine), brightened",
+    "f": "/dl/peregrine2/x/source/peregrine.fbx?tex=peregrine_base_LB.png&em=peregrine_illum_LB.png&emi=1.5",
+    "rot": [
+     0,
+     90,
+     0
+    ],
+    "size": 0.6,
+    "src": "Model D supplied (FBX with 2013 game-mod textures), paint brightened",
+    "lic": "no licence stated"
+   },
+   {
+    "id": "mq-fighter2-LC",
+    "name": "Maquis fighter (Peregrine), brightened",
+    "f": "/dl/peregrine2/x/source/peregrine.fbx?tex=peregrine_base_LC.png&em=peregrine_illum_LC.png&emi=1.5",
+    "rot": [
+     0,
+     90,
+     0
+    ],
+    "size": 0.6,
+    "src": "Model D supplied (FBX with 2013 game-mod textures), paint brightened",
+    "lic": "no licence stated"
+   },
+   {
+    "id": "mq-fighter2-LD",
+    "name": "Maquis fighter (Peregrine), brightened",
+    "f": "/dl/peregrine2/x/source/peregrine.fbx?tex=peregrine_base_LD.png&em=peregrine_illum_LD.png&emi=1.5",
+    "rot": [
+     0,
+     90,
+     0
+    ],
+    "size": 0.6,
+    "src": "Model D supplied (FBX with 2013 game-mod textures), paint brightened",
+    "lic": "no licence stated"
+   },
+   {
+    "id": "mq-fighter2-LE",
+    "name": "Maquis fighter (Peregrine), brightened",
+    "f": "/dl/peregrine2/x/source/peregrine.fbx?tex=peregrine_base_LE.png&em=peregrine_illum_LE.png&emi=1.5",
+    "rot": [
+     0,
+     90,
+     0
+    ],
+    "size": 0.6,
+    "src": "Model D supplied (FBX with 2013 game-mod textures), paint brightened",
+    "lic": "no licence stated"
+   },
+   {
+    "id": "mq-fighter2-LF",
+    "name": "Maquis fighter (Peregrine), brightened",
+    "f": "/dl/peregrine2/x/source/peregrine.fbx?tex=peregrine_base_LF.png&em=peregrine_illum_LF.png&emi=1.5",
+    "rot": [
+     0,
+     90,
+     0
+    ],
+    "size": 0.6,
+    "src": "Model D supplied (FBX with 2013 game-mod textures), paint brightened",
+    "lic": "no licence stated"
+   },
+   {
+    "id": "mq-fighter2-LG",
+    "name": "Maquis fighter (Peregrine), brightened",
+    "f": "/dl/peregrine2/x/source/peregrine.fbx?tex=peregrine_base_LG.png&em=peregrine_illum_LG.png&emi=1.5",
+    "rot": [
+     0,
+     90,
+     0
+    ],
+    "size": 0.6,
+    "src": "Model D supplied (FBX with 2013 game-mod textures), paint brightened",
+    "lic": "no licence stated"
+   },
+   {
+    "id": "kl-kvort-up45",
+    "name": "K'Vort-class Bird-of-Prey",
+    "model": "brel_up45",
+    "size": 0.98,
+    "src": "Star Trek: Into the Unknown TTS mod (github.com/bwoneill/tts_star_trek_into_the_unknown)",
+    "lic": "no licence stated"
+   },
+   {
+    "id": "kl-kvort-up55",
+    "name": "K'Vort-class Bird-of-Prey",
+    "model": "brel_up55",
+    "size": 0.98,
+    "src": "Star Trek: Into the Unknown TTS mod (github.com/bwoneill/tts_star_trek_into_the_unknown)",
+    "lic": "no licence stated"
+   },
+   {
+    "id": "kl-kvort-up65",
+    "name": "K'Vort-class Bird-of-Prey",
+    "model": "brel_up65",
+    "size": 0.98,
+    "src": "Star Trek: Into the Unknown TTS mod (github.com/bwoneill/tts_star_trek_into_the_unknown)",
+    "lic": "no licence stated"
+   },
+   {
+    "id": "cd-dreadnought",
+    "name": "Dreadnought (Cardassian ATR-4107)",
+    "f": "/dl/4557894/x/files/Cardassian_Dreadnought_Updated.stl",
+    "rot": [
+     -90,
+     90,
+     0
+    ],
+    "size": 0.85,
+    "c": "#b8956a",
+    "src": "Thingiverse 4557894, MazzTer",
+    "lic": "CC BY 4.0 on Thingiverse; description says personal use only"
+   },
+   {
+    "id": "kl-kvort-green",
+    "name": "K'Vort-class Bird-of-Prey",
+    "model": "kvort_green",
+    "size": 1.1,
+    "src": "Star Trek: Into the Unknown TTS mod (github.com/bwoneill/tts_star_trek_into_the_unknown); wings raised to the cruise position here (tools/wingsup.py, 65\u00b0)",
+    "lic": "no licence stated",
+    "size_before_scale": 0.98,
+    "len_m": 350
+   },
+   {
+    "id": "cd-dreadnought-paint",
+    "name": "Dreadnought (Cardassian ATR-4107)",
+    "f": "/dl/4557894/x/files/Cardassian_Dreadnought_Updated.stl?paint=dread",
+    "rot": [
+     -90,
+     90,
+     0
+    ],
+    "size": 0.85,
+    "src": "Thingiverse 4557894, MazzTer",
+    "lic": "CC BY 4.0 on Thingiverse; description says personal use only"
+   }
+  ]
+ }
+]

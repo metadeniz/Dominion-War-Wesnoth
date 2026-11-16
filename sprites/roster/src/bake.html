@@ -1,0 +1,46 @@
+<!doctype html><html><body style="margin:0">
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}</script>
+<script type="module">
+// Texture-transfer helper: projects an old model's paint onto a new model's UV atlas.
+import * as T from 'three';
+import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
+import { FBXLoader } from 'three/addons/loaders/FBXLoaderPatched.js';
+const r=new T.WebGLRenderer({antialias:false,alpha:false,preserveDrawingBuffer:true});
+document.body.appendChild(r.domElement);
+const cam=new T.OrthographicCamera(-1,1,1,-1,-10,10);
+function bbox(obj){ obj.updateMatrixWorld(true); return new T.Box3().setFromObject(obj); }
+const VS_PROJ=`uniform vec3 bmin; uniform vec3 bmax; uniform float down; varying vec2 vUv;
+void main(){ vUv=uv; vec3 w=(modelMatrix*vec4(position,1.0)).xyz; vec3 n=(w-bmin)/(bmax-bmin);
+ float d = down>0.5 ? n.y : (1.0-n.y); gl_Position=vec4(n.x*2.0-1.0, n.z*2.0-1.0, d*2.0-1.0, 1.0); }`;
+const FS_TEX=`uniform sampler2D map; varying vec2 vUv; void main(){ gl_FragColor=vec4(texture2D(map,vUv).rgb,1.0); }`;
+const VS_UV=`uniform vec3 bmin; uniform vec3 bmax; varying vec3 vN; varying vec3 vP;
+void main(){ vec3 w=(modelMatrix*vec4(position,1.0)).xyz; vP=(w-bmin)/(bmax-bmin); vN=normalize(mat3(modelMatrix)*normal);
+ gl_Position=vec4(uv.x*2.0-1.0, uv.y*2.0-1.0, 0.0, 1.0); }`;
+const FS_UV=`uniform float pass; varying vec3 vN; varying vec3 vP;
+void main(){ vec3 p=clamp(vP,0.0,0.99999); vec2 hx=vec2(floor(p.x*255.0)/255.0, fract(p.x*255.0)); vec2 hz=vec2(floor(p.z*255.0)/255.0, fract(p.z*255.0));
+ if(pass<0.5) gl_FragColor=vec4(hx.x,hx.y,hz.x,1.0); else gl_FragColor=vec4(hz.y, normalize(vN).y*0.5+0.5, p.y, 1.0); }`;
+function shot(w,h){ r.setSize(w,h,false); return null; }
+window.bake=async(cfg)=>{
+  const out={};
+  // old model: OBJ + texture
+  const tl=new T.TextureLoader(); const oldTex=await tl.loadAsync(cfg.oldTex); oldTex.colorSpace=T.NoColorSpace;
+  const oldTxt=await (await fetch(cfg.oldObj)).text();
+  const oldObj=new OBJLoader().parse(oldTxt.split('\n').filter(l=>!l.startsWith('l ')&&!l.startsWith('p ')&&!l.startsWith('mtllib')&&!l.startsWith('usemtl')).join('\n'));
+  const ob=bbox(oldObj); out.oldBox=[ob.min.toArray(),ob.max.toArray()];
+  for(const down of [0,1]){
+    const sc=new T.Scene(); const m=new T.ShaderMaterial({vertexShader:VS_PROJ,fragmentShader:FS_TEX,uniforms:{bmin:{value:ob.min},bmax:{value:ob.max},down:{value:down},map:{value:oldTex}},side:T.DoubleSide});
+    const o=oldObj.clone(); o.traverse(c=>{ if(c.isMesh) c.material=m; }); sc.add(o);
+    r.setSize(cfg.projW,cfg.projH,false); r.setClearColor(0xff00ff,1); r.render(sc,cam); out['old'+(down?'Bot':'Top')]=r.domElement.toDataURL('image/png');
+  }
+  // new model: FBX, render into its UV space
+  const nobj=await new FBXLoader().loadAsync(cfg.newFbx);
+  const nb=bbox(nobj); out.newBox=[nb.min.toArray(),nb.max.toArray()];
+  for(const pass of [0,1]){
+    const sc=new T.Scene(); const m=new T.ShaderMaterial({vertexShader:VS_UV,fragmentShader:FS_UV,uniforms:{bmin:{value:nb.min},bmax:{value:nb.max},pass:{value:pass}},side:T.DoubleSide,depthTest:false});
+    const o=nobj.clone(); o.traverse(c=>{ if(c.isMesh) c.material=m; }); sc.add(o);
+    r.setSize(cfg.uvSize,cfg.uvSize,false); r.setClearColor(0x000000,1); r.render(sc,cam); out['uv'+pass]=r.domElement.toDataURL('image/png');
+  }
+  return out;
+};
+window.ready=true;
+</script></body></html>

@@ -1,0 +1,56 @@
+{
+ "federation-galaxy": {
+  "tex": true,
+  "rot": [
+   0,
+   0,
+   0
+  ],
+  "size": 1.0
+ },
+ "federation-excelsior": {
+  "tex": false,
+  "rot": [
+   0,
+   90,
+   0
+  ],
+  "size": 1.0
+ },
+ "federation-defiant": {
+  "tex": true,
+  "rot": [
+   0,
+   0,
+   0
+  ],
+  "size": 0.8
+ },
+ "klingon-bird-of-prey": {
+  "tex": true,
+  "rot": [
+   0,
+   0,
+   0
+  ],
+  "size": 0.85
+ },
+ "dominion-attack-ship": {
+  "tex": true,
+  "rot": [
+   0,
+   180,
+   0
+  ],
+  "size": 0.8
+ },
+ "dominion-battle-cruiser": {
+  "tex": true,
+  "rot": [
+   0,
+   0,
+   0
+  ],
+  "size": 1.0
+ }
+}

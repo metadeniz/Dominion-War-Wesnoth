@@ -1,0 +1,13 @@
+# Large 3D model archives and other bundles stay out of the repo
+*.zip
+
+# Python caches
+__pycache__/
+*.pyc
+
+# OS and Dropbox clutter
+Thumbs.db
+desktop.ini
+.DS_Store
+.dropbox
+.dropbox.attr

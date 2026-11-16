@@ -1,0 +1,176 @@
+[
+ {
+  "id": "now",
+  "label": "Now (default light, usual shadow)",
+  "cfg": {}
+ },
+ {
+  "id": "rig01",
+  "label": "1 light: right (your pick), fill 0.5",
+  "cfg": {
+   "hemi": 0.5,
+   "lights": [
+    {
+     "dir": 3.2,
+     "pos": [
+      7,
+      2.5,
+      -0.5
+     ]
+    }
+   ],
+   "shadowPos": [
+    0,
+    10,
+    0.001
+   ]
+  }
+ },
+ {
+  "id": "rig10",
+  "label": "2 lights: right + soft front left, fill 0.1",
+  "cfg": {
+   "hemi": 0.1,
+   "lights": [
+    {
+     "dir": 3.4,
+     "pos": [
+      7,
+      2.5,
+      -0.5
+     ]
+    },
+    {
+     "dir": 0.6,
+     "pos": [
+      -4,
+      2,
+      5
+     ],
+     "shadow": false
+    }
+   ],
+   "shadowPos": [
+    0,
+    10,
+    0.001
+   ]
+  }
+ },
+ {
+  "id": "rig08",
+  "label": "2 lights: right + rim from back left, no fill",
+  "cfg": {
+   "hemi": 0,
+   "lights": [
+    {
+     "dir": 3.4,
+     "pos": [
+      7,
+      2.5,
+      -0.5
+     ]
+    },
+    {
+     "dir": 1.2,
+     "pos": [
+      -6,
+      2,
+      -4
+     ],
+     "shadow": false
+    }
+   ],
+   "shadowPos": [
+    0,
+    10,
+    0.001
+   ]
+  }
+ },
+ {
+  "id": "rig14",
+  "label": "3 lights: right + overhead + rim back left, no fill",
+  "cfg": {
+   "hemi": 0,
+   "lights": [
+    {
+     "dir": 3.0,
+     "pos": [
+      7,
+      2.5,
+      -0.5
+     ]
+    },
+    {
+     "dir": 1.0,
+     "pos": [
+      0,
+      8,
+      0.3
+     ],
+     "shadow": false
+    },
+    {
+     "dir": 1.0,
+     "pos": [
+      -6,
+      2,
+      -4
+     ],
+     "shadow": false
+    }
+   ],
+   "shadowPos": [
+    0,
+    10,
+    0.001
+   ]
+  }
+ },
+ {
+  "id": "rig15",
+  "label": "1 warm light: right, cool fill 0.3",
+  "cfg": {
+   "hemi": 0.3,
+   "lights": [
+    {
+     "dir": 3.6,
+     "pos": [
+      7,
+      2.5,
+      -0.5
+     ],
+     "color": 16770756
+    }
+   ],
+   "shadowPos": [
+    0,
+    10,
+    0.001
+   ]
+  }
+ },
+ {
+  "id": "rig04",
+  "label": "1 light: right, low and grazing, fill 0.15",
+  "cfg": {
+   "hemi": 0.15,
+   "lights": [
+    {
+     "dir": 4.0,
+     "pos": [
+      7,
+      1.0,
+      -0.5
+     ]
+    }
+   ],
+   "shadowPos": [
+    0,
+    10,
+    0.001
+   ]
+  }
+ }
+]

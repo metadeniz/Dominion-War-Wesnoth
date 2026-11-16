@@ -1,0 +1,2049 @@
+[
+ {
+  "faction": "Federation",
+  "units": [
+   {
+    "id": "fed-danube",
+    "name": "Danube-class runabout",
+    "rot": [
+     0,
+     -90,
+     0
+    ],
+    "size": 0.62,
+    "src": "Star Trek: Into the Unknown TTS mod (github.com/bwoneill/tts_star_trek_into_the_unknown)",
+    "lic": "no licence stated",
+    "cost": 10,
+    "light": {
+     "hemi": 0,
+     "lights": [
+      {
+       "dir": 4.071,
+       "pos": [
+        7,
+        2.5,
+        -0.5
+       ],
+       "nb": 0,
+       "bias": -0.0015
+      },
+      {
+       "dir": 0.599,
+       "pos": [
+        0,
+        8,
+        0.3
+       ],
+       "shadow": false
+      },
+      {
+       "dir": 1.197,
+       "pos": [
+        -6,
+        2,
+        -4
+       ],
+       "shadow": false
+      },
+      {
+       "dir": 0.718,
+       "pos": [
+        -4,
+        2,
+        5
+       ],
+       "shadow": false
+      }
+     ],
+     "shadowPos": [
+      0,
+      10,
+      0.001
+     ],
+     "recvAll": true
+    },
+    "prev_model": {
+     "model": "runabout"
+    },
+    "f": "/models/runabout.obj?tex=/models/runabout.png&em=/models/runabout_em.png",
+    "light_note": "D's pick, brightness rule applied (x1.20)",
+    "mix": {
+     "K1f": 4.0706164673076195,
+     "O": 0.5986200687217088,
+     "R": 1.1972401374434176,
+     "F1": 0.7183440824660505
+    }
+   },
+   {
+    "id": "fed-miranda",
+    "name": "Miranda-class",
+    "model": "miranda",
+    "rot": [
+     0,
+     -90,
+     0
+    ],
+    "size": 0.85,
+    "src": "Star Trek: Into the Unknown TTS mod (github.com/bwoneill/tts_star_trek_into_the_unknown)",
+    "lic": "no licence stated",
+    "cost": 14,
+    "light": {
+     "hemi": 0,
+     "lights": [
+      {
+       "dir": 3.4,
+       "pos": [
+        7,
+        2.5,
+        -0.5
+       ],
+       "nb": 0,
+       "bias": -0.0015
+      },
+      {
+       "dir": 0.5,
+       "pos": [
+        -6,
+        2,
+        -4
+       ],
+       "shadow": false
+      },
+      {
+       "dir": 0.8,
+       "pos": [
+        -4,
+        2,
+        5
+       ],
+       "shadow": false
+      }
+     ],
+     "shadowPos": [
+      0,
+      10,
+      0.001
+     ],
+     "recvAll": true
+    },
+    "mix": {
+     "K1f": 3.4,
+     "O": 0.0,
+     "R": 0.5,
+     "F1": 0.8
+    }
+   },
+   {
+    "id": "fed-excelsior",
+    "name": "Excelsior-class",
+    "f": "/dl/excelsior/x/src/Excelsior/Excelsior_v4.obj?mtl&em=1&br=0.76",
+    "rot": [
+     0,
+     90,
+     -90
+    ],
+    "size": 1.15,
+    "src": "Sketchfab, morenostefanuto, \"Excelsior\" (sketchfab.com/3d-models/46745c1df3ea4e268467052e5e8c6723); nacelle tops repainted grey and the side bands made the blue glow; the blue hull panels made grey, engine glow unchanged (Excelsior_v4.obj/.mtl, tools/excelsior_tone.py t6 0 0 1)",
+    "lic": "Sketchfab Standard",
+    "size_before_scale": 1.0,
+    "len_m": 467,
+    "prev_model": {
+     "f": "/dl/1427032/x/files/sfs_excelsior_class.STL",
+     "model": null,
+     "rot": [
+      -90,
+      90,
+      0
+     ],
+     "src": "Thingiverse 1427032, James (nd4spd1919)",
+     "lic": "CC BY 4.0",
+     "c": "#d3d6db"
+    },
+    "cost": 20,
+    "light": {
+     "hemi": 0,
+     "lights": [
+      {
+       "dir": 3.773,
+       "pos": [
+        7,
+        2.5,
+        -0.5
+       ],
+       "nb": 0,
+       "bias": -0.0015
+      },
+      {
+       "dir": 0.555,
+       "pos": [
+        -6,
+        2,
+        -4
+       ],
+       "shadow": false
+      },
+      {
+       "dir": 0.746,
+       "pos": [
+        -4,
+        2,
+        5
+       ],
+       "shadow": false
+      }
+     ],
+     "shadowPos": [
+      0,
+      10,
+      0.001
+     ],
+     "recvAll": true
+    },
+    "mix": {
+     "K1f": 3.773,
+     "O": 0.0,
+     "R": 0.555,
+     "F1": 0.746
+    }
+   },
+   {
+    "id": "fed-intrepid",
+    "name": "Intrepid-class",
+    "f": "/dl/voyager/x/src/Voyager NCC 74656/voyager.obj?mtl",
+    "rot": [
+     0,
+     90,
+     0
+    ],
+    "size": 1.02,
+    "src": "Sketchfab, morenostefanuto, \"Voyager NCC 74656\" (sketchfab.com/3d-models/f14d79df1e404a81b2bcffa25f978744)",
+    "lic": "Sketchfab Standard",
+    "size_before_scale": 0.9,
+    "len_m": 344,
+    "prev_model": {
+     "f": "/dl/3412598/x/files/Intrepid_Class.stl",
+     "model": null,
+     "rot": [
+      -90,
+      90,
+      0
+     ],
+     "src": "Thingiverse 3412598, Justin Chow (Snickett)",
+     "lic": "CC BY-NC 4.0",
+     "c": "#c9cdd4"
+    },
+    "cost": 22,
+    "light": {
+     "hemi": 0,
+     "lights": [
+      {
+       "dir": 3.766,
+       "pos": [
+        7,
+        2.5,
+        -0.5
+       ],
+       "nb": 0,
+       "bias": -0.0015
+      },
+      {
+       "dir": 0.554,
+       "pos": [
+        -6,
+        2,
+        -4
+       ],
+       "shadow": false
+      },
+      {
+       "dir": 0.786,
+       "pos": [
+        -4,
+        2,
+        5
+       ],
+       "shadow": false
+      }
+     ],
+     "shadowPos": [
+      0,
+      10,
+      0.001
+     ],
+     "recvAll": true
+    },
+    "mix": {
+     "K1f": 3.766,
+     "O": 0.0,
+     "R": 0.554,
+     "F1": 0.786
+    }
+   },
+   {
+    "id": "fed-akira",
+    "name": "Akira-class",
+    "f": "/dl/akira/x/src/Akira/akira.obj?mtl&br=0.49",
+    "rot": [
+     0,
+     180,
+     0
+    ],
+    "size": 1.08,
+    "src": "Sketchfab, morenostefanuto, \"Akira\" (sketchfab.com/3d-models/ad318bdd1d44429e88ca7245006fe2e9)",
+    "lic": "Sketchfab Standard",
+    "size_before_scale": 0.95,
+    "len_m": 464,
+    "prev_model": {
+     "f": "/dl/1486708/x/files/tng_akira_class.STL",
+     "model": null,
+     "rot": [
+      -90,
+      90,
+      0
+     ],
+     "src": "Thingiverse 1486708, James (nd4spd1919)",
+     "lic": "CC BY 4.0",
+     "c": "#c9cdd4"
+    },
+    "cost": 24,
+    "light": {
+     "hemi": 0,
+     "lights": [
+      {
+       "dir": 4.385,
+       "pos": [
+        7,
+        2.5,
+        -0.5
+       ],
+       "nb": 0,
+       "bias": -0.0015
+      },
+      {
+       "dir": 0.645,
+       "pos": [
+        -6,
+        2,
+        -4
+       ],
+       "shadow": false
+      },
+      {
+       "dir": 0.798,
+       "pos": [
+        -4,
+        2,
+        5
+       ],
+       "shadow": false
+      }
+     ],
+     "shadowPos": [
+      0,
+      10,
+      0.001
+     ],
+     "recvAll": true
+    },
+    "mix": {
+     "K1f": 4.385,
+     "O": 0.0,
+     "R": 0.645,
+     "F1": 0.798
+    }
+   },
+   {
+    "id": "fed-nebula",
+    "name": "Nebula-class",
+    "f": "/dl/nebula4/conv/obj_nowin_grey/model.obj?mtl&em=1&br=1.63",
+    "rot": [
+     0,
+     -90,
+     0
+    ],
+    "size": 0.74,
+    "src": "TrekMeshes dl016 \"Nebula class starship\": original Galaxy parts by Trevor Morris and Ralph Schoberth, Nebula kitbash by Rob Caves; converted here from the 1999 LightWave file (tools/lwob2obj.py, tools/ilbm.py)",
+    "lic": "no licence stated",
+    "size_before_scale": 0.92,
+    "len_m": 442,
+    "prev_model": {
+     "f": "/dl/2916234/x/files/Nebula_Class_FIX.stl",
+     "model": null,
+     "rot": [
+      -90,
+      90,
+      0
+     ],
+     "src": "Thingiverse 2916234, Kyle Joy (Kyle_Robots), the standard variant",
+     "lic": "CC BY 4.0",
+     "c": "#c9cdd4"
+    },
+    "prev_model2": {
+     "f": "/dl/nebula2/x/src/Nebula_Class_(Clean).obj?mtl",
+     "rot": [
+      0,
+      -90,
+      0
+     ],
+     "src": "Sketchfab, ZEOCMF, \"USS Farragut - Nebula-class\" (sketchfab.com/3d-models/4ea8c66c395e4d9eb81bbe152e1afc03); preview only, ND forbids changes",
+     "lic": "CC BY-NC-ND 4.0"
+    },
+    "cost": 26,
+    "light": {
+     "hemi": 0,
+     "lights": [
+      {
+       "dir": 2.78,
+       "pos": [
+        7,
+        2.5,
+        -0.5
+       ],
+       "nb": 0,
+       "bias": -0.0015
+      },
+      {
+       "dir": 0.409,
+       "pos": [
+        -6,
+        2,
+        -4
+       ],
+       "shadow": false
+      },
+      {
+       "dir": 0.471,
+       "pos": [
+        -4,
+        2,
+        5
+       ],
+       "shadow": false
+      }
+     ],
+     "shadowPos": [
+      0,
+      10,
+      0.001
+     ],
+     "recvAll": true
+    },
+    "mix": {
+     "K1f": 2.78,
+     "O": 0.0,
+     "R": 0.409,
+     "F1": 0.471
+    }
+   },
+   {
+    "id": "fed-galaxy",
+    "name": "Galaxy-class",
+    "model": "galaxy",
+    "size": 1.08,
+    "src": "Star Trek: Into the Unknown TTS mod (github.com/bwoneill/tts_star_trek_into_the_unknown)",
+    "lic": "no licence stated",
+    "cost": 34,
+    "light": {
+     "hemi": 0,
+     "lights": [
+      {
+       "dir": 5.005,
+       "pos": [
+        7,
+        2.5,
+        -0.5
+       ],
+       "nb": 0,
+       "bias": -0.0015
+      },
+      {
+       "dir": 0.736,
+       "pos": [
+        -6,
+        2,
+        -4
+       ],
+       "shadow": false
+      },
+      {
+       "dir": 1.106,
+       "pos": [
+        -4,
+        2,
+        5
+       ],
+       "shadow": false
+      }
+     ],
+     "shadowPos": [
+      0,
+      10,
+      0.001
+     ],
+     "recvAll": true
+    },
+    "mix": {
+     "K1f": 5.005,
+     "O": 0.0,
+     "R": 0.736,
+     "F1": 1.106
+    }
+   },
+   {
+    "id": "fed-defiant",
+    "name": "Defiant-class (leader)",
+    "model": "defiant",
+    "size": 0.66,
+    "src": "Star Trek: Into the Unknown TTS mod (github.com/bwoneill/tts_star_trek_into_the_unknown)",
+    "lic": "no licence stated",
+    "size_before_scale": 0.75,
+    "len_m": 150,
+    "leader": true,
+    "cost": 25,
+    "light": {
+     "hemi": 0,
+     "lights": [
+      {
+       "dir": 5.076,
+       "pos": [
+        7,
+        2.5,
+        -0.5
+       ],
+       "nb": 0,
+       "bias": -0.0015
+      },
+      {
+       "dir": 0.747,
+       "pos": [
+        -6,
+        2,
+        -4
+       ],
+       "shadow": false
+      },
+      {
+       "dir": 1.083,
+       "pos": [
+        -4,
+        2,
+        5
+       ],
+       "shadow": false
+      }
+     ],
+     "shadowPos": [
+      0,
+      10,
+      0.001
+     ],
+     "recvAll": true
+    },
+    "mix": {
+     "K1f": 5.076,
+     "O": 0.0,
+     "R": 0.747,
+     "F1": 1.083
+    }
+   }
+  ]
+ },
+ {
+  "faction": "Klingon Empire",
+  "units": [
+   {
+    "id": "kl-promellian",
+    "name": "Klingon freighter (Noggra's ship)",
+    "f": "/dl/promel/promellian.stl",
+    "rot": [
+     -90,
+     90,
+     0
+    ],
+    "size": 1.1,
+    "c": "#7c8a6a",
+    "src": "STL D supplied: Star Trek Online \"Promellian Command Battlecruiser\" (exact source and licence unknown)",
+    "lic": "no licence stated",
+    "size_before_scale": 0.8,
+    "len_m": 300,
+    "cost": 10,
+    "light": {
+     "hemi": 0,
+     "lights": [
+      {
+       "dir": 5.728,
+       "pos": [
+        7,
+        2.5,
+        -0.5
+       ],
+       "nb": 0,
+       "bias": -0.0015
+      },
+      {
+       "dir": 0.842,
+       "pos": [
+        -6,
+        2,
+        -4
+       ],
+       "shadow": false
+      },
+      {
+       "dir": 1.025,
+       "pos": [
+        -4,
+        2,
+        5
+       ],
+       "shadow": false
+      }
+     ],
+     "shadowPos": [
+      0,
+      10,
+      0.001
+     ],
+     "recvAll": true
+    },
+    "mix": {
+     "K1f": 5.728,
+     "O": 0.0,
+     "R": 0.842,
+     "F1": 1.025
+    }
+   },
+   {
+    "id": "kl-raptor",
+    "name": "Raptor-class scout",
+    "f": "/dl/raptor/conv/Raptor.obj?mtl&em=1&br=0.45",
+    "rot": [
+     -90,
+     90,
+     0
+    ],
+    "size": 0.885,
+    "src": "Sketchfab, MajorStress, \"22nd Century Klingon Raptor version 2\" (sketchfab.com/3d-models/bf380757f2ad478fae504bf021c27eb0)",
+    "lic": "CC BY 4.0",
+    "len_m": 145,
+    "size_note": "145 m (Memory Alpha, CGI model scale); sprite area 399 px",
+    "era": "22nd century (ENT), added at D's request",
+    "cost": 13,
+    "light": {
+     "hemi": 0,
+     "lights": [
+      {
+       "dir": 7.315,
+       "pos": [
+        7,
+        2.5,
+        -0.5
+       ],
+       "nb": 0,
+       "bias": -0.0015
+      },
+      {
+       "dir": 1.076,
+       "pos": [
+        -6,
+        2,
+        -4
+       ],
+       "shadow": false
+      },
+      {
+       "dir": 0.932,
+       "pos": [
+        -4,
+        2,
+        5
+       ],
+       "shadow": false
+      }
+     ],
+     "shadowPos": [
+      0,
+      10,
+      0.001
+     ],
+     "recvAll": true
+    },
+    "mix": {
+     "K1f": 7.315,
+     "O": 0.0,
+     "R": 1.076,
+     "F1": 0.932
+    }
+   },
+   {
+    "id": "kl-brel",
+    "name": "B'rel-class Bird-of-Prey",
+    "size": 0.73,
+    "src": "Sketchfab, CrustyBread, \"Star Trek B'rel Class Klingon Bird of Prey\" (sketchfab.com/3d-models/5bfb6bb66fc3479c9d626af57f66897c)",
+    "lic": "CC BY 4.0",
+    "size_before_scale": 0.75,
+    "len_m": 110,
+    "prev_model": {
+     "f": null,
+     "model": "brel",
+     "rot": null,
+     "src": "Star Trek: Into the Unknown TTS mod (github.com/bwoneill/tts_star_trek_into_the_unknown)",
+     "lic": "no licence stated",
+     "c": null
+    },
+    "f": "/dl/brel3/x/src/bird of prey 72.obj?tex=/dl/brel3/x/textures/bird_of_prey_textures_18.png&em=/dl/brel3/x/textures/bop_light_map_2.png",
+    "rot": [
+     0,
+     -90,
+     0
+    ],
+    "cost": 15,
+    "light": {
+     "hemi": 0,
+     "lights": [
+      {
+       "dir": 6.504,
+       "pos": [
+        7,
+        2.5,
+        -0.5
+       ],
+       "nb": 0,
+       "bias": -0.0015
+      },
+      {
+       "dir": 0.956,
+       "pos": [
+        -6,
+        2,
+        -4
+       ],
+       "shadow": false
+      },
+      {
+       "dir": 1.184,
+       "pos": [
+        -4,
+        2,
+        5
+       ],
+       "shadow": false
+      }
+     ],
+     "shadowPos": [
+      0,
+      10,
+      0.001
+     ],
+     "recvAll": true
+    },
+    "mix": {
+     "K1f": 6.504,
+     "O": 0.0,
+     "R": 0.956,
+     "F1": 1.184
+    }
+   },
+   {
+    "id": "kl-d5",
+    "name": "D5-class battle cruiser",
+    "f": "/dl/d5wh/x/source/D5%20Class.fbx?tex1=D5_windows.png&em1=D5_windows.png&tex2=D5_diffuse.png&br=1.0",
+    "rot": [
+     0,
+     -90,
+     0
+    ],
+    "size": 1.047,
+    "src": "Sketchfab, wholock, \"Star Trek - Klingon D5 Class\" (sketchfab.com/3d-models/eea68280064e41178a711c875a02c850)",
+    "lic": "CC BY 4.0",
+    "len_m": 155,
+    "size_note": "155 m (Memory Alpha, Eden FX scale); sprite area 421 px, between the B'rel (110 m, 344) and the K't'inga (214 m, 506)",
+    "era": "22nd century (ENT), added at D's request",
+    "cost": 16,
+    "light": {
+     "hemi": 0,
+     "lights": [
+      {
+       "dir": 6.741,
+       "pos": [
+        7,
+        2.5,
+        -0.5
+       ],
+       "nb": 0,
+       "bias": -0.0015
+      },
+      {
+       "dir": 0.991,
+       "pos": [
+        -6,
+        2,
+        -4
+       ],
+       "shadow": false
+      },
+      {
+       "dir": 0.932,
+       "pos": [
+        -4,
+        2,
+        5
+       ],
+       "shadow": false
+      }
+     ],
+     "shadowPos": [
+      0,
+      10,
+      0.001
+     ],
+     "recvAll": true
+    },
+    "lab_note": "br 0.1 -> 1.0: the 0.1 made up for a light built into the FBX file, now stripped",
+    "mix": {
+     "K1f": 6.741,
+     "O": 0.0,
+     "R": 0.991,
+     "F1": 0.932
+    }
+   },
+   {
+    "id": "kl-ktinga",
+    "name": "K't'inga-class",
+    "f": "/dl/ktinga2/x/src/Ktinga class/ktinga.obj?mtl&br=0.45",
+    "rot": [
+     0,
+     -90,
+     0
+    ],
+    "size": 1.14,
+    "src": "Sketchfab, morenostefanuto, \"Ktinga Shift Class\" (sketchfab.com/3d-models/44128c836514440cbbc5d2b77fb58943)",
+    "lic": "Sketchfab Standard",
+    "size_before_scale": 0.9,
+    "len_m": 214,
+    "prev_model": {
+     "f": "/dl/3670957/ktinga_joined.stl",
+     "model": null,
+     "rot": [
+      -90,
+      90,
+      0
+     ],
+     "src": "Thingiverse 3670957, Oop Ack (Oop_Ack)",
+     "lic": "CC0",
+     "c": "#7c8a6a"
+    },
+    "size_note": "set so the sprite covers the same area as the earlier Thingiverse model",
+    "cost": 18,
+    "light": {
+     "hemi": 0,
+     "lights": [
+      {
+       "dir": 7.322,
+       "pos": [
+        7,
+        2.5,
+        -0.5
+       ],
+       "nb": 0,
+       "bias": -0.0015
+      },
+      {
+       "dir": 1.077,
+       "pos": [
+        -6,
+        2,
+        -4
+       ],
+       "shadow": false
+      },
+      {
+       "dir": 0.772,
+       "pos": [
+        -4,
+        2,
+        5
+       ],
+       "shadow": false
+      }
+     ],
+     "shadowPos": [
+      0,
+      10,
+      0.001
+     ],
+     "recvAll": true
+    },
+    "mix": {
+     "K1f": 7.322,
+     "O": 0.0,
+     "R": 1.077,
+     "F1": 0.772
+    }
+   },
+   {
+    "id": "kl-kvort",
+    "name": "K'Vort-class Bird-of-Prey",
+    "model": "kvort_dark",
+    "size": 1.1,
+    "src": "Star Trek: Into the Unknown TTS mod (github.com/bwoneill/tts_star_trek_into_the_unknown); wings raised to the cruise position here (tools/wingsup.py, 65\u00b0), grilles darkened (tools/darken_grilles.py)",
+    "lic": "no licence stated",
+    "size_before_scale": 0.98,
+    "len_m": 350,
+    "cost": 21,
+    "light": {
+     "hemi": 0,
+     "lights": [
+      {
+       "dir": 9.62,
+       "pos": [
+        7,
+        2.5,
+        -0.5
+       ],
+       "nb": 0,
+       "bias": -0.0015
+      },
+      {
+       "dir": 1.415,
+       "pos": [
+        -6,
+        2,
+        -4
+       ],
+       "shadow": false
+      },
+      {
+       "dir": 2.307,
+       "pos": [
+        -4,
+        2,
+        5
+       ],
+       "shadow": false
+      }
+     ],
+     "shadowPos": [
+      0,
+      10,
+      0.001
+     ],
+     "recvAll": true
+    },
+    "mix": {
+     "K1f": 9.62,
+     "O": 0.0,
+     "R": 1.415,
+     "F1": 2.307
+    }
+   },
+   {
+    "id": "kl-vorcha",
+    "name": "Vor'cha-class",
+    "model": "vorcha",
+    "rot": [
+     0,
+     180,
+     0
+    ],
+    "size": 1.16,
+    "src": "Star Trek: Into the Unknown TTS mod (github.com/bwoneill/tts_star_trek_into_the_unknown)",
+    "lic": "no licence stated",
+    "size_before_scale": 0.98,
+    "len_m": 481,
+    "cost": 25,
+    "light": {
+     "hemi": 0,
+     "lights": [
+      {
+       "dir": 10.739,
+       "pos": [
+        7,
+        2.5,
+        -0.5
+       ],
+       "nb": 0,
+       "bias": -0.0015
+      },
+      {
+       "dir": 1.579,
+       "pos": [
+        -6,
+        2,
+        -4
+       ],
+       "shadow": false
+      },
+      {
+       "dir": 1.233,
+       "pos": [
+        -4,
+        2,
+        5
+       ],
+       "shadow": false
+      }
+     ],
+     "shadowPos": [
+      0,
+      10,
+      0.001
+     ],
+     "recvAll": true
+    },
+    "mix": {
+     "K1f": 10.739,
+     "O": 0.0,
+     "R": 1.579,
+     "F1": 1.233
+    }
+   },
+   {
+    "id": "kl-neghvar",
+    "name": "Negh'Var-class (leader)",
+    "model": "neghvar",
+    "size": 1.16,
+    "src": "Star Trek: Into the Unknown TTS mod (github.com/bwoneill/tts_star_trek_into_the_unknown)",
+    "lic": "no licence stated",
+    "size_before_scale": 1.08,
+    "len_m": 682,
+    "cost": 34,
+    "leader": true,
+    "light": {
+     "hemi": 0,
+     "lights": [
+      {
+       "dir": 8.614,
+       "pos": [
+        7,
+        2.5,
+        -0.5
+       ],
+       "nb": 0,
+       "bias": -0.0015
+      },
+      {
+       "dir": 1.267,
+       "pos": [
+        -6,
+        2,
+        -4
+       ],
+       "shadow": false
+      },
+      {
+       "dir": 0.962,
+       "pos": [
+        -4,
+        2,
+        5
+       ],
+       "shadow": false
+      }
+     ],
+     "shadowPos": [
+      0,
+      10,
+      0.001
+     ],
+     "recvAll": true
+    },
+    "mix": {
+     "K1f": 8.614,
+     "O": 0.0,
+     "R": 1.267,
+     "F1": 0.962
+    }
+   }
+  ]
+ },
+ {
+  "faction": "Dominion Alliance",
+  "units": [
+   {
+    "id": "ca-hideki",
+    "name": "Hideki-class",
+    "f": "/dl/3060821/x/files/Cardassian_Hideki_Class.obj?paint=hideki",
+    "rot": [
+     0,
+     90,
+     0
+    ],
+    "size": 0.65,
+    "src": "Thingiverse 3060821, Colin Bridger (Burning_Bridges); painted here (hideki preset in src/page3.html) from DS9 stills",
+    "lic": "CC BY 4.0",
+    "size_before_scale": 0.6,
+    "len_m": 98,
+    "prev_c": "#bda57a",
+    "cost": 10,
+    "light": {
+     "hemi": 0,
+     "lights": [
+      {
+       "dir": 2.797,
+       "pos": [
+        7,
+        2.5,
+        -0.5
+       ],
+       "nb": 0,
+       "bias": -0.0015
+      },
+      {
+       "dir": 0.411,
+       "pos": [
+        -6,
+        2,
+        -4
+       ],
+       "shadow": false
+      },
+      {
+       "dir": 1.119,
+       "pos": [
+        -4,
+        2,
+        5
+       ],
+       "shadow": false
+      }
+     ],
+     "shadowPos": [
+      0,
+      10,
+      0.001
+     ],
+     "recvAll": true
+    },
+    "mix": {
+     "K1f": 2.797,
+     "O": 0.0,
+     "R": 0.411,
+     "F1": 1.119
+    }
+   },
+   {
+    "id": "ca-galor",
+    "name": "Galor-class",
+    "size": 1.14,
+    "src": "Sketchfab d9305d314e154639a5769747fd94b85f, octave767",
+    "lic": "CC BY 4.0",
+    "f": "/dl/galor/x/source/galor.fbx?tex1=details_base.png&em1=details_illum.png&tex2=hull_base.png&em2=hull_illum.png",
+    "rot": [
+     0,
+     90,
+     0
+    ],
+    "size_before_scale": 0.88,
+    "len_m": 420,
+    "cost": 15,
+    "light": {
+     "hemi": 0,
+     "lights": [
+      {
+       "dir": 2.296,
+       "pos": [
+        7,
+        2.5,
+        -0.5
+       ],
+       "nb": 0,
+       "bias": -0.0015
+      },
+      {
+       "dir": 0.338,
+       "pos": [
+        -6,
+        2,
+        -4
+       ],
+       "shadow": false
+      },
+      {
+       "dir": 0.918,
+       "pos": [
+        -4,
+        2,
+        5
+       ],
+       "shadow": false
+      }
+     ],
+     "shadowPos": [
+      0,
+      10,
+      0.001
+     ],
+     "recvAll": true
+    },
+    "mix": {
+     "K1f": 2.296,
+     "O": 0.0,
+     "R": 0.338,
+     "F1": 0.918
+    }
+   },
+   {
+    "id": "jh-attack",
+    "name": "Jem'Hadar attack ship",
+    "model": "fighter",
+    "rot": [
+     0,
+     0,
+     0
+    ],
+    "size": 0.59,
+    "src": "Star Trek: Into the Unknown TTS mod (github.com/bwoneill/tts_star_trek_into_the_unknown)",
+    "lic": "no licence stated",
+    "size_before_scale": 0.78,
+    "len_m": 95,
+    "cost": 17,
+    "light": {
+     "hemi": 0,
+     "lights": [
+      {
+       "dir": 4.704,
+       "pos": [
+        7,
+        2.5,
+        -0.5
+       ],
+       "nb": 0,
+       "bias": -0.0015
+      },
+      {
+       "dir": 0.692,
+       "pos": [
+        -6,
+        2,
+        -4
+       ],
+       "shadow": false
+      },
+      {
+       "dir": 1.76,
+       "pos": [
+        -4,
+        2,
+        5
+       ],
+       "shadow": false
+      }
+     ],
+     "shadowPos": [
+      0,
+      10,
+      0.001
+     ],
+     "recvAll": true
+    },
+    "mix": {
+     "K1f": 4.704,
+     "O": 0.0,
+     "R": 0.692,
+     "F1": 1.76
+    }
+   },
+   {
+    "id": "ca-keldon",
+    "name": "Keldon-class",
+    "f": "/dl/keldon3d/fix/model.dae?br=1.9&glow=Color_A01,CARDimpulseRED,SpiralWvDsptrGLOW-B,SpiralWvDsptrGLOW-A,CARD_WINDOWS",
+    "rot": [
+     0,
+     -90,
+     0
+    ],
+    "size": 1.0,
+    "src": "3D Warehouse, calamity_si (Calamity Sci Shipyards), \"Keldon Class (Export Friendly)\" (3dwarehouse.sketchup.com/model/u7fc36e15-cb8f-436c-878e-4bd7c2354913); built on ALM Works' Galor; textures from Drex Files schematics",
+    "lic": "permission needed (author asks to be contacted, credit 'calamity_si')",
+    "len_m": 420,
+    "size_note": "set so the sprite covers the same area as the Galor (same length class)",
+    "cost": 21,
+    "prev_model": "/dl/3060801/x/files/Keldon_Class.obj",
+    "prev_src": "Thingiverse 3060801, Colin Bridger (Burning_Bridges)",
+    "tag": "ASK",
+    "light": {
+     "hemi": 0,
+     "lights": [
+      {
+       "dir": 1.461,
+       "pos": [
+        7,
+        2.5,
+        -0.5
+       ],
+       "nb": 0,
+       "bias": -0.0015
+      },
+      {
+       "dir": 0.215,
+       "pos": [
+        -6,
+        2,
+        -4
+       ],
+       "shadow": false
+      },
+      {
+       "dir": 0.584,
+       "pos": [
+        -4,
+        2,
+        5
+       ],
+       "shadow": false
+      }
+     ],
+     "shadowPos": [
+      0,
+      10,
+      0.001
+     ],
+     "recvAll": true
+    },
+    "mix": {
+     "K1f": 1.461,
+     "O": 0.0,
+     "R": 0.215,
+     "F1": 0.584
+    }
+   },
+   {
+    "id": "br-warship",
+    "name": "Breen warship",
+    "f": "/dl/breen/x/source/breen.fbx?tex=bcbattleship_base.png&em=bcbattleship_illum.png",
+    "rot": [
+     0,
+     90,
+     0
+    ],
+    "size": 1.01,
+    "src": "Sketchfab feb010c966a94285948ab56d23a1cbaf, octave767",
+    "lic": "CC BY 4.0",
+    "size_before_scale": 0.9,
+    "len_m": 330,
+    "cost": 22,
+    "light": {
+     "hemi": 0,
+     "lights": [
+      {
+       "dir": 7.725,
+       "pos": [
+        7,
+        2.5,
+        -0.5
+       ],
+       "nb": 0,
+       "bias": -0.0015
+      },
+      {
+       "dir": 1.136,
+       "pos": [
+        -6,
+        2,
+        -4
+       ],
+       "shadow": false
+      },
+      {
+       "dir": 2.312,
+       "pos": [
+        -4,
+        2,
+        5
+       ],
+       "shadow": false
+      }
+     ],
+     "shadowPos": [
+      0,
+      10,
+      0.001
+     ],
+     "recvAll": true
+    },
+    "mix": {
+     "K1f": 7.725,
+     "O": 0.0,
+     "R": 1.136,
+     "F1": 2.312
+    }
+   },
+   {
+    "id": "jh-cruiser",
+    "name": "Jem'Hadar battle cruiser",
+    "model": "battlecruiser",
+    "size": 1.06,
+    "src": "Star Trek: Into the Unknown TTS mod (github.com/bwoneill/tts_star_trek_into_the_unknown)",
+    "lic": "no licence stated",
+    "size_before_scale": 1.0,
+    "len_m": 650,
+    "cost": 28,
+    "light": {
+     "hemi": 0,
+     "lights": [
+      {
+       "dir": 6.209,
+       "pos": [
+        7,
+        2.5,
+        -0.5
+       ],
+       "nb": 0,
+       "bias": -0.0015
+      },
+      {
+       "dir": 0.913,
+       "pos": [
+        -6,
+        2,
+        -4
+       ],
+       "shadow": false
+      },
+      {
+       "dir": 1.412,
+       "pos": [
+        -4,
+        2,
+        5
+       ],
+       "shadow": false
+      }
+     ],
+     "shadowPos": [
+      0,
+      10,
+      0.001
+     ],
+     "recvAll": true
+    },
+    "mix": {
+     "K1f": 6.209,
+     "O": 0.0,
+     "R": 0.913,
+     "F1": 1.412
+    }
+   },
+   {
+    "id": "jh-battleship",
+    "name": "Jem'Hadar battleship (leader)",
+    "f": "/dl/3181679/x/files/JemHadar_Dreadnought.obj",
+    "rot": [
+     0,
+     90,
+     0
+    ],
+    "size": 1.45,
+    "c": "#9a93b5",
+    "src": "Thingiverse 3181679, Colin Bridger (Burning_Bridges)",
+    "lic": "CC BY 4.0",
+    "size_before_scale": 1.1,
+    "len_m": 1500,
+    "canvas": 96,
+    "leader": true,
+    "cost": 40,
+    "light": {
+     "hemi": 0,
+     "lights": [
+      {
+       "dir": 6.575,
+       "pos": [
+        7,
+        2.5,
+        -0.5
+       ],
+       "nb": 0,
+       "bias": -0.0015
+      },
+      {
+       "dir": 2.321,
+       "pos": [
+        -6,
+        2,
+        -4
+       ],
+       "shadow": false
+      }
+     ],
+     "shadowPos": [
+      0,
+      10,
+      0.001
+     ],
+     "recvAll": true
+    },
+    "light_note": "D's pick, brightness rule applied (x1.93)",
+    "mix": {
+     "K1f": 6.5748502649358604,
+     "R": 2.320535387624421
+    }
+   }
+  ]
+ },
+ {
+  "faction": "Maquis",
+  "units": [
+   {
+    "id": "bj-freighter",
+    "name": "Bajoran freighter",
+    "f": "/dl/bjfr/x/source/Bajoran%20Freighter.fbx",
+    "rot": [
+     0,
+     -90,
+     0
+    ],
+    "size": 0.9,
+    "src": "Sketchfab 2d532793f3d24435b9d19afb30710098, wholock (file says it comes from Star Trek Adversaries assets)",
+    "lic": "CC BY 4.0",
+    "cost": 11,
+    "light": {
+     "hemi": 0,
+     "lights": [
+      {
+       "dir": 5.875,
+       "pos": [
+        7,
+        2.5,
+        -0.5
+       ],
+       "nb": 0,
+       "bias": -0.0015
+      },
+      {
+       "dir": 0.864,
+       "pos": [
+        -6,
+        2,
+        -4
+       ],
+       "shadow": false
+      },
+      {
+       "dir": 2.35,
+       "pos": [
+        -4,
+        2,
+        5
+       ],
+       "shadow": false
+      }
+     ],
+     "shadowPos": [
+      0,
+      10,
+      0.001
+     ],
+     "recvAll": true
+    },
+    "mix": {
+     "K1f": 5.875,
+     "O": 0.0,
+     "R": 0.864,
+     "F1": 2.35
+    }
+   },
+   {
+    "id": "mq-fighter",
+    "name": "Maquis fighter (Peregrine-class)",
+    "f": "/dl/peregrine2/x/source/peregrine.fbx?tex=peregrine_base_own.png&em=peregrine_illum_own.png&emi=1.5",
+    "rot": [
+     0,
+     90,
+     0
+    ],
+    "size": 0.6,
+    "src": "Sketchfab 8de2048623434e60a2d037a41b9a895b, octave767, paint brightened 30%, own lights strengthened",
+    "lic": "CC BY 4.0",
+    "pop": true,
+    "cost": 11,
+    "light": {
+     "hemi": 0,
+     "lights": [
+      {
+       "dir": 3.171,
+       "pos": [
+        7,
+        2.5,
+        -0.5
+       ],
+       "nb": 0,
+       "bias": -0.0015
+      },
+      {
+       "dir": 0.466,
+       "pos": [
+        -6,
+        2,
+        -4
+       ],
+       "shadow": false
+      },
+      {
+       "dir": 1.102,
+       "pos": [
+        -4,
+        2,
+        5
+       ],
+       "shadow": false
+      }
+     ],
+     "shadowPos": [
+      0,
+      10,
+      0.001
+     ],
+     "recvAll": true
+    },
+    "mix": {
+     "K1f": 3.171,
+     "O": 0.0,
+     "R": 0.466,
+     "F1": 1.102
+    }
+   },
+   {
+    "id": "mq-raider",
+    "name": "Maquis raider",
+    "f": "/dl/raider2/bold2/Maquis_-_Condor_class_[Clean].obj?mtl&em=1",
+    "rot": [
+     0,
+     -90,
+     0
+    ],
+    "size": 0.716,
+    "src": "Sketchfab, ZEOCMF, \"Maquis Raider - Condor-class\" (sketchfab.com/3d-models/77cf5c93cb6b4e84b8321158e1966ff4); preview only, ND forbids changes",
+    "lic": "CC BY-NC-ND 4.0",
+    "prev_model": {
+     "f": "/dl/2848310/maquis_full.stl",
+     "rot": [
+      0,
+      0,
+      0
+     ],
+     "src": "Thingiverse 2848310, Justin Chow (Snickett)",
+     "lic": "CC BY-NC 4.0",
+     "c": "#a99d8d"
+    },
+    "size_note": "set so the sprite covers the same area as the Thingiverse model did",
+    "cost": 13,
+    "pop": true,
+    "paint_note": "bolder colours after the studio model: tools/raider_bold.py SRC bold2 0.97 1.7 0.8",
+    "light": {
+     "hemi": 0.153,
+     "lights": [
+      {
+       "dir": 5.2,
+       "pos": [
+        7,
+        2.5,
+        -0.5
+       ],
+       "nb": 0,
+       "bias": -0.0015
+      },
+      {
+       "dir": 0.918,
+       "pos": [
+        -4,
+        2,
+        5
+       ],
+       "shadow": false
+      }
+     ],
+     "shadowPos": [
+      0,
+      10,
+      0.001
+     ],
+     "recvAll": true
+    },
+    "light_note": "D's pick, brightness rule applied (x1.53)",
+    "prev_light": {
+     "hemi": 0.4,
+     "dir": 0.7,
+     "extra": [
+      {
+       "dir": 4.4,
+       "pos": [
+        7,
+        2.5,
+        -0.5
+       ]
+      }
+     ]
+    },
+    "mix": {
+     "K1f": 5.20043486794456,
+     "F1": 0.9177238002255106,
+     "H": 0.15295396670425176
+    }
+   },
+   {
+    "id": "na-mercenary",
+    "name": "Mercenary raider (Baran's)",
+    "model": "raider",
+    "rot": [
+     0,
+     90,
+     0
+    ],
+    "size": 0.82,
+    "src": "Star Trek: Into the Unknown TTS mod (github.com/bwoneill/tts_star_trek_into_the_unknown)",
+    "lic": "no licence stated",
+    "cost": 16,
+    "light": {
+     "hemi": 0,
+     "lights": [
+      {
+       "dir": 4.461,
+       "pos": [
+        7,
+        2.5,
+        -0.5
+       ],
+       "nb": 0,
+       "bias": -0.0015
+      },
+      {
+       "dir": 0.656,
+       "pos": [
+        -6,
+        2,
+        -4
+       ],
+       "shadow": false
+      },
+      {
+       "dir": 1.105,
+       "pos": [
+        -4,
+        2,
+        5
+       ],
+       "shadow": false
+      }
+     ],
+     "shadowPos": [
+      0,
+      10,
+      0.001
+     ],
+     "recvAll": true
+    },
+    "mix": {
+     "K1f": 4.461,
+     "O": 0.0,
+     "R": 0.656,
+     "F1": 1.105
+    }
+   },
+   {
+    "id": "bj-assault",
+    "name": "Bajoran assault vessel",
+    "f": "/dl/bjav/bj-assault-bronze.obj",
+    "rot": [
+     0,
+     0,
+     0
+    ],
+    "size": 0.76,
+    "src": "Built for this project: shape traced from the reference views D supplied, paint sampled from the same picture",
+    "lic": "built here",
+    "tag": "OURS*",
+    "prev_model": {
+     "f": "/dl/bjav/bj-assault.obj",
+     "size": 0.85
+    },
+    "size_note": "halfway between the old size and true scale, at D's request",
+    "cost": 17,
+    "light": {
+     "hemi": 0,
+     "lights": [
+      {
+       "dir": 4.765,
+       "pos": [
+        7,
+        2.5,
+        -0.5
+       ],
+       "nb": 0,
+       "bias": -0.0015
+      },
+      {
+       "dir": 0.701,
+       "pos": [
+        -6,
+        2,
+        -4
+       ],
+       "shadow": false
+      },
+      {
+       "dir": 1.329,
+       "pos": [
+        -4,
+        2,
+        5
+       ],
+       "shadow": false
+      }
+     ],
+     "shadowPos": [
+      0,
+      10,
+      0.001
+     ],
+     "recvAll": true
+    },
+    "mix": {
+     "K1f": 4.765,
+     "O": 0.0,
+     "R": 0.701,
+     "F1": 1.329
+    }
+   },
+   {
+    "id": "mq-dreadnought",
+    "name": "Dreadnought (ATR-4107)",
+    "f": "/dl/4557894/x/files/Cardassian_Dreadnought_Updated.stl?paint=dread",
+    "rot": [
+     -90,
+     90,
+     0
+    ],
+    "size": 0.85,
+    "src": "Thingiverse 4557894, MazzTer; painted here (dread preset in src/page3.html)",
+    "lic": "CC BY 4.0 on Thingiverse; description says personal use only",
+    "cost": 20,
+    "light": {
+     "hemi": 0,
+     "lights": [
+      {
+       "dir": 5.092,
+       "pos": [
+        7,
+        2.5,
+        -0.5
+       ],
+       "nb": 0,
+       "bias": -0.0015
+      },
+      {
+       "dir": 0.749,
+       "pos": [
+        -6,
+        2,
+        -4
+       ],
+       "shadow": false
+      },
+      {
+       "dir": 1.722,
+       "pos": [
+        -4,
+        2,
+        5
+       ],
+       "shadow": false
+      }
+     ],
+     "shadowPos": [
+      0,
+      10,
+      0.001
+     ],
+     "recvAll": true
+    },
+    "mix": {
+     "K1f": 5.092,
+     "O": 0.0,
+     "R": 0.749,
+     "F1": 1.722
+    }
+   },
+   {
+    "id": "cap-constellation",
+    "name": "Captured Constellation-class (leader)",
+    "size": 0.95,
+    "src": "Star Trek: Into the Unknown TTS mod (github.com/bwoneill/tts_star_trek_into_the_unknown), hull repainted in Maquis tan with the blue nacelle glow kept (tools/const_cap.py)",
+    "lic": "no licence stated",
+    "prev_model": {
+     "model": "constellation",
+     "tint": "#c9a98a"
+    },
+    "f": "/models/constellation_cap.obj?tex=/models/constellation_cap.png&em=/models/constellation_cap_em.png",
+    "size_before_bigger": 0.88,
+    "size_note": "8% longer than the length scale gives, at D's request",
+    "cost": 22,
+    "leader": true,
+    "light": {
+     "hemi": 0,
+     "lights": [
+      {
+       "dir": 4.955,
+       "pos": [
+        7,
+        2.5,
+        -0.5
+       ],
+       "nb": 0,
+       "bias": -0.0015
+      },
+      {
+       "dir": 0.729,
+       "pos": [
+        -6,
+        2,
+        -4
+       ],
+       "shadow": false
+      },
+      {
+       "dir": 1.119,
+       "pos": [
+        -4,
+        2,
+        5
+       ],
+       "shadow": false
+      }
+     ],
+     "shadowPos": [
+      0,
+      10,
+      0.001
+     ],
+     "recvAll": true
+    },
+    "mix": {
+     "K1f": 4.955,
+     "O": 0.0,
+     "R": 0.729,
+     "F1": 1.119
+    }
+   },
+   {
+    "id": "mq-defiant",
+    "name": "Stolen Defiant-class (leader)",
+    "model": "defiant",
+    "size": 0.66,
+    "src": "Star Trek: Into the Unknown TTS mod (github.com/bwoneill/tts_star_trek_into_the_unknown)",
+    "lic": "no licence stated",
+    "size_before_scale": 0.75,
+    "len_m": 150,
+    "leader": true,
+    "cost": 25,
+    "note": "same sprite as the Federation Defiant; Thomas Riker stole it for the Maquis in DS9 \"Defiant\"",
+    "light": {
+     "hemi": 0,
+     "lights": [
+      {
+       "dir": 5.076,
+       "pos": [
+        7,
+        2.5,
+        -0.5
+       ],
+       "nb": 0,
+       "bias": -0.0015
+      },
+      {
+       "dir": 0.747,
+       "pos": [
+        -6,
+        2,
+        -4
+       ],
+       "shadow": false
+      },
+      {
+       "dir": 1.083,
+       "pos": [
+        -4,
+        2,
+        5
+       ],
+       "shadow": false
+      }
+     ],
+     "shadowPos": [
+      0,
+      10,
+      0.001
+     ],
+     "recvAll": true
+    },
+    "mix": {
+     "K1f": 5.076,
+     "O": 0.0,
+     "R": 0.747,
+     "F1": 1.083
+    }
+   },
+   {
+    "id": "mq-marauder",
+    "name": "Ferengi Marauder (leader)",
+    "f": "/dl/marauder/conv/model.obj?mtl&em=1&br=4.0",
+    "rot": [
+     0,
+     90,
+     0
+    ],
+    "size": 0.862,
+    "src": "TrekMeshes, Raul Mamoru, \"Ferengi Marauder\" (credit: \"Ferengi Marauder: Raul Mamoru - www.trekmeshes.ch\"); free for 3D renderings, no trading of the file",
+    "lic": "no licence stated",
+    "len_m": 366,
+    "leader": true,
+    "cost": 30,
+    "light": {
+     "hemi": 0,
+     "lights": [
+      {
+       "dir": 5.641,
+       "pos": [
+        7,
+        2.5,
+        -0.5
+       ],
+       "nb": 0,
+       "bias": -0.0015
+      },
+      {
+       "dir": 0.83,
+       "pos": [
+        -6,
+        2,
+        -4
+       ],
+       "shadow": false
+      },
+      {
+       "dir": 2.256,
+       "pos": [
+        -4,
+        2,
+        5
+       ],
+       "shadow": false
+      }
+     ],
+     "shadowPos": [
+      0,
+      10,
+      0.001
+     ],
+     "recvAll": true
+    },
+    "mix": {
+     "K1f": 5.641,
+     "O": 0.0,
+     "R": 0.83,
+     "F1": 2.256
+    }
+   }
+  ]
+ }
+]

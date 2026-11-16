@@ -1,0 +1,4 @@
+[
+ {"id":"none","label":"No shadow","cfg":{"hemi":1.2,"lights":[{"dir":2.4,"pos":[-2,5,2.5]}],"noShadow":true}},
+ {"id":"above","label":"Shadow from straight above","cfg":{"hemi":1.2,"lights":[{"dir":2.4,"pos":[-2,5,2.5]}],"shadowPos":[0,10,0.001]}}
+]

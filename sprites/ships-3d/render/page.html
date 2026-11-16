@@ -1,0 +1,42 @@
+<!doctype html><html><body style="margin:0;background:transparent">
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}</script>
+<script type="module">
+import * as T from 'three';
+import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
+const PX=288;
+const r=new T.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});
+r.setSize(PX,PX); r.setClearColor(0,0); r.shadowMap.enabled=true; r.shadowMap.type=T.PCFSoftShadowMap; r.outputColorSpace=T.SRGBColorSpace;
+document.body.appendChild(r.domElement);
+const cache={};
+async function load(name, hasTex){
+  if(cache[name]) return cache[name];
+  const obj=await new OBJLoader().loadAsync(`/models/${name}.obj`);
+  let mat;
+  if(hasTex){ const tex=await new T.TextureLoader().loadAsync(`/models/${name}.png`); tex.colorSpace=T.SRGBColorSpace; tex.anisotropy=8;
+    mat=new T.MeshStandardMaterial({map:tex, roughness:0.6, metalness:0.2}); }
+  else mat=new T.MeshStandardMaterial({color:0xc9cdd4, roughness:0.55, metalness:0.25});
+  const pod=new T.MeshStandardMaterial({color:0xff0000,roughness:0.5,metalness:0.35});
+  obj.traverse(o=>{ if(o.isMesh){ o.material=mat; o.castShadow=true; o.geometry.computeVertexNormals&&!o.geometry.attributes.normal&&o.geometry.computeVertexNormals(); }});
+  return cache[name]=obj;
+}
+// rot: [x,y,z] euler (deg) applied to the model so that forward=+X, up=+Y
+window.shot=async(name,hasTex,rot,heading,size,el)=>{
+  const sc=new T.Scene();
+  sc.add(new T.HemisphereLight(0xdde6ff,0x303040,1.2));
+  const L=new T.DirectionalLight(0xffffff,2.4); L.position.set(-2,5,2.5); L.castShadow=true; L.shadow.bias=-0.0015; L.shadow.normalBias=0.03;
+  L.shadow.mapSize.set(1024,1024); Object.assign(L.shadow.camera,{left:-3,right:3,top:3,bottom:-3,near:0.1,far:20}); sc.add(L);
+  const obj=(await load(name,hasTex)).clone();
+  const fix=new T.Group(); fix.add(obj); fix.rotation.set(...rot.map(d=>d*Math.PI/180),'YXZ');
+  const norm=new T.Group(); norm.add(fix); norm.updateMatrixWorld(true);
+  const bb=new T.Box3().setFromObject(norm), c=bb.getCenter(new T.Vector3());
+  fix.position.sub(c);
+  let rad=0; const v=new T.Vector3(); norm.updateMatrixWorld(true);
+  norm.traverse(o=>{ if(o.isMesh){ const p=o.geometry.attributes.position, step=Math.max(1,Math.floor(p.count/20000)); for(let i=0;i<p.count;i+=step){ v.fromBufferAttribute(p,i).applyMatrix4(o.matrixWorld); rad=Math.max(rad,Math.hypot(v.x,v.z)); } }});
+  const piv=new T.Group(); piv.add(norm); norm.scale.setScalar(1.35*size/rad); piv.rotation.y=heading*Math.PI/180; sc.add(piv);
+  const pl=new T.Mesh(new T.PlaneGeometry(10,10), new T.ShadowMaterial({opacity:0.35})); pl.rotation.x=-Math.PI/2; pl.position.y=-0.55; pl.receiveShadow=true; sc.add(pl);
+  const S=1.6, cam=new T.OrthographicCamera(-S,S,S,-S,0.1,50), e=el*Math.PI/180;
+  cam.position.set(0,10*Math.sin(e)-0.18,10*Math.cos(e)+0.001); cam.lookAt(0,-0.18,0);
+  r.render(sc,cam); return r.domElement.toDataURL('image/png');
+};
+window.ready=true;
+</script></body></html>
