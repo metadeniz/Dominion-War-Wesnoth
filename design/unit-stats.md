@@ -215,19 +215,34 @@ Hull and Shields refer to the tables in section 1. Ships marked (leader) are lea
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Klingon freighter | 0 | 10 | 32 | 5 | 20 | chaotic | cruiser | Klingon | none | disruptor 5-3<br>boarding party 6-2 (kinetic) | Glory |
 | Raptor-class scout | 1 | 13 | 32 | 8 | 32 | chaotic | light | Klingon (old) | torpedo 6-1 | disruptor 5-3 | Glory |
-| B'rel-class Bird-of-Prey | 1 | 15 | 30 | 7 | 32 | chaotic | light | Klingon | torpedo 7-1 | disruptor 5-3 | Cloak, Glory |
+| B'rel-class Bird-of-Prey | 1 | 15 | 30 | 7 | 32 | chaotic | light | Klingon | torpedo 7-1 | disruptor 5-3<br>ram 12-1 (kinetic) | Cloak, Glory |
 | D5-class battle cruiser | 1 | 16 | 40 | 6 | 36 | chaotic | cruiser | Klingon (old) | torpedo 8-1 | disruptor 7-3<br>boarding party 7-2 (kinetic) | Glory |
 | K't'inga-class | 1 | 18 | 42 | 5 | 40 | chaotic | cruiser | Klingon | torpedo 8-2 | disruptor 6-3<br>ram 7-2 (kinetic) | Glory |
-| K'Vort-class Bird-of-Prey | 1 | 21 | 44 | 6 | 44 | chaotic | cruiser | Klingon | torpedo 10-1 | disruptor 7-3 | Cloak, Glory |
-| Vor'cha-class | 1 | 25 | 58 | 5 | 48 | chaotic | capital (upkeep 2) | Klingon | torpedo 10-2 | disruptor 8-3<br>ram 10-2 (kinetic) | Glory |
-| Negh'Var-class (leader) | 1 | 34 | 72 | 4 | 56 | chaotic | capital | Klingon | torpedo 13-2 | disruptor 9-4<br>ram 12-2 (kinetic) | Command, Glory |
+| K'Vort-class Bird-of-Prey | 1 | 21 | 44 | 6 | 44 | chaotic | cruiser | Klingon | torpedo 10-1 | disruptor 7-3<br>boarding party 6-3 (kinetic) | Cloak, Glory |
+| Vor'cha-class | 1 | 25 | 58 | 5 | 48 | chaotic | capital (upkeep 2) | Klingon | torpedo 10-2 | disruptor 8-3<br>boarding party 7-3 (kinetic) | Glory |
+| Negh'Var-class (leader) | 1 | 34 | 72 | 4 | 56 | chaotic | capital | Klingon | torpedo 13-2 | disruptor 9-4<br>boarding party 8-3 (kinetic) | Command, Glory |
 
 **New ships:**
 
 - **Raptor-class scout** (13 gold): the fastest Klingon ship (8 MP), for scouting and grabbing planets early. It has no cloak (22nd-century) and older, weaker shields.
-- **D5-class battle cruiser** (16 gold): a cheaper, faster (6 MP), more fragile K't'inga, with a boarding party instead of a ram. It has older shields too.
+- **D5-class battle cruiser** (16 gold): a cheaper, faster (6 MP), more fragile K't'inga that boards instead of ramming. It has older shields too.
 
 **Changes from the roster:** every ship has Glory. All torpedoes are about 15% lower, as for every faction. The **freighter** gets 32 HP and disruptor 5-3 (was 30 and 4-2): it carries no torpedoes, so it now has no ranged attack. The **K't'inga** gets 42 HP and ram 7-2 (was 46, 8-2): it was the most gold-efficient line ship in the game. The **Negh'Var** gets 72 HP and disruptor 9-4 (was 80, 10-4), to bring it closer to the Galaxy at the same price.
+
+**Who rams and who boards (D, 16 Nov).** Every Klingon ship fights up close with its disruptors. Some also get a second melee attack, chosen by what each ship would risk:
+
+| Ship | Second melee | Why |
+|---|---|---|
+| Freighter | boarding party 6-2 | A troop transport: boarding is its job. |
+| Raptor | none | A fast scout with old, weak shields. Ramming would throw away the ship, and it has no room for a boarding party. Its job is scouting, not brawling. |
+| B'rel | **ram 12-1** (new) | Small, cheap and tough for its size, so it's the ship a captain risks on a ram. One big hit, which suits a hit-and-run raider. |
+| D5 | boarding party 7-2 | An old cruiser with a large crew. It leaves ramming to the K't'inga and sends warriors across instead. This is the smaller ship with boarding that D asked for, alongside the freighter. |
+| K't'inga | ram 7-2 | An old, heavily armoured hull, built to take a collision. The only cruiser that rams. |
+| K'Vort | **boarding party 6-3** (new) | The B'rel's design scaled up, with room for a boarding party, and too valuable to ram with. |
+| Vor'cha | **boarding party 7-3** (was ram 10-2) | A modern attack cruiser with a large crew. Too valuable to ram with. |
+| Negh'Var | **boarding party 8-3** (was ram 12-2) | The flagship: the largest crew, and it never rams (D). |
+
+Rams are few, hard strikes, and boarding parties are more, lighter strikes. Both do Kinetic damage, and Klingon boarding parties don't beam through shields the way the Jem'Hadar ones do. The balance check doesn't move: the disruptors stay each ship's main weapon, and the second attack mostly matters against targets with high disruptor resistance.
 
 ### Dominion Alliance
 
