@@ -9,6 +9,16 @@ lands at the same relative path here.
     sprites/   ship sprites: roster/ (sheets, finals, render sources), ships/, ships-3d/
     tileset/   space tileset studies and mockups, with src/ generators
 
+The add-on itself (skeleton, not playable yet):
+
+    _main.cfg  entry point; loads utils/, terrain/ (when it exists), units/, era/
+    era/       The Dominion War era and one file per faction (leaders, recruits)
+    units/     stub ship types per faction, hull movetypes and races
+    utils/     shared macros (shield profiles as resistances)
+    images/    unit sprites the game loads (copies of sprites/roster/*.png)
+    terrain/   reserved for the space tileset: add terrain/_main.cfg and
+               _main.cfg picks it up automatically
+
 Not copied: the large 3D model archives (*.zip at the top of the library)
 and Python __pycache__ folders.
 
@@ -30,5 +40,5 @@ Older route, for library files that aren't in the repo yet:
 
 First sync: 2026-11-16, 655 files.
 
-There is no _main.cfg yet, so Wesnoth skips this folder until the add-on
-itself (units, terrain, eras) is written here.
+The ship types are stubs: stats come from design/unit-stats.md, but attacks,
+abilities, crew levels, animations and sounds are not written yet.
