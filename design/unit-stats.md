@@ -154,9 +154,9 @@ Cloaked ships are found the Wesnoth way, on contact only:
 2. **Firing decloaks.** A cloaked ship can attack straight out of cloak, but it is then visible through the enemy's next turn, so the enemy can hit back. It cloaks again at the start of its own next turn. In canon, ships can't fire while cloaked, and Wesnoth's ambush already works this way.
 3. **Hidden ships can't be targeted.** Until one of the above reveals it, a cloaked ship can't be attacked.
 
-Ships that cloak: B'rel, K'Vort and both Defiants everywhere, and the Maquis raider only in nebulae and the Badlands. No ship can cloak in a dark matter nebula.
+Ships that cloak: every Klingon ship except the freighter, and both Defiants, everywhere, and the Maquis raider only in nebulae and the Badlands. No ship can cloak in a dark matter nebula.
 
-**Later:** the Jem'Hadar may get a decloaking ability that only works part of the time, and the Federation a tachyon detection grid. Neither is in this proposal. Until then the only counter to a cloak is to bump into it, which makes Birds-of-Prey and the Defiants strong. Watch that in playtesting.
+**Later:** the Jem'Hadar may get a decloaking ability that only works part of the time, and the Federation a tachyon detection grid. Neither is in this proposal. Until then the only counter to a cloak is to bump into it, which makes the Klingons and the Defiants strong. Watch that in playtesting.
 
 ### Maquis disguise and ambush (proposal 3, waiting for D's approval)
 
@@ -209,25 +209,27 @@ Hull and Shields refer to the tables in section 1. Ships marked (leader) are lea
 
 ### Klingon Empire (chaotic)
 
-**Identity:** brawlers. Strong disruptors, rams and boarding parties up close, heavy armour and Glory instead of repair ships. Their torpedoes are light (most ships fire just one), so at range they lose to the Federation, and they want to close in. Two cloaked Birds-of-Prey for ambushes. Cheap on average, so they field more ships.
+**Identity:** brawlers. Strong disruptors, rams and boarding parties up close, heavy armour and Glory instead of repair ships. Their torpedoes are light (most ships fire just one), so at range they lose to the Federation, and they want to close in. Every Klingon warship cloaks (D, 16 Nov), so a Klingon fleet can strike from anywhere. The cloaks are paid for in price, so Klingon ships are no longer cheaper than other factions' on average.
 
 | Ship | Lvl | Cost | HP | MP | XP | Align | Hull | Shields | Ranged | Melee | Abilities |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Klingon freighter | 0 | 10 | 32 | 5 | 20 | chaotic | cruiser | Klingon | none | disruptor 5-3<br>boarding party 6-2 (kinetic) | Glory |
-| Raptor-class scout | 1 | 13 | 32 | 8 | 32 | chaotic | light | Klingon (old) | torpedo 6-1 | disruptor 5-3 | Glory |
+| Raptor-class scout | 1 | 16 | 32 | 8 | 32 | chaotic | light | Klingon (old) | torpedo 6-1 | disruptor 5-3 | Cloak, Glory |
 | B'rel-class Bird-of-Prey | 1 | 15 | 30 | 7 | 32 | chaotic | light | Klingon | torpedo 7-1 | disruptor 5-3<br>ram 12-1 (kinetic) | Cloak, Glory |
-| D5-class battle cruiser | 1 | 16 | 40 | 6 | 36 | chaotic | cruiser | Klingon (old) | torpedo 8-1 | disruptor 7-3<br>boarding party 7-2 (kinetic) | Glory |
-| K't'inga-class | 1 | 18 | 42 | 5 | 40 | chaotic | cruiser | Klingon | torpedo 8-2 | disruptor 6-3<br>ram 7-2 (kinetic) | Glory |
+| D5-class battle cruiser | 1 | 20 | 40 | 6 | 36 | chaotic | cruiser | Klingon (old) | torpedo 8-1 | disruptor 7-3<br>boarding party 7-2 (kinetic) | Cloak, Glory |
+| K't'inga-class | 1 | 22 | 42 | 5 | 40 | chaotic | cruiser | Klingon | torpedo 8-2 | disruptor 6-3<br>ram 7-2 (kinetic) | Cloak, Glory |
 | K'Vort-class Bird-of-Prey | 1 | 21 | 44 | 6 | 44 | chaotic | cruiser | Klingon | torpedo 10-1 | disruptor 7-3<br>boarding party 6-3 (kinetic) | Cloak, Glory |
-| Vor'cha-class | 1 | 25 | 58 | 5 | 48 | chaotic | capital (upkeep 2) | Klingon | torpedo 10-2 | disruptor 8-3<br>boarding party 7-3 (kinetic) | Glory |
-| Negh'Var-class (leader) | 1 | 34 | 72 | 4 | 56 | chaotic | capital | Klingon | torpedo 13-2 | disruptor 9-4<br>boarding party 8-3 (kinetic) | Command, Glory |
+| Vor'cha-class | 1 | 28 | 58 | 5 | 48 | chaotic | capital (upkeep 2) | Klingon | torpedo 10-2 | disruptor 8-3<br>boarding party 7-3 (kinetic) | Cloak, Glory |
+| Negh'Var-class (leader) | 1 | 39 | 72 | 4 | 56 | chaotic | capital | Klingon | torpedo 13-2 | disruptor 9-4<br>boarding party 8-3 (kinetic) | Command, Cloak, Glory |
 
 **New ships:**
 
-- **Raptor-class scout** (13 gold): the fastest Klingon ship (8 MP), for scouting and grabbing planets early. It has no cloak (22nd-century) and older, weaker shields.
-- **D5-class battle cruiser** (16 gold): a cheaper, faster (6 MP), more fragile K't'inga that boards instead of ramming. It has older shields too.
+- **Raptor-class scout** (16 gold): the fastest Klingon ship (8 MP), for scouting and grabbing planets early. Older, weaker shields. It cloaks for gameplay, although the 22nd-century Raptor in *Enterprise* had no cloak.
+- **D5-class battle cruiser** (20 gold): a cheaper, faster (6 MP), more fragile K't'inga that boards instead of ramming. It has older shields too, and like the Raptor it cloaks for gameplay, not canon.
 
 **Changes from the roster:** every ship has Glory. All torpedoes are about 15% lower, as for every faction. The **freighter** gets 32 HP and disruptor 5-3 (was 30 and 4-2): it carries no torpedoes, so it now has no ranged attack. The **K't'inga** gets 42 HP and ram 7-2 (was 46, 8-2): it was the most gold-efficient line ship in the game. The **Negh'Var** gets 72 HP and disruptor 9-4 (was 80, 10-4), to bring it closer to the Galaxy at the same price.
+
+**Cloaks for every warship (D, 16 Nov).** The Raptor, D5, K't'inga, Vor'cha and Negh'Var gain Cloak. A cloak is worth about 3 gold in the cost formula, so their prices go up to match: **Raptor 13 to 16, D5 16 to 20, K't'inga 18 to 22, Vor'cha 25 to 28, Negh'Var 34 to 39** (leader-only). Without the price rises the Klingons scored 1.17 to 1.40 against everyone. With them they score 0.96 to 1.05 against the Federation and the Dominion. The cheaper alternative is to leave the cloak off the Raptor and D5, as in canon, and keep them at 13 and 16.
 
 **Who rams and who boards (D, 16 Nov).** Every Klingon ship fights up close with its disruptors. Some also get a second melee attack, chosen by what each ship would risk:
 
@@ -300,12 +302,12 @@ Faction against faction (1.00 = even, above 1 favours the row):
 
 | Row vs column | Federation | Klingon | Dominion | Maquis |
 |---|---|---|---|---|
-| Federation | 1.00 | 1.02 | 0.97 | 1.25 |
-| Klingon | 0.98 | 1.00 | 1.06 | 1.17 |
-| Dominion | 1.03 | 0.94 | 1.00 | 1.22 |
-| Maquis | 0.80 | 0.85 | 0.82 | 1.00 |
+| Federation | 1.00 | 1.05 | 0.97 | 1.25 |
+| Klingon | 0.96 | 1.00 | 1.03 | 1.14 |
+| Dominion | 1.03 | 0.97 | 1.00 | 1.22 |
+| Maquis | 0.80 | 0.88 | 0.82 | 1.00 |
 
-The Federation, Klingons and Dominion are within about 6% of each other. **The Maquis now score 0.80 to 0.85 against everyone.** That comes from the 16 Nov price rises (Bajoran freighter 11 to 14, Maquis raider 13 to 15), not from the Marauder change. Before them the Maquis were at 0.93 to 0.99, which the model's missing terrain (Maquis light ships get 60 to 70% defence in nebulae and asteroids) roughly explains. At the new prices, the Bajoran freighter (0.52) and Maquis raider (0.78) are the weakest recruits in the game. Either the prices go back, or those two ships need more for their gold. If playtesting shows the Federation struggling against the Dominion's polaron beams, the first lever is Federation polaron resistance (−20% to −10%).
+The Federation, Klingons and Dominion are within about 6% of each other. **The Maquis now score 0.80 to 0.88 against everyone.** That comes from the 16 Nov price rises (Bajoran freighter 11 to 14, Maquis raider 13 to 15), not from the Marauder change. Before them the Maquis were at 0.93 to 0.99, which the model's missing terrain (Maquis light ships get 60 to 70% defence in nebulae and asteroids) roughly explains. At the new prices, the Bajoran freighter (0.52) and Maquis raider (0.78) are the weakest recruits in the game. Either the prices go back, or those two ships need more for their gold. If playtesting shows the Federation struggling against the Dominion's polaron beams, the first lever is Federation polaron resistance (−20% to −10%).
 
 The only-torpedoes-are-ranged rule had the biggest effect: in a first pass with the old numbers, the Federation came out about 30 to 45% stronger than everyone, because every Federation ship had torpedoes and full-strength beams. Lower Federation beams, about 15% lower torpedoes for everyone and tougher beam-only ships brought it back to even.
 
