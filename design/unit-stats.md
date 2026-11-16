@@ -165,18 +165,32 @@ This section is a proposal only. The tables in section 3 don't include it yet.
 **Which ships:** the **Maquis raider** and the **Maquis fighter (Peregrine)**, the two small Maquis-built ships. Left out:
 
 - **Dreadnought:** a disguised missile with a warhead that always hits would give the enemy no counterplay. If D wants it anyway, the fair version is that it can't detonate on the turn it drops its disguise.
-- **Bajoran freighter and assault vessel:** Bajoran militia ships, not Maquis-built. The freighter is also the ship the disguise imitates (see below).
+- **Bajoran freighter and assault vessel:** Bajoran militia ships, not Maquis-built. They can still be imitated.
 - **Mercenary raider:** Baran's crew are hired guns, not Maquis.
 - **Leaders:** a 366 m Marauder or a Constellation can't pass as a freighter, and the stolen Defiant already cloaks.
 
 **Signature mask** (ability). The ship changes its warp signature to look like another ship. It's switched on from the ship's right-click menu at the start of its own turn, if no enemy is next to it, and it costs nothing.
 
-- **What the enemy sees: a Bajoran freighter.** The ship's name, sprite and listed attack become the freighter's. It can't pose as an enemy or neutral ship, because Wesnoth draws every unit in its side's colour for all players, with no way to show one player a different picture. So it poses as the one Maquis ship the enemy has reason to leave alone. That also turns the real freighters into part of the bluff: every freighter might be a raider.
-- **While masked, it really flies like a freighter:** 4 MP, only the freighter's phaser 4-2 (weapons powered down to civilian levels), no Evasive and no zone of control (the freighter is level 0, and level 0 ships have no zone of control in Wesnoth). That keeps the sidebar consistent with the disguise. The one tell is HP: the sidebar shows the ship's real maximum (raider 30, fighter 26, against a freighter's 40), which Wesnoth can't fake. A careful player can catch it.
-- **Dropping the mask:** free, from the right-click menu, at any point in its own turn, before or after moving. Movement already spent stays spent.
-- **What gives it away:** it attacks, or it is attacked. Either way the mask drops before the fight, so it always fights with its real weapons.
-- **With Nebula cloak:** the raider can be masked and in a nebula at the same time. Inside the nebula it is hidden, outside it looks like a freighter. That gives it a disguise where the cloak doesn't work: open space and dark matter nebulae.
-- **WML:** the mask is a `[variation]` of each ship with the freighter's name, image, attack and movement, switched by a right-click `[set_menu_item]`, and switched back in an `attack` event.
+- **What it can pose as: any recruitable Maquis ship of at least its own size (D, 16 Nov).** "Size" means maximum HP, for the reason under *Tells*. That works out as:
+
+  | Disguised ship | Can pose as |
+  |---|---|
+  | Maquis raider (30 HP) | another raider, mercenary raider (38), Bajoran assault vessel (40), Bajoran freighter (40), Dreadnought (48) |
+  | Maquis fighter (26 HP) | all of the above, plus another fighter |
+
+  The leaders are left out, because each side has only one, so a second Marauder would give itself away. It can't pose as an enemy or neutral ship: Wesnoth draws every unit in its side's colour for all players, with no way to show one player a different picture. Every real Maquis ship becomes part of the bluff: any freighter or Dreadnought might be a raider, and any raider might be a Dreadnought.
+- **What the enemy sees:** the decoy's name, sprite, level, attacks, resistances and maximum HP. The disguised ship keeps its real current HP, so a fresh raider posing as a Dreadnought shows 30/48, which looks like a damaged Dreadnought.
+- **What it really does while disguised:** it moves with the decoy's movement (a raider posing as a freighter has 4 MP, as a Dreadnought 5), and it takes the decoy's zone of control (none as the level 0 freighter). **It can't attack.** The decoy's attacks are listed for show only, and switched off by an unnamed `[disable]` special that the game doesn't display. It doesn't heal while disguised, because the shown HP isn't real.
+- **Dropping the mask:** free, from the right-click menu, at any point in its own turn, before or after moving. Movement already spent stays spent. After that it has its real weapons and gets *Surprise attack* (below) for that turn.
+- **What gives it away:** it drops the mask, or it is attacked. If it is attacked, the mask drops before the fight, so it defends with its real weapons and resistances.
+- **Tells**, for a player who looks closely:
+  - **HP.** This is why a ship can only pose as one at least its own size. A raider posing as a fighter (26 HP) would show more HP than the fighter can have. Posing as a bigger ship, it shows as a wounded one. So "a damaged Dreadnought that never repairs" is the giveaway.
+  - **Traits.** The real ship's crew traits stay listed. That matters most for a Dreadnought disguise, because the real Dreadnought has no traits.
+  - **Behaviour.** A "Dreadnought" that never detonates, or a "freighter" that never repairs anyone.
+- **With Nebula cloak:** the raider can be masked and in a nebula at the same time. Inside the nebula it is hidden, outside it looks like its decoy. That gives it a disguise where the cloak doesn't work: open space and dark matter nebulae.
+- **WML:** one `[variation]` per decoy on the raider and fighter, with the decoy's name, image, level, movement, attacks and resistances, and a hidden `[disable]` on the attacks. A right-click `[set_menu_item]` picks the decoy, and the mask is switched back in an `attack` event. Maximum HP is changed with `apply_to=hitpoints` and `heal_full=no`, and restored when the mask drops.
+
+**Why the Dreadnought disguise matters:** the enemy has to treat every Dreadnought as a 32-damage warhead that always hits, so a disguised raider can keep enemy ships away or draw fire for nothing. That is also the risk: a fake Dreadnought costs 15 gold, not 20. The counter is to shoot first. A disguised ship that is attacked drops its mask and fights as a 30 HP raider, so a cheap ship shooting at a "Dreadnought" from range finds out what it is.
 
 **Surprise attack** (weapon special on all the raider's and fighter's attacks): +50% damage when it attacks straight out of a nebula cloak, or on the turn it drops its mask. In WML this is a `[damage]` special filtered on a unit variable that is set when the cloak or mask drops and cleared after the attack.
 
@@ -362,4 +376,4 @@ Which sound each attack uses, from `sounds/trek/` (for private play) with the fr
 3. **Upkeep 2 for capital ships:** keep it, or keep all ships at upkeep 1 and raise capital-ship prices instead?
 4. **Defiant cloak:** both Defiants now cloak. Keep that, or leave the Federation one without it, as the roster had?
 5. **Jem'Hadar kamikaze:** damage equal to the ship's current HP (as proposed), or a fixed amount? Should the big Jem'Hadar ships get it too?
-6. **Maquis disguise and ambush:** approve the proposal above (raider and fighter only, posing as a Bajoran freighter)? Also, should the fighter go to 12 gold, and should the freighter come back down from 14?
+6. **Maquis disguise and ambush:** approve the proposal above (raider and fighter only, posing as any recruitable Maquis ship at least their own size)? Also, should the fighter go to 12 gold, and should the freighter come back down from 14?
