@@ -195,6 +195,22 @@ This section is a proposal only. The tables in section 3 don't include it yet.
 
 **Balance:** the model can't price the bluff itself. Counting Surprise attack at +25% on average (it applies to about half the attacks), the Maquis go from 0.80–0.85 to 0.90–0.92 against the other factions, about where they were before the 16 Nov price rises. The raider at its new 15 gold scores 1.01, so that price fits a raider that can do this. The fighter scores 1.18 at 11 gold, which is strong, so 12 gold would suit it. The Bajoran freighter (0.52 at 14 gold) stays the weak spot. The bluff helps it a little, because the enemy can no longer safely ignore freighters, but it still needs a lower price or better stats.
 
+### Dreadnought point defence and mercenary stealth (proposal 4, waiting for D's approval)
+
+This section is a proposal only. The tables in section 3 don't include it yet.
+
+**Dreadnought: the target fires first (D, 16 Nov).** When the Dreadnought uses its warhead, the target first fires its best melee weapon, all its strikes, rolled as a normal attack against the Dreadnought's defence and resistances. The Dreadnought can't fire back. If that volley destroys the Dreadnought, the warhead never goes off. If the Dreadnought survives, the warhead hits for 32 as before, and the Dreadnought is gone either way.
+
+- Wesnoth's own firststrike isn't enough here: strikes alternate, so with a one-strike warhead the target would get only one shot first. The volley is scripted in an `attack` event instead, so the target gets every strike.
+- In practice, no single volley in the game can kill a fresh 48 HP Dreadnought. The biggest are the Jem'Hadar battleship (40) and the Negh'Var (36). A damaged one is at real risk, though. That gives the defender counterplay without wasting a healthy Dreadnought: hit it before it arrives. Torpedoes are ideal, because the Dreadnought has no ranged attack and can't shoot back.
+- **Price:** stays at 20. It loses a little reliability but keeps its threat.
+
+**Mercenary raider: Stealth (D, 16 Nov).** Baran's raider masks its sensor profile.
+
+- **Recommended:** hidden on every terrain except dark matter nebulae, until an enemy ship comes **within 2 hexes**. That is a cloak that's easier to find (a normal Cloak hides until an enemy is next to it), so the raider can slip close but rarely all the way. An enemy that comes within 2 hexes spots it and stops, as with ambush. Attacking reveals it until its next turn, as with Cloak. In WML it is `[hides]` with a filter that switches it off while an enemy is within 2 hexes.
+- **Alternative:** hidden only in asteroid fields and the Badlands, but there only next to an enemy. That makes it a terrain ambusher, like the raider's Nebula cloak.
+- **Balance:** priced at about 2 gold (between Nebula cloak and Cloak), the raider would be worth about 18 by the cost formula. I'd keep it at **16** anyway, because the Maquis are already the weakest faction. With Stealth at 16, the Maquis go from 0.80–0.88 to 0.83–0.92 against the others, and the mercenary raider scores 1.16, the strongest Maquis recruit. That is still short of fixing the Maquis gap, which mostly comes from the freighter's price.
+
 **Changed from the roster:** *fleet tactics* is ×1.5 instead of the ×2 of Wesnoth's backstab, because it sits on durable line cruisers (Galor, Keldon) rather than a fragile thief. At ×2, three flanking Galors would delete a Galaxy in one turn.
 
 ---
@@ -378,3 +394,4 @@ Which sound each attack uses, from `sounds/trek/` (for private play) with the fr
 4. **Defiant cloak:** both Defiants now cloak. Keep that, or leave the Federation one without it, as the roster had?
 5. **Jem'Hadar kamikaze:** damage equal to the ship's current HP (as proposed), or a fixed amount? Should the big Jem'Hadar ships get it too?
 6. **Maquis disguise and ambush:** approve the proposal above (raider and fighter only, posing as any recruitable Maquis ship at least their own size)? Also, should the fighter go to 12 gold, and should the freighter come back down from 14?
+7. **Dreadnought point defence and mercenary stealth:** approve proposal 4? For Stealth: the 2-hex version everywhere (recommended), or terrain-only?
