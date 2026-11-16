@@ -9,6 +9,10 @@ Four factions for the Dominion War (2373–2375): **Federation**, **Klingon Empi
 - **At most 11 ships per faction.** If canon doesn't have 11 good ships for a faction, the roster stays short.
 - **One model per ship.** Every ship has a 3D model and a sprite (see `sprites/roster/`), rendered at the 45° camera angle chosen for all ship sprites.
 
+## Costs
+
+Ship prices follow one formula: **cost = HP ÷ 4 + melee ÷ 5 + ranged × 0.3 + ability gold − 1**. See `cost-formula.md` for the ability table and how each ship fits. The up-to-date stats and prices are in `unit-stats.md`.
+
 ## How levels work: crew experience, not new ships
 
 A ship never turns into another ship. Every class is recruited as itself, and its level stands for how experienced its crew is.
