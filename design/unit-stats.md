@@ -137,6 +137,7 @@ Keep the Wesnoth day/night cycle, renamed as a star cycle (open question 3 in th
 | **Ketracel supply** | ability | Adjacent Jem'Hadar ships recover 8 HP each turn | heals +8, filtered to Jem'Hadar |
 | **Ketracel-dependent** | ability (all Jem'Hadar ships) | No rest repair. Jem'Hadar ships repair only from Ketracel supply, planets and stations. | `[effect] apply_to=` rest healing off |
 | **Machine** | ability (Dreadnought) | No crew: gains no XP, has no traits, can't be helped by Command | custom |
+| *charge* | weapon special (Defiant pulse phasers) | When attacking, both sides deal double damage, as with Wesnoth's charge. Not used on defence. | charge |
 | *fleet tactics* | weapon special | ×1.5 damage when an ally is on the far side of the target | backstab, softened |
 | *targeting lock* | weapon special | At least 60% chance to hit when attacking | marksman |
 | *energy dampener* | weapon special | The target is slowed: half damage and half movement until the end of its next turn | slows |
@@ -157,6 +158,30 @@ Ships that cloak: B'rel, K'Vort and both Defiants everywhere, and the Maquis rai
 
 **Later:** the Jem'Hadar may get a decloaking ability that only works part of the time, and the Federation a tachyon detection grid. Neither is in this proposal. Until then the only counter to a cloak is to bump into it, which makes Birds-of-Prey and the Defiants strong. Watch that in playtesting.
 
+### Maquis disguise and ambush (proposal 3, waiting for D's approval)
+
+This section is a proposal only. The tables in section 3 don't include it yet.
+
+**Which ships:** the **Maquis raider** and the **Maquis fighter (Peregrine)**, the two small Maquis-built ships. Left out:
+
+- **Dreadnought:** a disguised missile with a warhead that always hits would give the enemy no counterplay. If D wants it anyway, the fair version is that it can't detonate on the turn it drops its disguise.
+- **Bajoran freighter and assault vessel:** Bajoran militia ships, not Maquis-built. The freighter is also the ship the disguise imitates (see below).
+- **Mercenary raider:** Baran's crew are hired guns, not Maquis.
+- **Leaders:** a 366 m Marauder or a Constellation can't pass as a freighter, and the stolen Defiant already cloaks.
+
+**Signature mask** (ability). The ship changes its warp signature to look like another ship. It's switched on from the ship's right-click menu at the start of its own turn, if no enemy is next to it, and it costs nothing.
+
+- **What the enemy sees: a Bajoran freighter.** The ship's name, sprite and listed attack become the freighter's. It can't pose as an enemy or neutral ship, because Wesnoth draws every unit in its side's colour for all players, with no way to show one player a different picture. So it poses as the one Maquis ship the enemy has reason to leave alone. That also turns the real freighters into part of the bluff: every freighter might be a raider.
+- **While masked, it really flies like a freighter:** 4 MP, only the freighter's phaser 4-2 (weapons powered down to civilian levels), no Evasive and no zone of control (the freighter is level 0, and level 0 ships have no zone of control in Wesnoth). That keeps the sidebar consistent with the disguise. The one tell is HP: the sidebar shows the ship's real maximum (raider 30, fighter 26, against a freighter's 40), which Wesnoth can't fake. A careful player can catch it.
+- **Dropping the mask:** free, from the right-click menu, at any point in its own turn, before or after moving. Movement already spent stays spent.
+- **What gives it away:** it attacks, or it is attacked. Either way the mask drops before the fight, so it always fights with its real weapons.
+- **With Nebula cloak:** the raider can be masked and in a nebula at the same time. Inside the nebula it is hidden, outside it looks like a freighter. That gives it a disguise where the cloak doesn't work: open space and dark matter nebulae.
+- **WML:** the mask is a `[variation]` of each ship with the freighter's name, image, attack and movement, switched by a right-click `[set_menu_item]`, and switched back in an `attack` event.
+
+**Surprise attack** (weapon special on all the raider's and fighter's attacks): +50% damage when it attacks straight out of a nebula cloak, or on the turn it drops its mask. In WML this is a `[damage]` special filtered on a unit variable that is set when the cloak or mask drops and cleared after the attack.
+
+**Balance:** the model can't price the bluff itself. Counting Surprise attack at +25% on average (it applies to about half the attacks), the Maquis go from 0.80–0.85 to 0.90–0.92 against the other factions, about where they were before the 16 Nov price rises. The raider at its new 15 gold scores 1.01, so that price fits a raider that can do this. The fighter scores 1.18 at 11 gold, which is strong, so 12 gold would suit it. The Bajoran freighter (0.52 at 14 gold) stays the weak spot. The bluff helps it a little, because the enemy can no longer safely ignore freighters, but it still needs a lower price or better stats.
+
 **Changed from the roster:** *fleet tactics* is ×1.5 instead of the ×2 of Wesnoth's backstab, because it sits on durable line cruisers (Galor, Keldon) rather than a fragile thief. At ×2, three flanking Galors would delete a Galaxy in one turn.
 
 ---
@@ -174,13 +199,13 @@ Hull and Shields refer to the tables in section 1. Ships marked (leader) are lea
 | Danube-class runabout | 0 | 10 | 26 | 7 | 20 | lawful | light | Federation | micro-torpedo 6-1 | phaser 4-3 | — |
 | Miranda-class | 1 | 14 | 38 | 5 | 32 | lawful | cruiser | Federation | torpedo 6-2 | phaser 4-3 | — |
 | Excelsior-class | 1 | 20 | 52 | 5 | 40 | lawful | cruiser | Federation | torpedo 8-2 | phaser 5-3 | — |
-| Intrepid-class | 1 | 22 | 44 | 7 | 40 | lawful | cruiser | Federation | torpedo 8-2 | phaser 5-3 | Repairs +4 |
+| Intrepid-class | 1 | 23 | 44 | 7 | 40 | lawful | cruiser | Federation | quantum torpedo 10-2 | phaser 5-3 | Repairs +4 |
 | Akira-class | 1 | 24 | 52 | 5 | 44 | lawful | cruiser | Federation | torpedo 8-3, *targeting lock* | phaser 5-3 | — |
 | Nebula-class | 1 | 26 | 62 | 5 | 48 | lawful | capital (upkeep 2) | Federation | torpedo 10-2 | phaser 7-3 | — |
 | Galaxy-class | 1 | 34 | 68 | 5 | 56 | lawful | capital (upkeep 2) | Federation | torpedo 11-2 | phaser array 7-4 | Command, Repairs +4 |
-| Defiant-class (leader) | 1 | 25 | 44 | 6 | 44 | lawful | light | Federation | quantum torpedo 12-1 | pulse phaser 9-3 | Evasive, Cloak |
+| Defiant-class (leader) | 1 | 25 | 44 | 6 | 44 | lawful | light | Federation | quantum torpedo 12-1 | pulse phaser 9-2, *charge*<br>phaser 6-3 | Evasive, Cloak |
 
-**Changes from the roster:** with beams now melee, Federation phasers are about 2 damage lower than in the roster (Excelsior 7-3 to 5-3) and torpedoes about a quarter lower (Excelsior 11-2 to 8-2). A ship with both good beams and good torpedoes beats a beam-only ship at both ranges, so one of the two has to be modest, and for the Federation that's the beams. The **Akira** keeps the strongest Federation torpedo attack (three strikes with targeting lock). The **Danube** gets 26 HP and phaser 4-3 (was 24 and 4-2): at 4-2 it couldn't hurt anything. The **Miranda** gets 38 HP (was 36), the **Excelsior** 52 (was 50), the **Nebula** 62 (was 58) and the **Galaxy** 68 (was 72). The **Defiant** gets Cloak, since the real Defiant carries a Romulan cloaking device.
+**Changes from the roster:** with beams now melee, Federation phasers are about 2 damage lower than in the roster (Excelsior 7-3 to 5-3) and torpedoes about a quarter lower (Excelsior 11-2 to 8-2). A ship with both good beams and good torpedoes beats a beam-only ship at both ranges, so one of the two has to be modest, and for the Federation that's the beams. The **Akira** keeps the strongest Federation torpedo attack (three strikes with targeting lock). The **Danube** gets 26 HP and phaser 4-3 (was 24 and 4-2): at 4-2 it couldn't hurt anything. The **Miranda** gets 38 HP (was 36), the **Excelsior** 52 (was 50), the **Nebula** 62 (was 58) and the **Galaxy** 68 (was 72). The **Defiant** gets Cloak, since the real Defiant carries a Romulan cloaking device. It also gets two beam weapons (D, 16 Nov): **pulse phasers** 9-2 with *charge*, for its all-out attack runs (18-2 when attacking, but return fire is doubled too), and a normal **phaser** 6-3, which it defends with. The stolen Defiant gets the same. The **Intrepid** carries **quantum torpedoes** 10-2 (was photon 8-2, D, 16 Nov), and its price goes from 22 to 23 gold to pay for them, which the cost formula allows (22.0).
 
 ### Klingon Empire (chaotic)
 
@@ -240,7 +265,7 @@ The balance check can't score a one-shot attack, so the attack ship's score belo
 | Bajoran assault vessel | 1 | 17 | 40 | 7 | 36 | neutral | light | Bajoran | torpedo 8-2 | phaser 6-3 | Evasive, Dark matter adept |
 | Dreadnought (ATR-4107) | 1 | 20 | 48 | 5 | none | neutral | cruiser | Dreadnought | none | plasma cannon 7-3<br>warhead 32-1 (torpedo), *detonate* | Machine, Dark matter adept |
 | Captured Constellation (leader) | 1 | 22 | 56 | 5 | 44 | neutral | cruiser | Federation | torpedo 8-2 | phaser 5-3 | Repairs +4, Dark matter adept |
-| Stolen Defiant (leader) | 1 | 25 | 44 | 6 | 44 | neutral | light | Federation | quantum torpedo 12-1 | pulse phaser 9-3 | Evasive, Cloak, Dark matter adept |
+| Stolen Defiant (leader) | 1 | 25 | 44 | 6 | 44 | neutral | light | Federation | quantum torpedo 12-1 | pulse phaser 9-2, *charge*<br>phaser 6-3 | Evasive, Cloak, Dark matter adept |
 | Ferengi Marauder (leader) | 1 | 30 | 66 | 5 | 52 | neutral | capital | Ferengi | torpedo 10-2 | EM pulse 7-3 (disruptor), *shield breaker* | Plunder, Command, Dark matter adept |
 
 **New ships:**
@@ -260,9 +285,9 @@ Faction against faction (1.00 = even, above 1 favours the row):
 
 | Row vs column | Federation | Klingon | Dominion | Maquis |
 |---|---|---|---|---|
-| Federation | 1.00 | 1.01 | 0.97 | 1.25 |
-| Klingon | 0.99 | 1.00 | 1.06 | 1.17 |
-| Dominion | 1.04 | 0.94 | 1.00 | 1.22 |
+| Federation | 1.00 | 1.02 | 0.97 | 1.25 |
+| Klingon | 0.98 | 1.00 | 1.06 | 1.17 |
+| Dominion | 1.03 | 0.94 | 1.00 | 1.22 |
 | Maquis | 0.80 | 0.85 | 0.82 | 1.00 |
 
 The Federation, Klingons and Dominion are within about 6% of each other. **The Maquis now score 0.80 to 0.85 against everyone.** That comes from the 16 Nov price rises (Bajoran freighter 11 to 14, Maquis raider 13 to 15), not from the Marauder change. Before them the Maquis were at 0.93 to 0.99, which the model's missing terrain (Maquis light ships get 60 to 70% defence in nebulae and asteroids) roughly explains. At the new prices, the Bajoran freighter (0.52) and Maquis raider (0.78) are the weakest recruits in the game. Either the prices go back, or those two ships need more for their gold. If playtesting shows the Federation struggling against the Dominion's polaron beams, the first lever is Federation polaron resistance (−20% to −10%).
@@ -320,3 +345,4 @@ Which sound each attack uses, from `sounds/trek/` (for private play) with the fr
 3. **Upkeep 2 for capital ships:** keep it, or keep all ships at upkeep 1 and raise capital-ship prices instead?
 4. **Defiant cloak:** both Defiants now cloak. Keep that, or leave the Federation one without it, as the roster had?
 5. **Jem'Hadar kamikaze:** damage equal to the ship's current HP (as proposed), or a fixed amount? Should the big Jem'Hadar ships get it too?
+6. **Maquis disguise and ambush:** approve the proposal above (raider and fighter only, posing as a Bajoran freighter)? Also, should the fighter go to 12 gold, and should the freighter come back down from 14?
