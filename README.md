@@ -1,6 +1,6 @@
-# Star_Trek_Wesnoth
+# Dominion_War_Wesnoth
 
-Working folder for the Star Trek Wesnoth mod. It mirrors the project library
+Working folder for The Dominion War, a Star Trek mod for Wesnoth. It mirrors the project library
 path for path, so any file a project thread adds or updates in the library
 lands at the same relative path here.
 
