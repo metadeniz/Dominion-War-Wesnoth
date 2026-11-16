@@ -108,3 +108,15 @@ Every terrain class in Wesnoth 1.18 is covered. "Plays as" is the Wesnoth class 
 - **Stellar bodies:** Star Control's black holes, giants, stars, protostars, pulsar and globular cluster.
 - Roughly 20 terrain types and 100–130 images, plus the WML (terrain types, drawing rules, prestart conversion) and editor icons.
 - Possible later: a faction beacon in place of Wesnoth's village flag on planets, and animated Badlands plasma.
+
+## Implementation (16 Nov)
+
+Built as add-on content in [`terrain/`](../terrain/README.md):
+
+- 75 terrain types, each an alias of the Wesnoth terrain it replaces, and 395 generated images.
+- The conversion runs in a prestart event (`{DW_SPACE_TERRAIN_EVENT}`, for the era), with a matching Python converter for `.map` files.
+- Gas is drawn as wrapping textures that repeat every 4 x 4 hexes, with soft spills into neighbouring hexes, so clouds have no hex edges.
+- Lone castle hexes follow D's picks: battlements (B) when intact, corner turrets (A) when they stand in gas, broken shields when ruined.
+- Impassable hexes are drawn by cluster shape (Void, black hole, pulsar, eddies, plasma, radiation, Briar Patch).
+
+Still open: 3-hex centrepieces for large zones (a globular cluster, a supergiant), faint seams between shallow and deep Badlands, and the visible 4 x 4 repeat in large nebulae.
