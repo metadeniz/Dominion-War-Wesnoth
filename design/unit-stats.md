@@ -233,6 +233,74 @@ D's rule (16 Nov): almost every ship is stealthed in nebulae, the smaller ones c
 
 No price changes proposed. If the Maquis come out too strong in playtesting, the freighter's price rise already gives room to bring them back down.
 
+### Shields as a separate bar (proposal 6, waiting for D's approval)
+
+D's decision (17 Nov): shields get their own bar, separate from hull HP. Here is how that can work in Wesnoth 1.18 while keeping the attack preview and the AI working.
+
+**The key idea: the ship's Wesnoth HP is hull plus shields.** Damage always takes the shields first, then the hull, and a ship is destroyed only when both are gone. So the engine's single HP number is always the right total. The attack preview, kill chances and the AI all keep working unchanged, and this proposal changes nobody's total HP. The split is tracked in two unit variables and shown on screen.
+
+**How much is shield.** A share of each ship's current HP becomes shields, by shield profile: Federation 40%, Klingon 25%, Klingon (old) 20%, Cardassian 30%, Jem'Hadar 30%, Breen 40%, Maquis 20%, Bajoran 25%, Mercenary 25%, Dreadnought 30%, Ferengi 35%. The Federation and the Breen have the strongest shields, and Klingons rely on armour.
+
+| Ship | Total (as now) | Shields | Hull | Shield recharge per turn |
+|---|---|---|---|---|
+| Danube-class runabout | 26 | 10 | 16 | 3 |
+| Miranda-class | 38 | 15 | 23 | 4 |
+| Excelsior-class | 52 | 21 | 31 | 6 |
+| Intrepid-class | 44 | 18 | 26 | 5 |
+| Akira-class | 52 | 21 | 31 | 6 |
+| Nebula-class | 62 | 25 | 37 | 7 |
+| Galaxy-class | 68 | 27 | 41 | 7 |
+| Defiant-class (leader) | 44 | 18 | 26 | 5 |
+| Klingon freighter | 32 | 8 | 24 | 2 |
+| Raptor-class scout | 32 | 6 | 26 | 2 |
+| B'rel-class Bird-of-Prey | 30 | 8 | 22 | 2 |
+| D5-class battle cruiser | 40 | 8 | 32 | 2 |
+| K't'inga-class | 42 | 10 | 32 | 3 |
+| K'Vort-class Bird-of-Prey | 44 | 11 | 33 | 3 |
+| Vor'cha-class | 58 | 14 | 44 | 4 |
+| Negh'Var-class (leader) | 72 | 18 | 54 | 5 |
+| Hideki-class | 30 | 9 | 21 | 3 |
+| Galor-class | 44 | 13 | 31 | 4 |
+| Jem'Hadar attack ship | 42 | 13 | 29 | 4 |
+| Keldon-class | 50 | 15 | 35 | 4 |
+| Breen warship | 58 | 23 | 35 | 6 |
+| Jem'Hadar battle cruiser | 60 | 18 | 42 | 5 |
+| Jem'Hadar battleship (leader) | 88 | 26 | 62 | 7 |
+| Bajoran freighter | 40 | 10 | 30 | 3 |
+| Maquis fighter (Peregrine) | 26 | 5 | 21 | 2 |
+| Maquis raider | 30 | 6 | 24 | 2 |
+| Mercenary raider (Baran's) | 38 | 10 | 28 | 3 |
+| Bajoran assault vessel | 40 | 10 | 30 | 3 |
+| Dreadnought (ATR-4107) | 48 | 14 | 34 | 4 |
+| Captured Constellation (leader) | 56 | 22 | 34 | 6 |
+| Stolen Defiant (leader) | 44 | 18 | 26 | 5 |
+| Ferengi Marauder (leader) | 66 | 23 | 43 | 6 |
+
+**Display.**
+- **On the map:** a thin blue shield bar is drawn beside Wesnoth's normal bar as a unit overlay: 11 small images, from empty to full, swapped after every fight and every recharge. Wesnoth's own bar then shows the total.
+- **In the sidebar:** "Shields 18/27 · Hull 41/41" replaces the plain HP line. This uses a Lua override of the sidebar's HP report, which 1.18 supports.
+
+**Recharge and repair.**
+- **Shields recharge** by a quarter of their capacity at the start of the ship's turn, if it neither attacked nor was attacked since its last turn (last column above). This replaces Wesnoth's +2 rest repair, which is switched off for every ship.
+- **Hull is repaired** only at planets and stations (+8) and by repair ships (+4), and never for the Jem'Hadar from other ships, as now.
+- **Cloaked ships don't recharge shields while hidden.** In canon a ship can't keep its shields up while cloaked. The stricter canon version, with shields at 0 the whole time it's cloaked, would make every attack from cloak very risky, so I don't recommend it.
+
+**Shields down.** While a ship's shields are at 0, all its resistances are 20 points lower (Breen phaser +30% becomes +10%), until they recharge above 0. Wesnoth works out resistances once per fight, so this takes effect from the next fight, not partway through the one that knocked the shields down.
+
+**What this changes for weapons and abilities:**
+- **Polaron beams** hit the hull first, then the shields: they cut through shields, as in canon. The total damage is the same, so the preview is still right, but polaron damage lasts, because hull doesn't recharge.
+- **Jem'Hadar boarding parties** hit the hull first too: they beam through shields.
+- **Other boarding parties** (Klingon) only work against a ship whose shields are down. Their attack is greyed out otherwise. This is D's original idea that shields must be down to board, without the two-ship tractor requirement. A tractor beam isn't needed for it.
+- **Ferengi EM pulse:** becomes a shield-stripper. Its damage drains shields only and can't touch the hull, and it goes up to 10-3 to make up for that. The *shield breaker* special is dropped, because "shields down" now gives the same resistance drop. One catch: the attack preview shows the pulse's full damage even when part of it would reach the hull. That part is refunded after the fight, so the preview can overstate the damage against a ship with weak shields.
+- **The Breen energy dampener, rams, torpedoes and everything else** hit shields first, then hull.
+
+**Effect on balance.** Total HP doesn't change, so the balance check's numbers don't move. What does change:
+- **Sustain:** shield recharge is up to a quarter of the shields per quiet turn, against the old +2. That favours big-shield ships that can pull back, which means the Federation and the Breen.
+- **Polaron beams get stronger** against everyone, because their damage sticks. That partly offsets the Federation's sustain gain, which suits the Dominion–Federation matchup.
+- **Klingon boarding gets narrower.** Their boarding parties only work on ships with shields down, but their disruptors stay their main weapon.
+
+**Cost.** This is the biggest rules change so far: two unit variables, overlay images, a sidebar override, and events after every fight and at every turn start. It also touches cloaking, boarding and two specials. It's all doable in WML and Lua, but it should be built and playtested on its own before more abilities are added on top.
+
 **Changed from the roster:** *fleet tactics* is ×1.5 instead of the ×2 of Wesnoth's backstab, because it sits on durable line cruisers (Galor, Keldon) rather than a fragile thief. At ×2, three flanking Galors would delete a Galaxy in one turn.
 
 ---
@@ -416,3 +484,4 @@ Which sound each attack uses, from `sounds/trek/` (for private play) with the fr
 4. **Jem'Hadar kamikaze:** damage equal to the ship's current HP (as proposed), or a fixed amount? Should the big Jem'Hadar ships get it too?
 5. **Maquis disguise and ambush:** approve the proposal above (raider and fighter only, posing as any recruitable Maquis ship at least their own size)? Also, should the fighter go to 12 gold, and should the freighter come back down from 14?
 6. **Hiding in nebulae:** approve proposal 5 (light ships and the captured Constellation hide in nebulae, Maquis also in the Badlands; all others are stealthed within 2 hexes)?
+7. **Shields as a separate bar:** approve proposal 6, including the shield shares, recharge only after a quiet turn, shields-down resistance drop, boarding only on shields-down ships, and the EM pulse as a shield-stripper?
