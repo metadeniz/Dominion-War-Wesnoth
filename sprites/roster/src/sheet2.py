@@ -27,7 +27,7 @@ for f in R:
             d.ellipse((x+8,y+8,x+20,y+20),fill=(222,178,72),outline=(150,110,40)); d.ellipse((x+11,y+11,x+17,y+17),outline=(170,128,48))
             d.text((x+24,y+6),str(u['cost']),font=F(13,True),fill=(240,210,120)); lx=x+30+d.textlength(str(u['cost']),font=F(13,True))
         if u.get('leader'): d.text((lx,y+9),'LEADER',font=F(10,True),fill=(230,190,90))
-        sp=make72(Image.open(f"out2/{u['id']}.png"),u.get('pop',False),6); n2=sp.size[0]*2; sp=sp.resize((n2,n2),Image.NEAREST)
+        sp=make72(Image.open(f"out2/{u['id']}.png"),u.get('pop',False),u.get('pop_k',6),u.get('pop_sat',1.25)); n2=sp.size[0]*2; sp=sp.resize((n2,n2),Image.NEAREST)
         if n2>144: late.append((sp,(x+(CW-12-n2)//2,y+6-(n2-144)//2)))   # oversize: drawn last, spilling past its card
         else: im.alpha_composite(sp,(x+(CW-12-144)//2,y+6))
         lic={'CC BY 4.0':'CC BY','CC BY-NC 4.0':'CC BY-NC','CC BY-NC-ND 4.0':'NC-ND','CC0':'CC0','no licence stated':'?','Sketchfab Standard':'STD'}.get(u['lic'],u.get('tag','?'))

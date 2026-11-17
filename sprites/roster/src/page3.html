@@ -7,6 +7,7 @@ import { STLLoader } from 'three/addons/loaders/STLLoader.js';
 import { FBXLoader } from 'three/addons/loaders/FBXLoaderPatched.js';
 import { MTLLoader } from 'three/addons/loaders/MTLLoader.js';
 import { ColladaLoader } from 'three/addons/loaders/ColladaLoader.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { P } from '/procs.js';
 const PX=288;
 const r=new T.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});
@@ -83,6 +84,18 @@ vec3 paintEm(){ vec3 n=abs(normalize(vON)); float L=bmax.y-bmin.y;
 async function loadFile(path, color){
   const key=path+color; if(cache[key]) return cache[key];
   if(path.includes('|')){ const g=new T.Group(); for(const p of path.split('|')) g.add((await loadFile(p,color)).clone()); return cache[key]=g; }
+  if(path.toLowerCase().split('?')[0].endsWith('.gltf')){   // Sketchfab glTF: keep paint and self-lit maps, tame metalness (no environment map here)
+    const qs=new URLSearchParams(path.split('?')[1]||''); const clean=path.split('?')[0]; const br=+(qs.get('br')||1), emi=+(qs.get('emi')||1), met=+(qs.get('met')??0.2);
+    const obj=(await new GLTFLoader().loadAsync(clean)).scene; const drop=[]; const conv=new Map();
+    const cv=m=>{ if(!conv.has(m)){ const nm=new T.MeshStandardMaterial({map:m.map||null,color:m.color?m.color.clone():new T.Color(0xc9cdd4),roughness:0.6,metalness:met,side:T.DoubleSide,
+        emissive:m.emissive?m.emissive.clone():new T.Color(0),emissiveMap:m.emissiveMap||null,emissiveIntensity:(m.emissiveIntensity??1)*emi,transparent:m.transparent,opacity:m.opacity,alphaTest:m.alphaTest});
+        if(m.normalMap){ nm.normalMap=m.normalMap; nm.normalScale=m.normalScale; }
+        if(br!==1) nm.color.multiplyScalar(br); conv.set(m,nm); } return conv.get(m); };
+    obj.traverse(o=>{ if(o.isLine||o.isLineSegments||o.isPoints||o.isCamera||o.isLight) drop.push(o);
+      else if(o.isMesh){ o.material=Array.isArray(o.material)?o.material.map(cv):cv(o.material); o.castShadow=true; o.receiveShadow=true; if(!o.geometry.attributes.normal) o.geometry.computeVertexNormals(); } });
+    drop.forEach(o=>o.parent&&o.parent.remove(o));
+    const names=[]; conv.forEach((nm,m)=>names.push(m.name+(nm.map?' tex':'')+(nm.emissiveMap?' em':'')+' #'+nm.color.getHexString()+' e#'+nm.emissive.getHexString())); console.log('gltf mats', JSON.stringify(names));
+    return cache[key]=obj; }
   if(path.toLowerCase().split('?')[0].endsWith('.dae')){   // SketchUp / Collada: loader turns Z-up into Y-up; edges (lines) dropped
     const qs=new URLSearchParams(path.split('?')[1]||''); const clean=path.split('?')[0]; const br=+(qs.get('br')||1);
     const obj=(await new ColladaLoader().loadAsync(clean)).scene; const drop=[];

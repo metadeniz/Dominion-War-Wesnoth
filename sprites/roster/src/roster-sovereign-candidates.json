@@ -1,0 +1,946 @@
+[
+ {
+  "faction": "Federation",
+  "units": [
+   {
+    "id": "fed-sovereign-wh",
+    "name": "Sovereign-class (wholock)",
+    "f": "/dl/sov_wh/scene.gltf",
+    "rot": [
+     0,
+     90,
+     0
+    ],
+    "size": 1.25,
+    "leader": true,
+    "light": {
+     "hemi": 0,
+     "lights": [
+      {
+       "dir": 5.388,
+       "pos": [
+        7,
+        2.5,
+        -0.5
+       ],
+       "nb": 0,
+       "bias": -0.0015
+      },
+      {
+       "dir": 0.792,
+       "pos": [
+        -6,
+        2,
+        -4
+       ],
+       "shadow": false
+      },
+      {
+       "dir": 0.981,
+       "pos": [
+        -4,
+        2,
+        5
+       ],
+       "shadow": false
+      }
+     ],
+     "shadowPos": [
+      0,
+      10,
+      0.001
+     ],
+     "recvAll": true
+    },
+    "mix": {
+     "K1f": 5.388,
+     "O": 0.0,
+     "R": 0.792,
+     "F1": 0.981
+    },
+    "src": "Sketchfab, wholock, \"Star Trek - Sovereign Class\" (sketchfab.com/3d-models/e54ca13f5a3747c584dd304e4bb81826)",
+    "lic": "CC BY 4.0",
+    "light_note": "Candidate C (default). Not yet in roster2.json: D is choosing one of the three models.",
+    "model_zip": "models/sovereign/ (unzip as /dl/sov_wh, /dl/sov_sto, /dl/sov_cb)",
+    "light_alt": {
+     "option 1: rig 14soft (sheet v40)": {
+      "hemi": 0,
+      "lights": [
+       {
+        "dir": 3.4,
+        "pos": [
+         7,
+         2.5,
+         -0.5
+        ]
+       },
+       {
+        "dir": 0.5,
+        "pos": [
+         0,
+         8,
+         0.3
+        ],
+        "shadow": false
+       },
+       {
+        "dir": 1.0,
+        "pos": [
+         -6,
+         2,
+         -4
+        ],
+        "shadow": false
+       }
+      ],
+      "shadowPos": [
+       0,
+       10,
+       0.001
+      ]
+     },
+     "option 3: candidate A, with overhead light": {
+      "hemi": 0,
+      "lights": [
+       {
+        "dir": 3.8,
+        "pos": [
+         7,
+         2.5,
+         -0.5
+        ],
+        "nb": 0,
+        "bias": -0.0015
+       },
+       {
+        "dir": 0.559,
+        "pos": [
+         0,
+         8,
+         0.3
+        ],
+        "shadow": false
+       },
+       {
+        "dir": 1.118,
+        "pos": [
+         -6,
+         2,
+         -4
+        ],
+        "shadow": false
+       },
+       {
+        "dir": 0.324,
+        "pos": [
+         -4,
+         2,
+         5
+        ],
+        "shadow": false
+       }
+      ],
+      "shadowPos": [
+       0,
+       10,
+       0.001
+      ],
+      "recvAll": true
+     },
+     "C: default (no overhead light)": {
+      "hemi": 0,
+      "lights": [
+       {
+        "dir": 5.388,
+        "pos": [
+         7,
+         2.5,
+         -0.5
+        ],
+        "nb": 0,
+        "bias": -0.0015
+       },
+       {
+        "dir": 0.792,
+        "pos": [
+         -6,
+         2,
+         -4
+        ],
+        "shadow": false
+       },
+       {
+        "dir": 0.981,
+        "pos": [
+         -4,
+         2,
+         5
+        ],
+        "shadow": false
+       }
+      ],
+      "shadowPos": [
+       0,
+       10,
+       0.001
+      ],
+      "recvAll": true
+     }
+    }
+   },
+   {
+    "id": "fed-sovereign-sto",
+    "name": "Sovereign-class (LoganRolphh, STO)",
+    "f": "/dl/sov_sto/scene.gltf",
+    "rot": [
+     0,
+     90,
+     0
+    ],
+    "size": 1.25,
+    "leader": true,
+    "light": {
+     "hemi": 0,
+     "lights": [
+      {
+       "dir": 3.304,
+       "pos": [
+        7,
+        2.5,
+        -0.5
+       ],
+       "nb": 0,
+       "bias": -0.0015
+      },
+      {
+       "dir": 0.486,
+       "pos": [
+        -6,
+        2,
+        -4
+       ],
+       "shadow": false
+      },
+      {
+       "dir": 0.792,
+       "pos": [
+        -4,
+        2,
+        5
+       ],
+       "shadow": false
+      }
+     ],
+     "shadowPos": [
+      0,
+      10,
+      0.001
+     ],
+     "recvAll": true
+    },
+    "mix": {
+     "K1f": 3.304,
+     "O": 0.0,
+     "R": 0.486,
+     "F1": 0.792
+    },
+    "src": "Sketchfab, LoganRolphh, \"Star Trek Online | Sovereign Class\" (sketchfab.com/3d-models/d5f9c5ad5e9e44049af4a64a831d0ba2)",
+    "lic": "CC BY 4.0",
+    "light_note": "Candidate C (default). Not yet in roster2.json: D is choosing one of the three models.",
+    "model_zip": "models/sovereign/ (unzip as /dl/sov_wh, /dl/sov_sto, /dl/sov_cb)",
+    "light_alt": {
+     "option 1: rig 14soft (sheet v40)": {
+      "hemi": 0,
+      "lights": [
+       {
+        "dir": 3.4,
+        "pos": [
+         7,
+         2.5,
+         -0.5
+        ]
+       },
+       {
+        "dir": 0.5,
+        "pos": [
+         0,
+         8,
+         0.3
+        ],
+        "shadow": false
+       },
+       {
+        "dir": 1.0,
+        "pos": [
+         -6,
+         2,
+         -4
+        ],
+        "shadow": false
+       }
+      ],
+      "shadowPos": [
+       0,
+       10,
+       0.001
+      ]
+     },
+     "option 3: candidate A, with overhead light": {
+      "hemi": 0,
+      "lights": [
+       {
+        "dir": 2.47,
+        "pos": [
+         7,
+         2.5,
+         -0.5
+        ],
+        "nb": 0,
+        "bias": -0.0015
+       },
+       {
+        "dir": 0.363,
+        "pos": [
+         0,
+         8,
+         0.3
+        ],
+        "shadow": false
+       },
+       {
+        "dir": 0.727,
+        "pos": [
+         -6,
+         2,
+         -4
+        ],
+        "shadow": false
+       },
+       {
+        "dir": 0.288,
+        "pos": [
+         -4,
+         2,
+         5
+        ],
+        "shadow": false
+       }
+      ],
+      "shadowPos": [
+       0,
+       10,
+       0.001
+      ],
+      "recvAll": true
+     },
+     "C: default (no overhead light)": {
+      "hemi": 0,
+      "lights": [
+       {
+        "dir": 3.304,
+        "pos": [
+         7,
+         2.5,
+         -0.5
+        ],
+        "nb": 0,
+        "bias": -0.0015
+       },
+       {
+        "dir": 0.486,
+        "pos": [
+         -6,
+         2,
+         -4
+        ],
+        "shadow": false
+       },
+       {
+        "dir": 0.792,
+        "pos": [
+         -4,
+         2,
+         5
+        ],
+        "shadow": false
+       }
+      ],
+      "shadowPos": [
+       0,
+       10,
+       0.001
+      ],
+      "recvAll": true
+     }
+    }
+   },
+   {
+    "id": "fed-sovereign-cb",
+    "name": "Sovereign-class (CrustyBread)",
+    "f": "/dl/sov_cb/scene.gltf",
+    "rot": [
+     0,
+     90,
+     0
+    ],
+    "size": 1.25,
+    "leader": true,
+    "light": {
+     "hemi": 0,
+     "lights": [
+      {
+       "dir": 2.276,
+       "pos": [
+        7,
+        2.5,
+        -0.5
+       ],
+       "nb": 0,
+       "bias": -0.0015
+      },
+      {
+       "dir": 0.335,
+       "pos": [
+        -6,
+        2,
+        -4
+       ],
+       "shadow": false
+      },
+      {
+       "dir": 0.549,
+       "pos": [
+        -4,
+        2,
+        5
+       ],
+       "shadow": false
+      }
+     ],
+     "shadowPos": [
+      0,
+      10,
+      0.001
+     ],
+     "recvAll": true
+    },
+    "mix": {
+     "K1f": 2.276,
+     "O": 0.0,
+     "R": 0.335,
+     "F1": 0.549
+    },
+    "src": "Sketchfab, CrustyBread, \"Star Trek Sovereign Class with Shuttlebay\" (sketchfab.com/3d-models/f57fa908f23d498daf3d43d17d1b5f22)",
+    "lic": "CC BY 4.0",
+    "light_note": "Candidate C (default). Not yet in roster2.json: D is choosing one of the three models.",
+    "model_zip": "models/sovereign/ (unzip as /dl/sov_wh, /dl/sov_sto, /dl/sov_cb)",
+    "light_alt": {
+     "option 1: rig 14soft (sheet v40)": {
+      "hemi": 0,
+      "lights": [
+       {
+        "dir": 3.4,
+        "pos": [
+         7,
+         2.5,
+         -0.5
+        ]
+       },
+       {
+        "dir": 0.5,
+        "pos": [
+         0,
+         8,
+         0.3
+        ],
+        "shadow": false
+       },
+       {
+        "dir": 1.0,
+        "pos": [
+         -6,
+         2,
+         -4
+        ],
+        "shadow": false
+       }
+      ],
+      "shadowPos": [
+       0,
+       10,
+       0.001
+      ]
+     },
+     "option 3: candidate A, with overhead light": {
+      "hemi": 0,
+      "lights": [
+       {
+        "dir": 1.73,
+        "pos": [
+         7,
+         2.5,
+         -0.5
+        ],
+        "nb": 0,
+        "bias": -0.0015
+       },
+       {
+        "dir": 0.254,
+        "pos": [
+         0,
+         8,
+         0.3
+        ],
+        "shadow": false
+       },
+       {
+        "dir": 0.509,
+        "pos": [
+         -6,
+         2,
+         -4
+        ],
+        "shadow": false
+       },
+       {
+        "dir": 0.193,
+        "pos": [
+         -4,
+         2,
+         5
+        ],
+        "shadow": false
+       }
+      ],
+      "shadowPos": [
+       0,
+       10,
+       0.001
+      ],
+      "recvAll": true
+     },
+     "C: default (no overhead light)": {
+      "hemi": 0,
+      "lights": [
+       {
+        "dir": 2.276,
+        "pos": [
+         7,
+         2.5,
+         -0.5
+        ],
+        "nb": 0,
+        "bias": -0.0015
+       },
+       {
+        "dir": 0.335,
+        "pos": [
+         -6,
+         2,
+         -4
+        ],
+        "shadow": false
+       },
+       {
+        "dir": 0.549,
+        "pos": [
+         -4,
+         2,
+         5
+        ],
+        "shadow": false
+       }
+      ],
+      "shadowPos": [
+       0,
+       10,
+       0.001
+      ],
+      "recvAll": true
+     }
+    }
+   },
+   {
+    "id": "fed-sovereign-whr",
+    "name": "Sovereign-class (wholock, STO-style red glow)",
+    "f": "/dl/sov_whr/scene.gltf",
+    "rot": [
+     0,
+     90,
+     0
+    ],
+    "size": 1.25,
+    "leader": true,
+    "light": {
+     "hemi": 0,
+     "lights": [
+      {
+       "dir": 5.317,
+       "pos": [
+        7,
+        2.5,
+        -0.5
+       ],
+       "nb": 0,
+       "bias": -0.0015
+      },
+      {
+       "dir": 0.782,
+       "pos": [
+        -6,
+        2,
+        -4
+       ],
+       "shadow": false
+      },
+      {
+       "dir": 0.984,
+       "pos": [
+        -4,
+        2,
+        5
+       ],
+       "shadow": false
+      }
+     ],
+     "shadowPos": [
+      0,
+      10,
+      0.001
+     ],
+     "recvAll": true
+    },
+    "mix": {
+     "K1f": 5.317,
+     "O": 0.0,
+     "R": 0.782,
+     "F1": 0.984
+    },
+    "src": "Sketchfab, wholock, \"Star Trek - Sovereign Class\" (sketchfab.com/3d-models/e54ca13f5a3747c584dd304e4bb81826); bussard fronts and impulse grilles made self-lit and brighter here, after the STO model (redglow.py diffuse_2_1 1.0 200,360,1580,1790; texture saved as models/sovereign/wholock_diffuse_2_1_emissive_redglow.png)",
+    "lic": "CC BY 4.0",
+    "pop_option": "make72 pop=True keeps the reds from washing out at 72px",
+    "light_alt": {
+     "option 1: rig 14soft (sheet v40)": {
+      "hemi": 0,
+      "lights": [
+       {
+        "dir": 3.4,
+        "pos": [
+         7,
+         2.5,
+         -0.5
+        ]
+       },
+       {
+        "dir": 0.5,
+        "pos": [
+         0,
+         8,
+         0.3
+        ],
+        "shadow": false
+       },
+       {
+        "dir": 1.0,
+        "pos": [
+         -6,
+         2,
+         -4
+        ],
+        "shadow": false
+       }
+      ],
+      "shadowPos": [
+       0,
+       10,
+       0.001
+      ]
+     },
+     "option 3: candidate A, with overhead light": {
+      "hemi": 0,
+      "lights": [
+       {
+        "dir": 3.763,
+        "pos": [
+         7,
+         2.5,
+         -0.5
+        ],
+        "nb": 0,
+        "bias": -0.0015
+       },
+       {
+        "dir": 0.553,
+        "pos": [
+         0,
+         8,
+         0.3
+        ],
+        "shadow": false
+       },
+       {
+        "dir": 1.107,
+        "pos": [
+         -6,
+         2,
+         -4
+        ],
+        "shadow": false
+       },
+       {
+        "dir": 0.32,
+        "pos": [
+         -4,
+         2,
+         5
+        ],
+        "shadow": false
+       }
+      ],
+      "shadowPos": [
+       0,
+       10,
+       0.001
+      ],
+      "recvAll": true
+     },
+     "C: default (no overhead light)": {
+      "hemi": 0,
+      "lights": [
+       {
+        "dir": 5.317,
+        "pos": [
+         7,
+         2.5,
+         -0.5
+        ],
+        "nb": 0,
+        "bias": -0.0015
+       },
+       {
+        "dir": 0.782,
+        "pos": [
+         -6,
+         2,
+         -4
+        ],
+        "shadow": false
+       },
+       {
+        "dir": 0.984,
+        "pos": [
+         -4,
+         2,
+         5
+        ],
+        "shadow": false
+       }
+      ],
+      "shadowPos": [
+       0,
+       10,
+       0.001
+      ],
+      "recvAll": true
+     }
+    }
+   },
+   {
+    "id": "fed-sovereign-whb",
+    "name": "Sovereign-class (wholock, bright bussards)",
+    "f": "/dl/sov_whb/scene.gltf",
+    "rot": [
+     0,
+     90,
+     0
+    ],
+    "size": 1.25,
+    "leader": true,
+    "light": {
+     "hemi": 0,
+     "lights": [
+      {
+       "dir": 3.77,
+       "pos": [
+        7,
+        2.5,
+        -0.5
+       ],
+       "nb": 0,
+       "bias": -0.0015
+      },
+      {
+       "dir": 0.554,
+       "pos": [
+        0,
+        8,
+        0.3
+       ],
+       "shadow": false
+      },
+      {
+       "dir": 1.109,
+       "pos": [
+        -6,
+        2,
+        -4
+       ],
+       "shadow": false
+      },
+      {
+       "dir": 0.321,
+       "pos": [
+        -4,
+        2,
+        5
+       ],
+       "shadow": false
+      }
+     ],
+     "shadowPos": [
+      0,
+      10,
+      0.001
+     ],
+     "recvAll": true
+    },
+    "mix": {
+     "K1f": 3.77,
+     "O": 0.554,
+     "R": 1.109,
+     "F1": 0.321
+    },
+    "src": "Sketchfab, wholock, \"Star Trek - Sovereign Class\" (sketchfab.com/3d-models/e54ca13f5a3747c584dd304e4bb81826); bussard fronts made brighter here, impulse engines left as the author made them (redglow.py ... 1.0 200,360,1580,1790 bussards; texture models/sovereign/wholock_diffuse_2_1_emissive_bussards.png)",
+    "lic": "CC BY 4.0",
+    "pop": true,
+    "pop_args": "make72(img, True, 2.0, 1.1): soft pop",
+    "light_note": "Option 3 (candidate A, with overhead light), D 17 Nov",
+    "light_alt": {
+     "option 1: rig 14soft (sheet v40)": {
+      "hemi": 0,
+      "lights": [
+       {
+        "dir": 3.4,
+        "pos": [
+         7,
+         2.5,
+         -0.5
+        ]
+       },
+       {
+        "dir": 0.5,
+        "pos": [
+         0,
+         8,
+         0.3
+        ],
+        "shadow": false
+       },
+       {
+        "dir": 1.0,
+        "pos": [
+         -6,
+         2,
+         -4
+        ],
+        "shadow": false
+       }
+      ],
+      "shadowPos": [
+       0,
+       10,
+       0.001
+      ]
+     },
+     "option 3: candidate A, with overhead light": {
+      "hemi": 0,
+      "lights": [
+       {
+        "dir": 3.77,
+        "pos": [
+         7,
+         2.5,
+         -0.5
+        ],
+        "nb": 0,
+        "bias": -0.0015
+       },
+       {
+        "dir": 0.554,
+        "pos": [
+         0,
+         8,
+         0.3
+        ],
+        "shadow": false
+       },
+       {
+        "dir": 1.109,
+        "pos": [
+         -6,
+         2,
+         -4
+        ],
+        "shadow": false
+       },
+       {
+        "dir": 0.321,
+        "pos": [
+         -4,
+         2,
+         5
+        ],
+        "shadow": false
+       }
+      ],
+      "shadowPos": [
+       0,
+       10,
+       0.001
+      ],
+      "recvAll": true
+     },
+     "C: default (no overhead light)": {
+      "hemi": 0,
+      "lights": [
+       {
+        "dir": 5.353,
+        "pos": [
+         7,
+         2.5,
+         -0.5
+        ],
+        "nb": 0,
+        "bias": -0.0015
+       },
+       {
+        "dir": 0.787,
+        "pos": [
+         -6,
+         2,
+         -4
+        ],
+        "shadow": false
+       },
+       {
+        "dir": 0.974,
+        "pos": [
+         -4,
+         2,
+         5
+        ],
+        "shadow": false
+       }
+      ],
+      "shadowPos": [
+       0,
+       10,
+       0.001
+      ],
+      "recvAll": true
+     }
+    }
+   }
+  ]
+ }
+]
