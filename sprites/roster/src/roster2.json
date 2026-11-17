@@ -1492,6 +1492,205 @@
      }
     },
     "light_note": "Option 1 (sheet v40, rig 14soft): D finds it looks better on this ship than the default C (15 Nov)."
+   },
+   {
+    "id": "fed-sovereign",
+    "name": "Sovereign-class (leader)",
+    "f": "/dl/sovereign/x/scene.gltf",
+    "rot": [
+     0,
+     90,
+     0
+    ],
+    "size": 1.25,
+    "leader": true,
+    "src": "Sketchfab, wholock, \"Star Trek - Sovereign Class\" (sketchfab.com/3d-models/e54ca13f5a3747c584dd304e4bb81826); bussard fronts brighter and impulse engines glowing at 35% here (src/redglow.py), glow map models/sovereign/wholock_diffuse_2_1_emissive_final.png",
+    "lic": "CC BY 4.0",
+    "len_m": 685,
+    "model_note": "Unzip models/sovereign/star_trek_-_sovereign_class.zip to /dl/sovereign/x/, then replace x/textures/Sovereign_Class_diffuse_2_1_emissive.png with models/sovereign/wholock_diffuse_2_1_emissive_final.png (made by: python3 redglow.py <base> <original emissive> <out> 1.0 200,360,1580,1790 0.35).",
+    "light": {
+     "hemi": 0,
+     "lights": [
+      {
+       "dir": 3.767,
+       "pos": [
+        7,
+        2.5,
+        -0.5
+       ],
+       "nb": 0,
+       "bias": -0.0015
+      },
+      {
+       "dir": 0.554,
+       "pos": [
+        0,
+        8,
+        0.3
+       ],
+       "shadow": false
+      },
+      {
+       "dir": 1.108,
+       "pos": [
+        -6,
+        2,
+        -4
+       ],
+       "shadow": false
+      },
+      {
+       "dir": 0.321,
+       "pos": [
+        -4,
+        2,
+        5
+       ],
+       "shadow": false
+      }
+     ],
+     "shadowPos": [
+      0,
+      10,
+      0.001
+     ],
+     "recvAll": true
+    },
+    "mix": {
+     "K1f": 3.767,
+     "O": 0.554,
+     "R": 1.108,
+     "F1": 0.321
+    },
+    "pop": true,
+    "pop_k": 2.0,
+    "pop_sat": 1.1,
+    "light_note": "Option 3 (candidate A, with overhead light): D's pick, 17 Nov. Soft light pop (K 2.0, saturation 1.1) for the bussards and nacelle glow.",
+    "light_alt": {
+     "option 1: rig 14soft (sheet v40)": {
+      "hemi": 0,
+      "lights": [
+       {
+        "dir": 3.4,
+        "pos": [
+         7,
+         2.5,
+         -0.5
+        ]
+       },
+       {
+        "dir": 0.5,
+        "pos": [
+         0,
+         8,
+         0.3
+        ],
+        "shadow": false
+       },
+       {
+        "dir": 1.0,
+        "pos": [
+         -6,
+         2,
+         -4
+        ],
+        "shadow": false
+       }
+      ],
+      "shadowPos": [
+       0,
+       10,
+       0.001
+      ]
+     },
+     "option 3: candidate A, with overhead light": {
+      "hemi": 0,
+      "lights": [
+       {
+        "dir": 3.767,
+        "pos": [
+         7,
+         2.5,
+         -0.5
+        ],
+        "nb": 0,
+        "bias": -0.0015
+       },
+       {
+        "dir": 0.554,
+        "pos": [
+         0,
+         8,
+         0.3
+        ],
+        "shadow": false
+       },
+       {
+        "dir": 1.108,
+        "pos": [
+         -6,
+         2,
+         -4
+        ],
+        "shadow": false
+       },
+       {
+        "dir": 0.321,
+        "pos": [
+         -4,
+         2,
+         5
+        ],
+        "shadow": false
+       }
+      ],
+      "shadowPos": [
+       0,
+       10,
+       0.001
+      ],
+      "recvAll": true
+     },
+     "C: default (no overhead light)": {
+      "hemi": 0,
+      "lights": [
+       {
+        "dir": 5.323,
+        "pos": [
+         7,
+         2.5,
+         -0.5
+        ],
+        "nb": 0,
+        "bias": -0.0015
+       },
+       {
+        "dir": 0.783,
+        "pos": [
+         -6,
+         2,
+         -4
+        ],
+        "shadow": false
+       },
+       {
+        "dir": 0.986,
+        "pos": [
+         -4,
+         2,
+         5
+        ],
+        "shadow": false
+       }
+      ],
+      "shadowPos": [
+       0,
+       10,
+       0.001
+      ],
+      "recvAll": true
+     }
+    }
    }
   ]
  },
