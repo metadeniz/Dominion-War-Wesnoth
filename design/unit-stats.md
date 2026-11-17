@@ -14,7 +14,7 @@ Where this proposal changes a number from the roster draft, the change is listed
 4. **Big ships cost 2 upkeep.** Every ship is level 1, so without this a Galaxy would cost the same upkeep as a Miranda. Wesnoth lets a unit set its own upkeep, so the capital ships (Nebula, Galaxy, Vor'cha, Jem'Hadar battle cruiser) pay 2.
 5. **Command has to be reworked.** Wesnoth leadership only helps allies of a *lower* level, and nearly every ship is level 1, so a Galaxy's Command would only help runabouts. Proposal: Command helps adjacent allies of the same or lower crew level.
 6. **Cloaked ships are found only on contact.** No ship has a detection ability for now. A cloaked ship is revealed when an enemy moves next to it, and the enemy has to stop, as with Wesnoth's ambush. Jem'Hadar (partial) and Federation (tachyon detection grid) decloaking abilities may come later.
-7. **The Dreadnought is a guided missile.** Its warhead always hits for 32 and destroys the Dreadnought. Until then it fights with a plasma cannon.
+7. **The Dreadnought is a guided missile.** When it detonates, the target fires first, and if the Dreadnought survives, its warhead always hits for 32 and destroys the Dreadnought. Until then it fights with a plasma cannon.
 8. **Multiplayer leaders start as Veterans** and come from a pool of mid-sized ships (20 to 30 gold), so a Maquis raider leader never faces a Jem'Hadar battleship. The flagships become an optional "Flagships" game setting.
 
 ---
@@ -143,7 +143,7 @@ Keep the Wesnoth day/night cycle, renamed as a star cycle (open question 3 in th
 | *shield breaker* | weapon special (Ferengi EM pulse) | If it hits at least once, all the target's resistances drop by 20 points until the end of the turn (Breen phaser +30% becomes +10%, Federation polaron −20% becomes −40%). It doesn't stack. Allies who attack the same ship afterwards gain the most from it. | `attacker_hits` event giving the target an `[object]` with a resistance effect and `duration=turn` |
 | *transporter* | weapon special (Jem'Hadar boarding parties) | The boarding party beams through shields: the target's resistances count as 0% against it, good or bad. It can't be used on the Dreadnought, which has no crew. | `[resistance]` weapon special with `apply_to=opponent` (Wesnoth 1.16 or later) |
 | *kamikaze* | weapon special (Jem'Hadar attack ship) | Always hits, one strike, for damage equal to the attack ship's current HP. The target can't retaliate, and the attack ship is destroyed. Nobody gains XP, Glory or Plunder from it. | custom: chance_to_hit 100, damage set in an `attack` event, `[disable]` on the opponent, attacker killed in `attack end` |
-| *detonate* | weapon special | Always hits, one strike, and the Dreadnought is destroyed after the attack. No retaliation. | custom: chance_to_hit 100 plus an `attack end` event |
+| *detonate* | weapon special | The target fires first: all strikes of its best melee weapon, rolled as normal against the Dreadnought, which can't fire back. If that destroys the Dreadnought, nothing else happens. Otherwise the warhead always hits for its full damage, one strike, and the Dreadnought is destroyed. | custom: the target's volley scripted in an `attack` event, then chance_to_hit 100, then the Dreadnought killed in `attack end` |
 
 ### Cloaking and detection
 
@@ -195,9 +195,9 @@ This section is a proposal only. The tables in section 3 don't include it yet.
 
 **Balance:** the model can't price the bluff itself. Counting Surprise attack at +25% on average (it applies to about half the attacks), the Maquis go from 0.80–0.85 to 0.90–0.92 against the other factions, about where they were before the 16 Nov price rises. The raider at its new 15 gold scores 1.01, so that price fits a raider that can do this. The fighter scores 1.18 at 11 gold, which is strong, so 12 gold would suit it. The Bajoran freighter (0.52 at 14 gold) stays the weak spot. The bluff helps it a little, because the enemy can no longer safely ignore freighters, but it still needs a lower price or better stats.
 
-### Dreadnought point defence and mercenary stealth (proposal 4, waiting for D's approval)
+### Dreadnought point defence (approved, D, 17 Nov)
 
-This section is a proposal only. The tables in section 3 don't include it yet.
+This is now part of the *detonate* special in the table above.
 
 **Dreadnought: the target fires first (D, 16 Nov).** When the Dreadnought uses its warhead, the target first fires its best melee weapon, all its strikes, rolled as a normal attack against the Dreadnought's defence and resistances. The Dreadnought can't fire back. If that volley destroys the Dreadnought, the warhead never goes off. If the Dreadnought survives, the warhead hits for 32 as before, and the Dreadnought is gone either way.
 
@@ -340,7 +340,7 @@ The balance check can't score a one-shot attack, so the attack ship's score belo
 
 **New ships:**
 
-- **Dreadnought (ATR-4107)** (20 gold): a reprogrammed Cardassian missile. It fights with a plasma cannon until the moment it detonates: the warhead always hits for 32 torpedo damage, gets no retaliation, and destroys the Dreadnought. 32 finishes a damaged ship, kills most scouts outright and takes most of a cruiser, but leaves a Galaxy standing. It is Cardassian-built, so its shields shrug off phasers and plasma, and it gains no XP.
+- **Dreadnought (ATR-4107)** (20 gold): a reprogrammed Cardassian missile. It fights with a plasma cannon until the moment it detonates: its target fires first, and if the Dreadnought survives, the warhead always hits for 32 torpedo damage and destroys the Dreadnought. 32 finishes a damaged ship, kills most scouts outright and takes most of a cruiser, but leaves a Galaxy standing. It is Cardassian-built, so its shields shrug off phasers and plasma, and it gains no XP.
 - **Ferengi Marauder** (leader, 30 gold): a mercenary flagship with a photon torpedo, an electromagnetic pulse weapon that weakens the target's shields (*shield breaker*) for the rest of the turn, Plunder and Command. It is the only Maquis ship with Command. Its job is to open a target up for the Maquis swarm, so the EM pulse itself is modest (7-3).
 
 **Changes from the roster:** the **Bajoran freighter** gets phaser 4-2 (was 3-2) and costs 14 (was 11), and the **Maquis raider** costs 15 (was 13), both moved to the cost formula in `cost-formula.md` (D, 16 Nov). The **Maquis fighter** gets 26 HP and phaser 5-3 (was 24 and 4-3). The **fighter and raider** get plasma-charge melee and Badlands pilots. The **mercenary raider** gets 38 HP and disruptor 7-3 (was 36 and 6-3), because it has no torpedoes. The **Bajoran assault vessel's** torpedo is 8-2 (was 10-2). The **captured Constellation** gets Repairs +4, so the three Maquis leaders play differently (healer, cloaked striker, commander). The **stolen Defiant** gets Cloak, as on screen.
@@ -410,11 +410,9 @@ Which sound each attack uses, from `sounds/trek/` (for private play) with the fr
 
 ## 7. Open questions for D
 
-1. **Dreadnought:** a one-shot missile (as proposed), or a reusable heavy ship with a plain warhead attack?
-2. **Leaders:** start multiplayer leaders as Veterans from the 20 to 30 gold pool, with flagships as an option?
-3. **Upkeep 2 for capital ships:** keep it, or keep all ships at upkeep 1 and raise capital-ship prices instead?
-4. **Defiant cloak:** both Defiants now cloak. Keep that, or leave the Federation one without it, as the roster had?
-5. **Jem'Hadar kamikaze:** damage equal to the ship's current HP (as proposed), or a fixed amount? Should the big Jem'Hadar ships get it too?
-6. **Maquis disguise and ambush:** approve the proposal above (raider and fighter only, posing as any recruitable Maquis ship at least their own size)? Also, should the fighter go to 12 gold, and should the freighter come back down from 14?
-7. **Dreadnought point defence and mercenary stealth:** approve proposal 4? (The mercenary raider's Stealth part is replaced by proposal 5.)
-8. **Hiding in nebulae:** approve proposal 5 (light ships and the captured Constellation hide in nebulae, Maquis also in the Badlands; all others are stealthed within 2 hexes)?
+1. **Leaders:** start multiplayer leaders as Veterans from the 20 to 30 gold pool, with flagships as an option?
+2. **Upkeep 2 for capital ships:** keep it, or keep all ships at upkeep 1 and raise capital-ship prices instead?
+3. **Defiant cloak:** both Defiants now cloak. Keep that, or leave the Federation one without it, as the roster had?
+4. **Jem'Hadar kamikaze:** damage equal to the ship's current HP (as proposed), or a fixed amount? Should the big Jem'Hadar ships get it too?
+5. **Maquis disguise and ambush:** approve the proposal above (raider and fighter only, posing as any recruitable Maquis ship at least their own size)? Also, should the fighter go to 12 gold, and should the freighter come back down from 14?
+6. **Hiding in nebulae:** approve proposal 5 (light ships and the captured Constellation hide in nebulae, Maquis also in the Badlands; all others are stealthed within 2 hexes)?
