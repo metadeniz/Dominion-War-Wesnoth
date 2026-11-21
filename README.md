@@ -26,17 +26,22 @@ To play: start a multiplayer game, pick the era **The Dominion War** and any 2p 
 
 Ship stats come from design/unit-stats.md (proposal 2). To change a ship, edit the tables in
 `tools/make_units.py` and run `python3 tools/make_units.py`; don't edit units/*.cfg by hand.
-Attack sounds use the GPL set in sounds/free-sci-fi/ so the build can be published. Weapon
-visuals are simple placeholders (beam bolts and glowing torpedoes) until the final effects
-are picked.
+Sounds: each attack plays D's Trek pick from design/unit-stats.md (section 6) when that file is
+in sounds/trek/, and the free GPL stand-in from sounds/free-sci-fi/ otherwise. To make a build
+that is safe to publish, delete sounds/trek/ and every attack falls back to the free set. After
+adding or removing sound files (without a .cfg change), clear Wesnoth's cache folder so the
+choice is made again. Weapon visuals are simple placeholders (beam bolts and glowing torpedoes)
+until the final effects are picked.
 
-Not in this build yet: the optional "Flagships" leader setting, Jem'Hadar and Federation
-cloak detection, cloak/decloak sounds, and a Sovereign-class unit (the sprite is here, but it
-has no stats in design/unit-stats.md).
+Not in this build yet: the proposals still waiting for D (Maquis disguise, hiding in nebulae,
+shields as a separate bar), the optional "Flagships" leader setting, cloak detection,
+cloak/decloak sounds, the STO polaron and Ferengi missile sounds (not in sounds/trek/ yet, so
+stand-ins play), and a Sovereign-class unit (the sprite is here, but it has no stats).
 
 Rules test: copy tools/test_addon/DW_Test into the add-ons folder next to this add-on and run
 `wesnoth --nogui -u dw_test`. It checks every ship's images and sounds, the kamikaze, warhead,
-transporter, targeting lock, Command, Glory, crew levels, cloaks and traits.
+transporter, targeting lock, Command, Glory, crew levels, cloaks, traits, the EM pulse's
+shield breaker, the Defiant's charge and the Dreadnought's point defence.
 
 ## Syncing new work from the project
 

@@ -34,6 +34,9 @@ for id, ut in pairs(wesnoth.unit_types) do
 end
 std_print("unit types: " .. n)
 check(n == 32, "expected 32 types")
+local snd = {}
+for id, ut in pairs(wesnoth.unit_types) do if id:sub(1,3)=="DW_" then for an in wml.child_range(ut.__cfg, "attack_anim") do for f in wml.child_range(an, "frame") do if f.sound then snd[f.sound]=true end end end end end
+local sl = {} for k in pairs(snd) do sl[#sl+1]=k end table.sort(sl) std_print("SOUNDS: " .. table.concat(sl, " "))
 
 -- 2. veteran leaders (prestart ran already)
 local L = wesnoth.units.find_on_map{ side = 1, canrecruit = true }[1]
@@ -137,6 +140,49 @@ std_print("JH traits: " .. table.concat(tr, ","))
 check(#tr == 2 and (tr[1] == "dw_bred_for_war" or tr[2] == "dw_bred_for_war"), "JH bred for war")
 local dn = wesnoth.units.create{ type = "DW_Dreadnought", side = 1 }
 check(#dn.traits == 0, "dreadnought no traits")
+
+
+-- 10. shield breaker: Marauder EM pulse hit drops target resistances by 20
+clear()
+local mar = put("DW_Ferengi_Marauder", 1, 18, 5)
+local gal = put("DW_Galaxy", 2, 18, 6)
+local before = gal:resistance_against("blade")
+local wi2
+for i, atk in ipairs(mar.attacks) do if atk.name == "EM_pulse" then wi2 = i - 1 end end
+for _ = 1, 6 do
+  wml.fire("do_command", { wml.tag.attack{ wml.tag.source{ x = 18, y = 5 }, wml.tag.destination{ x = 18, y = 6 }, weapon = wi2 } })
+  mar.attacks_left = 1
+  if wesnoth.units.get(18,6):resistance_against("blade") ~= before then break end
+end
+local after = wesnoth.units.get(18,6):resistance_against("blade")
+std_print("Galaxy phaser resistance before " .. before .. " after EM pulse " .. after)
+check(after == before - 20, "shield breaker -20 (no stacking)")
+-- 11. Defiant charge
+clear()
+local df = put("DW_Defiant", 1, 18, 5); put("DW_Galor", 2, 18, 6)
+local _, _, dw1, dw2 = wesnoth.simulate_combat(df, 1, wesnoth.units.get(18,6))
+std_print("Defiant pulse vs Galor: " .. dw1.damage .. "-" .. dw1.num_blows .. " ; Galor return " .. dw2.damage)
+-- 12. point defence: weakened Dreadnought dies before detonating
+clear()
+local dr = put("DW_Dreadnought", 1, 18, 5); dr.hitpoints = 3
+put("DW_Galaxy", 2, 18, 6)
+local wh
+for i, atk in ipairs(dr.attacks) do if atk.name == "warhead" then wh = i - 1 end end
+wml.fire("do_command", { wml.tag.attack{ wml.tag.source{ x = 18, y = 5 }, wml.tag.destination{ x = 18, y = 6 }, weapon = wh } })
+std_print("point defence: dreadnought alive=" .. tostring(wesnoth.units.get(18,5) ~= nil) .. " galaxy hp=" .. wesnoth.units.get(18,6).hitpoints)
+-- fresh Dreadnought survives the volley and detonates
+clear()
+dr = put("DW_Dreadnought", 1, 18, 5)
+put("DW_Ktinga", 2, 18, 6)
+wml.fire("do_command", { wml.tag.attack{ wml.tag.source{ x = 18, y = 5 }, wml.tag.destination{ x = 18, y = 6 }, weapon = wh } })
+local kt = wesnoth.units.get(18,6)
+std_print("fresh dreadnought: gone=" .. tostring(wesnoth.units.get(18,5) == nil) .. " ktinga hp=" .. (kt and kt.hitpoints or -1))
+check(wesnoth.units.get(18,5) == nil and kt and kt.hitpoints == 13, "warhead 32 (29 after +10% torpedo resistance) on Ktinga")
+-- 13. Intrepid repairs skip Jem'Hadar
+local it = wesnoth.unit_types["DW_Intrepid"]
+local rep = wml.get_child(wml.get_child(it.__cfg, "abilities"), "heals")
+local jh = wesnoth.units.create{ type = "DW_Jemhadar_Attack_Ship", side = 1 }
+check(not jh:matches(wml.get_child(wml.get_child(rep, "affect_adjacent"), "filter")), "repairs filter excludes Jem'Hadar")
 
 std_print(string.format("RESULT passes=%d fails=%d", passes, fails))
 wml.fire("endlevel", { result = (fails == 0) and "victory" or "defeat", linger_mode = false })
