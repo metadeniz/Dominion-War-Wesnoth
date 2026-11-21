@@ -9,18 +9,34 @@ lands at the same relative path here.
     sprites/   ship sprites: roster/ (sheets, finals, render sources), ships/, ships-3d/
     tileset/   space tileset studies and mockups, with src/ generators
 
-The add-on itself (skeleton, not playable yet):
+The add-on itself (first playable build, multiplayer):
 
-    _main.cfg  entry point; loads utils/, terrain/ (when it exists), units/, era/
-    era/       The Dominion War era and one file per faction (leaders, recruits)
-    units/     stub ship types per faction, hull movetypes and races
-    utils/     shared macros (shield profiles as resistances)
-    images/    unit sprites the game loads (copies of sprites/roster/*.png)
-    terrain/   reserved for the space tileset: add terrain/_main.cfg and
-               _main.cfg picks it up automatically
+    _main.cfg  entry point; loads utils/, terrain/, ui/, units/, era/
+    era/       The Dominion War era, one file per faction, and events.cfg (Glory, Plunder,
+               kamikaze and warhead self-destruct, Ketracel dependency, Veteran leaders)
+    units/     the 32 ship types per faction (generated, see below), hull movetypes and races
+    utils/     shared macros: shields (resistances), abilities, weapon specials, crew levels
+               and traits, placeholder attack animations
+    images/    unit sprites, placeholder weapon effects (projectiles/dw/), crew badges (misc/)
+    terrain/   the space tileset (any map is turned into space when a game starts)
+    tools/     make_units.py writes units/*.cfg from the stats tables; make_fx.py draws the
+               placeholder effects; test_addon/ is an automated rules test
 
-Not copied: the large 3D model archives (*.zip at the top of the library)
-and Python __pycache__ folders.
+To play: start a multiplayer game, pick the era **The Dominion War** and any 2p map.
+
+Ship stats come from design/unit-stats.md (proposal 2). To change a ship, edit the tables in
+`tools/make_units.py` and run `python3 tools/make_units.py`; don't edit units/*.cfg by hand.
+Attack sounds use the GPL set in sounds/free-sci-fi/ so the build can be published. Weapon
+visuals are simple placeholders (beam bolts and glowing torpedoes) until the final effects
+are picked.
+
+Not in this build yet: the optional "Flagships" leader setting, Jem'Hadar and Federation
+cloak detection, cloak/decloak sounds, and a Sovereign-class unit (the sprite is here, but it
+has no stats in design/unit-stats.md).
+
+Rules test: copy tools/test_addon/DW_Test into the add-ons folder next to this add-on and run
+`wesnoth --nogui -u dw_test`. It checks every ship's images and sounds, the kamikaze, warhead,
+transporter, targeting lock, Command, Glory, crew levels, cloaks and traits.
 
 ## Syncing new work from the project
 
@@ -40,5 +56,3 @@ Older route, for library files that aren't in the repo yet:
 
 First sync: 2026-11-16, 655 files.
 
-The ship types are stubs: stats come from design/unit-stats.md, but attacks,
-abilities, crew levels, animations and sounds are not written yet.
